@@ -82,12 +82,25 @@
                                 <input type="text" id="filter__item_list" name="filter__item_list" class="search fr form-control" placeholder="Search by category or phone ..." />
                             </label>
 
+
+                            <label class="pull-right">
+
+                                <a class="btn btn-success" href="{{route('item.add')}}">
+                                    <i class="fa fa-plus"></i> <span class="hidden-mobile">Add New Item</span>
+                                </a>
+                            </label>
+
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <!-- widget content -->
+                    @include('layout::partials.alerts.errors')
+
+                    @include('layout::partials.alerts.message')
+
+
+                            <!-- widget content -->
                     <div id = "list__item_list"></div>
                     <!-- end widget content -->
                 </div>

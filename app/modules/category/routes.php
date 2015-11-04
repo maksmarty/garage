@@ -22,6 +22,13 @@ Route::group(array( 'before' => 'auth'), function() {
     Route::post('category/add', array('as' => 'category.post.add','uses' => '\App\Modules\Category\Controllers\CategoryController@postAdd'));
 
 
+    # GET : LOGIN PAGE
+    Route::get('category/{id}/edit', array('as' => 'category.update','uses' => '\App\Modules\Category\Controllers\CategoryController@update'));
+
+    # GET : LOGIN PAGE
+    Route::post('category/{id}/edit', array('as' => 'category.post.update','uses' => '\App\Modules\Category\Controllers\CategoryController@postUpdate'));
+
+    Route::get('category/parentupdate', array('as' => 'category.parent.update','uses' => '\App\Modules\Category\Controllers\CategoryController@setParentToCategory'));
 
 
     # POST : LOGIN PAGE

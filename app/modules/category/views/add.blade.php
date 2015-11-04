@@ -25,11 +25,19 @@
 <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
             <h1 class="page-title txt-color-blueDark">
-                <i class="fa fa-edit fa-fw "></i> 
-                <strong> Add Category : </strong>
-                <span>
-                    Add/Update Category here.
-                </span>
+                <i class="fa fa-edit fa-fw "></i>
+                @if($category->category_id)
+                    <strong> Update Category : </strong>
+                    <span>
+                        Update Category here.
+                    </span>
+                @else
+                    <strong> Add Category : </strong>
+                    <span>
+                        Add Category here.
+                    </span>
+                @endif
+
             </h1>
         </div>        
     </div>
@@ -54,20 +62,46 @@
                     <!-- widget content -->
                     <div class="widget-body">
 
-                        <form class="form-horizontal" name="addUpdateCategoryForm" id="addUpdateCategoryForm" method="post" action="/category/add" >
                             {{--role="form" data-toggle="validator"  novalidate="novalidate"--}}
 
-                            @if(Session::has('message'))
-                                <div class="alert alert-box alert-success">
-                                    <h2>{{ Session::get('message') }}</h2>
-                                </div>
+                            @if($category->category_id)
+                                <form class="form-horizontal" name="addUpdateCategoryForm" id="addUpdateCategoryForm" method="post" action="{{route('category.post.update',$category->category_id)}}" >
+
+                            @else
+                                <form class="form-horizontal" name="addUpdateCategoryForm" id="addUpdateCategoryForm" method="post" action="{{route('category.post.add')}}" >
                             @endif
+
+                            @include('layout::partials.alerts.errors')
+
+                            @include('layout::partials.alerts.message')
+
+                            {{--@if(Session::has('message'))--}}
+                                {{--<div class="alert alert-box alert-success">--}}
+                                    {{--<h2>{{ Session::get('message') }}</h2>--}}
+                                {{--</div>--}}
+                            {{--@endif--}}
+
 
                             <div class="form-group">
                                <label class="col-md-2 control-label">Category</label>
                                <div class="col-md-8">
-                                   <input class="form-control" placeholder="Add/Update Category" type="text" name="name" id="name" value="" required>
+                                   <input class="form-control" placeholder="Add/Update Category" type="text" name="name" id="name" value="{{$category->name}}" required>
                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Add Parent ( Optional ) <small class="note">Add Parent for this Category</small></label>
+                                <div class="col-md-8">
+
+                                    @if($category->category_id)
+                                        {{ Form::select('parent_category_id', $categories_dropdown, $category->parent, ['class' => 'form-control','required' => 'required']) }}
+                                    @else
+                                        {{ Form::select('parent_category_id', $categories_dropdown, null, ['class' => 'form-control','required' => 'required']) }}
+                                    @endif
+
+
+
+                                </div>
                             </div>
                             
 
@@ -103,7 +137,7 @@
      <script type="text/javascript">
             //runAllForms();
             
-            $(function() {
+            /*$(function() {
                 
                 // Validation
                 $("#addUpdateCategoryForm___").validate({
@@ -197,7 +231,7 @@
                             }
                         });
                     }
-               });
+               });*/
                     
         </script>
 

@@ -26,7 +26,13 @@ class Category extends \Eloquent {
 	 */
 	protected $table = "category";
 	protected $guarded = ["category_id"];
+    protected $primaryKey = 'category_id';
 	//protected $softDelete = true;
+
+    public function items()
+    {
+        return $this->hasMany('Items');
+    }
 
 
     public function getList(){
@@ -52,13 +58,13 @@ class Category extends \Eloquent {
 
         $base_query = $query_count = '';
 
-        $base_select_query = ' SELECT category.* FROM category ';
+        $base_select_query = ' SELECT category.*,parentCategory.name as parent_name FROM category LEFT JOIN category parentCategory ON `category`.`category_id`= `parentCategory`.`parent` ';
 
-        $base_count_query = ' SELECT count(* ) as num_records FROM category ' ;
+        $base_count_query = ' SELECT count(* ) as num_records FROM category  LEFT JOIN category parentCategory ON `category`.`category_id`= `parentCategory`.`parent` ' ;
 
 
 
-        $where = ' WHERE 1 ';
+        $where = ' WHERE 1';
 
 
         $q = trim($q);
@@ -85,7 +91,7 @@ class Category extends \Eloquent {
         }
 
         if (empty($sort)) {
-            $sort_query = ' ORDER BY category_id ';
+            $sort_query = ' ORDER BY category.category_id ';
             $sort = ' category_id  ';
         } else {
             $sort_query = ' ORDER BY ' . $sort;

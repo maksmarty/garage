@@ -52,7 +52,7 @@ class ItemsController extends \BaseController {
 
         $list = ['' => 'Select Category'] + DB::table('category')->lists('name', 'category_id');
         //echo '<pre>';print_r($list);die('======Debugging=======');
-        return View::make('items::add', array('categories'=> $list ));
+        return View::make('items::add', array('categories'=> $list , 'item' => new items() ));
     }
 
     # handle change password post data
@@ -75,7 +75,7 @@ class ItemsController extends \BaseController {
         // process the login
         if ($validator->fails()) {
             //echo '<pre>';print_r($validator->messages());die('======Debugging=======');
-            return Redirect::to(sprintf('%s/%s', 'item','add'))
+            return Redirect::route('item.add')
                 ->withErrors($validator);
         } else {
 
@@ -87,41 +87,41 @@ class ItemsController extends \BaseController {
             $item->description       = Input::get('description');
             //$item->save()
 
-            if (Input::hasFile('image')) {
-                $file            = Input::file('image');
-
-                //get File Name
-                $fileExtension = $file->getClientOriginalExtension();
-                $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
-
-
-                //destination path
-                $destinationPath = public_path('uploads') .'/images/';//'uploads/jav_'.str_random(8);
-
-                $uploadSuccess  = \Image::make( $file->getRealPath() )
-                    ->resize(50,null, function ($constraint) { $constraint->aspectRatio(); })
-                    ->save($destinationPath.'50/'.$newFilename);
-
-                \Image::make( $file->getRealPath() )
-                    ->resize(100,null, function ($constraint) { $constraint->aspectRatio(); })
-                    ->save($destinationPath.'100/'.$newFilename);
-
-                \Image::make( $file->getRealPath() )
-                    ->resize(200,null, function ($constraint) { $constraint->aspectRatio(); })
-                    ->save($destinationPath.'200/'.$newFilename);
-
-                \Image::make( $file->getRealPath() )
-                    ->resize(400,null, function ($constraint) { $constraint->aspectRatio(); })
-                    ->save($destinationPath.'400/'.$newFilename);
-
-                if( $uploadSuccess )
-                {
-                    //$item = Item::find( $item_id );
-                    $item->image = $newFilename;
-                    //$item->save();
-                }
-
-            }
+//            if (Input::hasFile('image')) {
+//                $file            = Input::file('image');
+//
+//                //get File Name
+//                $fileExtension = $file->getClientOriginalExtension();
+//                $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+//
+//
+//                //destination path
+//                $destinationPath = public_path('uploads') .'/images/';//'uploads/jav_'.str_random(8);
+//
+//                $uploadSuccess  = \Image::make( $file->getRealPath() )
+//                    ->resize(50,null, function ($constraint) { $constraint->aspectRatio(); })
+//                    ->save($destinationPath.'50/'.$newFilename);
+//
+//                \Image::make( $file->getRealPath() )
+//                    ->resize(100,null, function ($constraint) { $constraint->aspectRatio(); })
+//                    ->save($destinationPath.'100/'.$newFilename);
+//
+//                \Image::make( $file->getRealPath() )
+//                    ->resize(200,null, function ($constraint) { $constraint->aspectRatio(); })
+//                    ->save($destinationPath.'200/'.$newFilename);
+//
+//                \Image::make( $file->getRealPath() )
+//                    ->resize(400,null, function ($constraint) { $constraint->aspectRatio(); })
+//                    ->save($destinationPath.'400/'.$newFilename);
+//
+//                if( $uploadSuccess )
+//                {
+//                    //$item = Item::find( $item_id );
+//                    $item->image = $newFilename;
+//                    //$item->save();
+//                }
+//
+//            }
 
             //Save data
             $item->save();
@@ -131,6 +131,80 @@ class ItemsController extends \BaseController {
             return Redirect::to(sprintf('%s/%s', 'item','add'));
         }
     }
+
+    # Show
+    public function update($id){
+//        $categories = Category::lists('name', 'category_id');
+//
+        //$item = Items::find($id);
+        //$item = Items::find($id);
+        $item = DB::table('items')
+            ->join('category', 'items.category_id', '=', 'category.category_id')
+            ->where('item_id','=',$id)
+            ->select('items.*','category.name as category_name')
+            ->first();
+        if(!empty($item->item_id)){
+
+            $list = ['' => 'Select Category'] + DB::table('category')->lists('name', 'category_id');
+
+            return View::make('items::add', array('categories'=> $list, 'item' => $item ));
+        }else{
+            // redirect
+            Session::flash('message', 'Something went wrong.');
+            return Redirect::route('item');
+        }
+
+
+    }
+
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function postUpdate($id)
+    {
+
+        $item = Items::find($id);
+
+        if(!empty($item->item_id)){
+            $rules = array(
+                'phone'       => 'required',
+                'description'       => 'required'
+            );
+
+            $validator = Validator::make(Input::all(), $rules);
+
+            // process the login
+            if ($validator->fails()) {
+                return Redirect::route('item.update',$id)
+                    ->withErrors($validator);
+            } else {
+                // store
+
+                $item->phone       = Input::get('phone');
+                $item->phone1       = Input::get('phone1');
+                $item->phone2       = Input::get('phone2');
+                $item->description       = Input::get('description');
+                $item->save();
+
+                // redirect
+                Session::flash('message', 'Item Successfully updated!');
+                return Redirect::route('item');
+            }
+        }else{
+            // redirect
+            Session::flash('message', 'Something went wrong.');
+            return Redirect::route('item');
+        }
+
+
+    }
+
 
 //    /*
 //    * Clean the file name
@@ -146,36 +220,6 @@ class ItemsController extends \BaseController {
 //
 //        return $fileName;
 //    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function postEdit($id)
-    {
-        // validate
-        $rules = array(
-            'name'       => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to(sprintf('%s/%d/%s', 'category',$id, 'edit'))
-                ->withErrors($validator);
-        } else {
-            // store
-            $nerd = Category::find($id);
-            $nerd->name       = Input::get('name');
-            $nerd->save();
-
-            // redirect
-            Session::flash('message', 'Successfully updated Category!');
-            return Redirect::to('category');
-        }
-    }
 
     public function postBuild() {
         // die('anand');

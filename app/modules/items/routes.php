@@ -25,7 +25,14 @@ Route::group(array( 'before' => 'auth'), function() {
 
 
     # GET : LOGIN PAGE
-    Route::get('item/import/{category}', array('as' => 'item','uses' => '\App\Modules\Items\Controllers\ItemsController@getImport'));
+    Route::get('item/import/{category}', array('as' => 'item.import','uses' => '\App\Modules\Items\Controllers\ItemsController@getImport'));
+
+
+    # GET : LOGIN PAGE
+    Route::get('item/{id}/edit', array('as' => 'item.update','uses' => '\App\Modules\Items\Controllers\ItemsController@update'));
+
+    # GET : LOGIN PAGE
+    Route::post('item/{id}/edit', array('as' => 'item.post.update','uses' => '\App\Modules\Items\Controllers\ItemsController@postUpdate'));
 
 
 

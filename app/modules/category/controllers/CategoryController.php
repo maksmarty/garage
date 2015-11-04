@@ -43,7 +43,9 @@ class CategoryController extends \BaseController {
     
     # Show
     public function showAdd(){
-        return View::make('category::add');
+
+        $list = ['0' => 'No Parent Category'] + Category::lists('name', 'category_id');
+        return View::make('category::add', array('categories_dropdown'=> $list , 'category' => new Category()));
     }
 
     # handle change password post data
@@ -52,24 +54,49 @@ class CategoryController extends \BaseController {
         // validate
         $rules = array(
             'name'       => 'required|unique:category',
+            'parent_category_id'       => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to(sprintf('%s/%s', 'category','add'))
+            return Redirect::route('category.add')
                 ->withErrors($validator);
         } else {
             // store
             $nerd = new Category;
             $nerd->name       = Input::get('name');
+            $nerd->parent       = Input::get('parent_category_id');
             $nerd->save();
 
             // redirect
-            Session::flash('message', 'Successfully added Category!');
-            return Redirect::to(sprintf('%s/%s', 'category','add'));
+            Session::flash('message', 'Category added successfully!');
+            return Redirect::route('category');
         }
     }
+
+    # Show
+    public function update($id){
+//        $categories = Category::lists('name', 'category_id');
+//
+        //$item = Items::find($id);
+        //$item = Items::find($id);
+        $category = Category::find($id);
+        if(!empty($category->category_id)){
+
+            $list = ['0' => 'No Parent Category'] + Category::lists('name', 'category_id');
+            return View::make('category::add', array('categories_dropdown'=> $list , 'category' => $category));
+        }else{
+            // redirect
+            Session::flash('message', 'Something went wrong.');
+            return Redirect::route('category');
+        }
+
+
+    }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -77,29 +104,72 @@ class CategoryController extends \BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function postEdit($id)
+    public function postUpdate($id)
     {
-        // validate
-        $rules = array(
-            'name'       => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to(sprintf('%s/%d/%s', 'category',$id, 'edit'))
-                ->withErrors($validator);
-        } else {
-            // store
-            $nerd = Category::find($id);
-            $nerd->name       = Input::get('name');
-            $nerd->save();
+        $category = Category::find($id);
+        if(!empty($category->category_id)){
+            $rules = array(
+                'name'       => 'required',
+                'parent_category_id'       => 'required'
+            );
 
+            $validator = Validator::make(Input::all(), $rules);
+
+            // process the login
+            if ($validator->fails()) {
+                return Redirect::route('category.update',$id)
+                    ->withErrors($validator);
+            } else {
+
+                $category->name       = Input::get('name');
+                $category->parent       = Input::get('parent_category_id');
+                $category->save();
+
+                // redirect
+                Session::flash('message', 'Category updated successfully!');
+                return Redirect::route('category');
+            }
+        }else{
             // redirect
-            Session::flash('message', 'Successfully updated Category!');
-            return Redirect::to('category');
+            Session::flash('message', 'Something went wrong.');
+            return Redirect::route('category');
         }
+
+
     }
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+//    public function postEdit($id)
+//    {
+//        // validate
+//        $rules = array(
+//            'name'       => 'required',
+//        );
+//        $validator = Validator::make(Input::all(), $rules);
+//
+//        // process the login
+//        if ($validator->fails()) {
+//            return Redirect::to(sprintf('%s/%d/%s', 'category',$id, 'edit'))
+//                ->withErrors($validator);
+//        } else {
+//            // store
+//            $nerd = Category::find($id);
+//            $nerd->name       = Input::get('name');
+//            $nerd->save();
+//
+//            // redirect
+//            Session::flash('message', 'Successfully updated Category!');
+//            return Redirect::to('category');
+//        }
+//    }
 
     public function postBuild() {
         // die('anand');
@@ -149,6 +219,26 @@ class CategoryController extends \BaseController {
         $data['param']   = $list['param'];
         return $data;
     }
+
+    public function setParentToCategory() {
+
+        $data  = array();
+        $categories  = Category::all();
+        echo '<pre>';print_r($categories);die('======Debugging=======');
+
+
+
+        foreach($categories as $category){
+
+            $itemCont->getImport($category);
+        }
+//
+//        $arr   = array('CATEGORIES' => $list );
+//        $data['results'] = $arr;
+//        $data['param']   = $list['param'];
+        return $data;
+    }
+
 
 
 }

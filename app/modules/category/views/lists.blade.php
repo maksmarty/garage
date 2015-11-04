@@ -14,6 +14,7 @@
                 <tr>
                     <th class="txt-color-blue " >#</th>
                     <th class="txt-color-blue " >Category</th>
+                    <th class="txt-color-blue " >Parent Category</th>
                     <th class="txt-color-blue " >Action</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
             <tr id ="files_<?php echo $row->category_id; ?>" >
                 <td><?php echo ++$count; ?></td>
                 <td><?php echo (!empty($row->name) ? $row->name : ''); ?></td>
+                <td><?php echo (!empty($row->parent_name) ? $row->parent_name : ''); ?></td>
 
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>
@@ -43,7 +45,11 @@
                    {{-- <a class="btn btn-small btn-success" href="{{ URL::to('item/' . $row->item_id) }}">Show </a>--}}
 
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('category/' . $row->category_id . '/edit') }}">Edit</a>
+                    {{--<a class="btn btn-small btn-info" href="{{ URL::route('category.update',$row->category_id) }}">Edit</a>--}}
+
+                    <a class="btn btn-info" href="{{route('category.update',$row->category_id)}}">
+                        <i class="fa fa-edit"></i> <span class="hidden-mobile">Update</span>
+                    </a>
 
                 </td>
             </tr>

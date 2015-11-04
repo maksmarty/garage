@@ -26,6 +26,8 @@ class Items extends \Eloquent {
 	 */
 	protected $table = "items";
 	protected $guarded = ["item_id"];
+    protected $primaryKey = 'item_id';
+
 	//protected $softDelete = true;
 
 

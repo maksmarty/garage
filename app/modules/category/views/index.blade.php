@@ -82,12 +82,25 @@
                                 <input type="text" id="filter__category_list" name="filter__category_list" class="search fr form-control" placeholder="Filter..." />
                             </label>
 
+                            <label class="pull-right">
+
+                            <a class="btn btn-success" href="{{route('category.add')}}">
+                                <i class="fa fa-plus"></i> <span class="hidden-mobile">Add New Category</span>
+                            </a>
+                            </label>
+
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <!-- widget content -->
+
+                    @include('layout::partials.alerts.errors')
+
+                    @include('layout::partials.alerts.message')
+
+
+                            <!-- widget content -->
                     <div id = "list__category_list"></div>
                     <!-- end widget content -->
                 </div>

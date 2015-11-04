@@ -47,7 +47,11 @@
                    {{-- <a class="btn btn-small btn-success" href="{{ URL::to('item/' . $row->item_id) }}">Show </a>--}}
 
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('item/' . $row->item_id . '/edit') }}">Edit</a>
+                    {{--<a class="btn btn-small btn-info" href="{{ route('item.update',$row->item_id)}}">Edit</a>--}}
+
+                    <a class="btn btn-info" href="{{route('item.update',$row->item_id)}}">
+                        <i class="fa fa-edit"></i> <span class="hidden-mobile">Update</span>
+                    </a>
 
                 </td>
             </tr>

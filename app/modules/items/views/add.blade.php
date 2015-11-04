@@ -25,11 +25,22 @@
 <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
             <h1 class="page-title txt-color-blueDark">
-                <i class="fa fa-edit fa-fw "></i> 
-                <strong> Add Item : </strong>
-                <span>
-                    Add/Update Item here.
-                </span>
+                <i class="fa fa-edit fa-fw "></i>
+
+                @if($item->item_id)
+                    <strong> Update Item : </strong>
+                    <span>
+                        Update Item here.
+                    </span>
+                @else
+                    <strong> Add Item : </strong>
+                    <span>
+                        Add Item here.
+                    </span>
+                @endif
+
+
+
             </h1>
         </div>        
     </div>
@@ -44,7 +55,11 @@
 
                 <header>
                     <span class="widget-icon"> <i class="fa fa-eye"></i> </span>
-                    <h2>Add Item</h2>
+                    @if($item->item_id)
+                        <h2>Update Item</h2>
+                    @else
+                        <h2>Add Item</h2>
+                    @endif
 
                 </header>
 
@@ -54,21 +69,37 @@
                     <!-- widget content -->
                     <div class="widget-body">
 
-                        <form class="form-horizontal" name="addUpdateItemsForm" id="addUpdateItemsForm" method="post" action="{{route('item.post.add')}}" enctype="multipart/form-data">
-                            {{--role="form" data-toggle="validator"  novalidate="novalidate"--}}
+                        @if($item->item_id)
+                            <form class="form-horizontal" name="addUpdateItemsForm" id="addUpdateItemsForm" method="post" action="{{route('item.post.update',$item->item_id)}}" enctype="multipart/form-data">
+                        @else
+                            <form class="form-horizontal" name="addUpdateItemsForm" id="addUpdateItemsForm" method="post" action="{{route('item.post.add')}}" enctype="multipart/form-data">
+                        @endif
+
+                        @include('layout::partials.alerts.errors')
+
+                        @include('layout::partials.alerts.message')
 
 
-                            @if(Session::has('message'))
-                                <div class="alert alert-box alert-success">
-                                    <h2>{{ Session::get('message') }}</h2>
-                                </div>
-                            @endif
+
+                                {{--role="form" data-toggle="validator"  novalidate="novalidate"--}}
+
+
+                            {{--@if(Session::has('message'))--}}
+                                {{--<div class="alert alert-box alert-success">--}}
+                                    {{--<h2>{{ Session::get('message') }}</h2>--}}
+                                {{--</div>--}}
+                            {{--@endif--}}
 
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="select-1">Categories</label>
                                 <div class="col-md-8">
 
-                                    {{ Form::select('category_id', $categories, null, ['class' => 'form-control','required' => 'required']) }}
+                                    @if($item->item_id)
+                                        {{$item->category_name}}
+                                    @else
+                                        {{ Form::select('category_id', $categories, null, ['class' => 'form-control','required' => 'required']) }}
+                                    @endif
+
 
                                 </div>
                             </div>
@@ -78,10 +109,30 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Phone</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone" id="phone" value="" required>
+                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone" id="phone" value="{{$item->phone}}" required>
 
                                 </div>
                             </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Phone 2</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone1" id="phone1" value="{{$item->phone1}}" required>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Phone 3</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone2" id="phone2" value="{{$item->phone2}}" required>
+
+                                </div>
+                            </div>
+
 
 
 
@@ -89,18 +140,18 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Description</label>
                                 <div class="col-md-8">
-                                    <textarea class="form-control" placeholder="Add/Update Description" rows="3" name="description" required></textarea>
+                                    <textarea class="form-control" placeholder="Add/Update Description" rows="3" name="description" required>{{$item->description}}</textarea>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+{{--                            <div class="form-group">
                                 <label class="col-md-2 control-label">Image</label>
                                 <div class="col-md-8">
                                     <input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">
                                 </div>
 
 
-                            </div>
+                            </div>--}}
 
 
 
