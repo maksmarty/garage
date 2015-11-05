@@ -9,6 +9,7 @@ namespace App\Modules\Category\Models;
 use App,
     View,
     Helpers;
+use Illuminate\Support\Facades\HTML;
 use Input,
     Session,
     Config,
@@ -33,6 +34,63 @@ class Category extends \Eloquent {
     {
         return $this->hasMany('Items');
     }
+
+    public function getGroupedCategoriesForDropDown()
+    {
+        $parents = DB::table('category')->where('parent','=','0')->orderBy('name','asc')->get();
+
+        $data = array();
+        foreach($parents as $parent ){
+
+
+
+            $childs = DB::table('category')->where('parent','=',$parent->category_id)->orderBy('name','asc')->get();
+            //echo '<pre>';print_r($childs);die('======Debugging=======');
+            $childArr =array();
+            foreach($childs as $child){
+                //echo '<pre>';print_r($child);die('======Debugging=======');
+                $childArr[$child->category_id] =  \Lang::get("messages.{$child->name}", array(), 'ar');
+            }
+
+            $data[ \Lang::get("messages.{$parent->name}", array(), 'ar') ] = $childArr;
+
+        }
+
+        return $data;
+    }
+
+
+    public function getCategoriesSearchForDropDown()
+    {
+        $parents = DB::table('category')->orderBy('name','asc')->get();
+
+        $data = array();
+        foreach($parents as $parent ){
+
+            $data[ $parent->name ] = \Lang::get("messages.{$parent->name}", array(), 'ar');
+
+        }
+
+        return $data;
+    }
+
+
+
+    public function getCategoriesForDropDown()
+    {
+        $parents = DB::table('category')->orderBy('name','asc')->get();
+
+        $data = array();
+        foreach($parents as $parent ){
+
+            $data[ $parent->category_id ] = \Lang::get("messages.{$parent->name}", array(), 'ar');
+
+        }
+
+        return $data;
+    }
+
+
 
 
     public function getList(){

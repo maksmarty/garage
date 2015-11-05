@@ -95,7 +95,7 @@
                                 <div class="col-md-8">
 
                                     @if($item->item_id)
-                                        {{$item->category_name}}
+                                        {{\Lang::get("messages.{$item->category_name}", array(), 'ar')}}
                                     @else
                                         {{ Form::select('category_id', $categories, null, ['class' => 'form-control','required' => 'required']) }}
                                     @endif

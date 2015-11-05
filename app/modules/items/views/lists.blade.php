@@ -33,7 +33,7 @@
             ?>
             <tr id ="files_<?php echo $row->item_id; ?>" >
                 <td><?php echo ++$count; ?></td>
-                <td><?php echo (!empty($row->name) ? $row->name : ''); ?></td>
+                <td><?php echo (!empty($row->name) ? \Lang::get("messages.{$row->name}", array(), 'ar') : ''); ?></td>
                 <td><?php echo (!empty($row->phone) ? $row->phone : ''); ?></td>
                 <td><?php echo (!empty($row->updated_at) ? $row->updated_at : ''); ?></td>
 

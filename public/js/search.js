@@ -59,8 +59,8 @@ $(document).ready(function() {
             buildDynamicList(field, record_id, postArray);
 
        });
-        
-        
+
+
         //Parent checkbox class
         $(".listpaging").on('click', 'input.parentCheckbox', function(e) {
             

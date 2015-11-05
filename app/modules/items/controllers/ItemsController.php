@@ -50,7 +50,8 @@ class ItemsController extends \BaseController {
 //        $categories = Category::lists('name', 'category_id');
 //
 
-        $list = ['' => 'Select Category'] + DB::table('category')->lists('name', 'category_id');
+        $categoryObj = new Category();
+        $list = ['' => 'Select Category'] + $categoryObj->getGroupedCategoriesForDropDown();
         //echo '<pre>';print_r($list);die('======Debugging=======');
         return View::make('items::add', array('categories'=> $list , 'item' => new items() ));
     }
@@ -145,7 +146,8 @@ class ItemsController extends \BaseController {
             ->first();
         if(!empty($item->item_id)){
 
-            $list = ['' => 'Select Category'] + DB::table('category')->lists('name', 'category_id');
+            $categoryObj = new Category();
+            $list = ['' => 'Select Category'] + $categoryObj->getGroupedCategoriesForDropDown();
 
             return View::make('items::add', array('categories'=> $list, 'item' => $item ));
         }else{

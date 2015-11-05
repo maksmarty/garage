@@ -37,14 +37,18 @@ class CategoryController extends \BaseController {
 
     public function index()
     {
-         // load the view and pass the nerds
+
+//        $categoryObj = new Category();
+//        echo '<pre>';print_r($categoryObj->getGroupedCategoriesForDropDown());die('======Debugging=======');
+//         // load the view and pass the nerds
         return View::make('category::index');
     }
     
     # Show
     public function showAdd(){
 
-        $list = ['0' => 'No Parent Category'] + Category::lists('name', 'category_id');
+        $category = new Category();
+        $list = ['0' => 'No Parent Category'] + $category->getCategoriesForDropDown();
         return View::make('category::add', array('categories_dropdown'=> $list , 'category' => new Category()));
     }
 
@@ -84,7 +88,8 @@ class CategoryController extends \BaseController {
         $category = Category::find($id);
         if(!empty($category->category_id)){
 
-            $list = ['0' => 'No Parent Category'] + Category::lists('name', 'category_id');
+            $category = new Category();
+            $list = ['0' => 'No Parent Category'] + $category->getCategoriesForDropDown();
             return View::make('category::add', array('categories_dropdown'=> $list , 'category' => $category));
         }else{
             // redirect
@@ -223,8 +228,8 @@ class CategoryController extends \BaseController {
     public function setParentToCategory() {
 
         $data  = array();
-        $categories  = Category::all();
-        echo '<pre>';print_r($categories);die('======Debugging=======');
+        $categories  = new Category();
+        echo '<pre>';print_r($categories->getGroupedCategoriesForDropDown());die('======Debugging=======');
 
 
 
