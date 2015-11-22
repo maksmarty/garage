@@ -719,6 +719,148 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
+    Route::get ( 'showroom/{make}/{displaytype?}' , function($make,$displaytype = null) {
+
+
+        $response = array( );
+        //$catArray = array('mercedes','bmw','rangerover','volvowagon','jaguar','porsche','audi','peugeot','skoda','mini','renault','volvo');
+        //$catArray = array('cadillac','dodgenchrysler','chevrolet','gmc','fordnlincoln','hummer','jeep');
+
+        $cnews = array () ;
+        $category = 'showroom';
+
+        //if( !empty($category) && in_array($category,$catArray)){
+            //Limit Query
+            $limitArr = Helpers::apiLimitQuery();
+
+            $query = ' SELECT showroom_car.*, showroom_make.make, photo.photo_name FROM showroom_car ' .
+                ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ' .
+                ' LEFT JOIN photo ON ( showroom_car.showroom_car_id = photo.showroom_car_id AND photo.default = "1" )' .
+                ' WHERE showroom_make.make = "'.$make.'" ';
+
+            if( !empty($displaytype) ){
+
+                $displayConf = \Config::get('constant.showroom_display');
+
+                $searchKey = array_search($displaytype,$displayConf);
+
+                if( $searchKey ){
+                    $query .= ' AND showroom_car.display = "'.$searchKey.'"  ';
+                }
+
+            }
+
+
+            $query .= ' '.$limitArr['query'].'  ';
+//echo '<pre>';print_r($query);die('======Debugging=======');
+            $news = DB::select ( $query ) ;
+
+            if( count($news) > 0 ){
+
+                foreach ( $news as $news_ ) {
+
+                    $nwsRow = [
+                        'showroom_car_id'      => $news_->showroom_car_id ,
+                        'make'        => $news_->make ,
+                        'model'        => $news_->model ,
+                        'year'        => $news_->year ,
+                        'engine'      => $news_->engine ,
+                        'transmission'      => $news_->transmission ,
+                        'payment'      => $news_->payment ,
+                        'price'      => $news_->price ,
+                        'description'      => $news_->description ,
+                        'contact'      => $news_->contact ,
+                        'working_hours'      => $news_->working_hours ,
+                        'image'        => Helpers::build_image ( $news_->photo_name, $category, '400' ) ,
+                    ] ;
+
+                    $cnews[] = ( object ) $nwsRow ;
+                }
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+//        }else{
+//            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.' );
+//        }
+
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+    Route::get ( 'showroomcar/{showroom_id}' , function($showroom_id) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($showroom_id) ){
+
+            //TODO::Item not in
+            $news = DB::table('showroom_car')
+                ->join('showroom_make', 'showroom_car.showroom_make_id', '=', 'showroom_make.showroom_make_id')
+                ->where('showroom_car_id', $showroom_id)
+                //->where('category.name', '!=','delivery')
+                ->first();
+
+
+
+            if( !empty($news) ){
+
+                $photosRaws = DB::table('photo')
+                   ->where('showroom_car_id', $showroom_id)
+                    ->orderBy('default','DESC')
+                    ->get();
+
+                $photos = array();
+                foreach($photosRaws as $photosRaw){
+
+                    $photos[] = [
+                        'photo_id'      => $photosRaw->photo_id ,
+                        'photo_name'        => Helpers::build_image ( $photosRaw->photo_name , 'showroom', '400' ) ,
+                        'default'        => $photosRaw->default
+                    ] ;
+
+                }
+
+
+
+                $cnews = [
+                    'showroom_car_id'      => $news->showroom_car_id ,
+                    'make'        => $news->make ,
+                    'model'        => $news->model ,
+                    'year'        => $news->year ,
+                    'engine'        => $news->engine ,
+                    'transmission'        => $news->transmission ,
+                    'payment'        => $news->payment ,
+                    'price'        => $news->price ,
+                    'description'      => $news->description ,
+                    'contact'      => $news->contact ,
+                    'working_hours'      => $news->working_hours ,
+                    'images'        => $photos  ,
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+
+
+
     Route::get ( 'item/{item_id}' , function($item_id) {
 
         $response = array( );

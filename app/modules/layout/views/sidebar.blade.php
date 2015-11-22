@@ -63,6 +63,20 @@
             </li>
 
 
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Show Rooms</span></a>
+                <ul>
+                    <li>
+                        <a href="{{route('showroom')}}">Show Rooms</a>
+                    </li>
+                    <li>
+                        <a href="{{route('showroom.add')}}">Add Show Room</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
 
             {{--<li>--}}
                 {{--<a href="inbox.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">14</span></a>--}}

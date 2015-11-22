@@ -130,6 +130,7 @@ return array(
 		'Intervention\Image\ImageServiceProvider',
         'App\Modules\Product\ServiceProvider' ,
         'App\Modules\Items\ServiceProvider' ,
+		'App\Modules\Showroom\ServiceProvider' ,
 
 
 

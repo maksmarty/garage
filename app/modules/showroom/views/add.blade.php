@@ -11,12 +11,12 @@
 
 <!-- Set the title here -->
 @section('title')    
-    <title>Item</title>
+    <title>Add Car | Show Room</title>
 @stop	
  
 <!-- Set the breadcrumb here -->
 @section('breadcrumb')   
-    <li>Home</li><li>Add Item</li>
+    <li>Home</li><li>Add Car</li>
 @stop
 
 
@@ -27,15 +27,15 @@
             <h1 class="page-title txt-color-blueDark">
                 <i class="fa fa-edit fa-fw "></i>
 
-                @if($item->item_id)
-                    <strong> Update Item : </strong>
+                @if($item->showroom_car_id)
+                    <strong> Update Car : </strong>
                     <span>
-                        Update Item here.
+                        Update Car here.
                     </span>
                 @else
-                    <strong> Add Item : </strong>
+                    <strong> Add Car : </strong>
                     <span>
-                        Add Item here.
+                        Add Car here.
                     </span>
                 @endif
 
@@ -55,10 +55,10 @@
 
                 <header>
                     <span class="widget-icon"> <i class="fa fa-eye"></i> </span>
-                    @if($item->item_id)
-                        <h2>Update Item</h2>
+                    @if($item->showroom_car_id)
+                        <h2>Update Car</h2>
                     @else
-                        <h2>Add Item</h2>
+                        <h2>Add Car</h2>
                     @endif
 
                 </header>
@@ -69,10 +69,10 @@
                     <!-- widget content -->
                     <div class="widget-body">
 
-                        @if($item->item_id)
-                            <form class="form-horizontal" name="addUpdateItemsForm" id="addUpdateItemsForm" method="post" action="{{route('item.post.update',$item->item_id)}}" enctype="multipart/form-data">
+                        @if($item->showroom_car_id)
+                            <form class="form-horizontal" name="addUpdateCarsForm" id="addUpdateCarsForm" method="post" action="{{route('showroom.post.update',$item->showroom_car_id)}}" enctype="multipart/form-data">
                         @else
-                            <form class="form-horizontal" name="addUpdateItemsForm" id="addUpdateItemsForm" method="post" action="{{route('item.post.add')}}" enctype="multipart/form-data">
+                            <form class="form-horizontal" name="addUpdateCarsForm" id="addUpdateCarsForm" method="post" action="{{route('showroom.post.add')}}" enctype="multipart/form-data">
                         @endif
 
                         @include('layout::partials.alerts.errors')
@@ -91,74 +91,160 @@
                             {{--@endif--}}
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="select-1">Categories</label>
+                                <label class="col-md-2 control-label" for="select-1">Make</label>
                                 <div class="col-md-8">
-
-                                    @if($item->item_id)
-                                        {{\Lang::get("messages.{$item->category_name}", array(), 'ar')}}
-                                    @else
-                                        {{ Form::select('category_id', $categories, null, ['class' => 'form-control','required' => 'required']) }}
-                                    @endif
-
-
+                                        {{ Form::select('showroom_make_id', $make, $item->showroom_make_id, ['class' => 'form-control','required' => 'required']) }}
                                 </div>
                             </div>
 
-
-
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Phone</label>
+                                <label class="col-md-2 control-label">Model</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone" id="phone" value="{{$item->phone}}" required>
+                                    <input class="form-control" placeholder="Add/Update Model" type="text" name="model" id="model" value="{{$item->model}}" required>
 
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Phone 2</label>
+                                <label class="col-md-2 control-label">Year</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone1" id="phone1" value="{{$item->phone1}}" >
+                                    <input class="form-control" placeholder="Add/Update year" type="number" name="year" id="year" value="{{$item->year}}" >
 
                                 </div>
                             </div>
-
 
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Phone 3</label>
+                                <label class="col-md-2 control-label">Engine</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone2" id="phone2" value="{{$item->phone2}}" >
+                                    <input class="form-control" placeholder="Add/Update engine" type="text" name="engine" id="engine" value="{{$item->engine}}" >
 
                                 </div>
                             </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Transmission</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" placeholder="Add/Update transmission" type="text" name="transmission" id="transmission" value="{{$item->transmission}}" >
 
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Payment System</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" placeholder="Add/Update payment" type="text" name="payment" id="payment" value="{{$item->payment}}" >
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Price</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" placeholder="Add/Update price" type="text" name="price" id="price" value="{{$item->price}}" >
+
+                                    </div>
+                                </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Description</label>
                                 <div class="col-md-8">
-                                    <textarea class="form-control" placeholder="Add/Update Description" rows="3" name="description" required>{{$item->description}}</textarea>
+                                    <textarea class="form-control" placeholder="Add/Update Description" rows="3" name="description" >{{$item->description}}</textarea>
                                 </div>
                             </div>
 
-{{--                            <div class="form-group">
-                                <label class="col-md-2 control-label">Image</label>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Contact</label>
                                 <div class="col-md-8">
-                                    <input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">
+                                    <textarea class="form-control" placeholder="Add/Update Contact" rows="3" name="contact" >{{$item->contact}}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Working Hours</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" placeholder="Add/Update Working Hours" rows="3" name="working_hours" >{{$item->working_hours}}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="select-1">Display type</label>
+                                <div class="col-md-8">
+                                    {{ Form::select('display', [''=>'Select display type'] + \Config::get('constant.showroom_display'), $item->display, ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+
+
+                            <div class="image-groups-custom">
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
 
-                            </div>--}}
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-8">
+                                        <a id="add-more" href="">Add More</a>
+                                    </div>
+                                </div>
+
+                            </div>
 
 
+                            <div class="form-group">
+
+                                        @foreach ($photos as $photo)
+
+                                            <div class="row" style="padding: 10px;">
+
+                                                <label class="col-md-2"></label>
+                                                <div class="col-md-2">
+                                                <img src="{{Helpers::build_image ( $photo->photo_name, 'showroom', '100' )}}">
+                                                </div>
+                                            </div>
+
+
+                                        @endforeach
+
+                            </div>
 
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="hidden" name="item_id" id="item_id" value="">
+                                        <input type="hidden" name="showroom_car_id" id="showroom_car_id" value="">
                                         <button type="submit" class="btn btn-primary" id="submitButton" name="submitButton">
                                             <i class="fa fa-save"></i>
                                             Submit
@@ -186,6 +272,15 @@
     
      <script type="text/javascript">
             //runAllForms();
+
+            $(function() {
+                $('#add-more').on('click',function(e){
+                    e.preventDefault();
+                    var imageContainer = $(this).closest('.image-groups-custom');
+                    var firstImage = imageContainer.children(":nth-child(5)").clone();
+                    imageContainer.append(firstImage);
+                });
+            });
             
            /* $(function() {
                 
