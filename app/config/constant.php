@@ -13,4 +13,5 @@ return array(
         'generalservices' => array('tankad','taleemqayadat','nakalafsh','kafalshayarat','hadadatwamajlat','alshahnalbari','nasaaf','darkatar','crane')
     ),
     'showroom_display' => array('1'=>'house-display','2'=>'maintenance-center'),
+    'max_number_post_per_day' => 2
 );

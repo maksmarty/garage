@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Asia/Kuwait',//UTC
 
 	/*
 	|--------------------------------------------------------------------------
@@ -130,7 +130,8 @@ return array(
 		'Intervention\Image\ImageServiceProvider',
         'App\Modules\Product\ServiceProvider' ,
         'App\Modules\Items\ServiceProvider' ,
-		'App\Modules\Showroom\ServiceProvider' ,
+		//'App\Modules\Showroom\ServiceProvider' ,
+		'App\Modules\Forsale\ServiceProvider' ,
 
 
 
