@@ -36,6 +36,10 @@ Route::group(array( 'before' => 'auth'), function() {
 
 
 
+    # GET : LOGIN PAGE
+    Route::get('showroom/models/{makeid}', array('as' => 'showroom.parentmodels','uses' => '\App\Modules\Showroom\Controllers\ShowroomController@getParentModel'));
+
+
     # POST : LOGIN PAGE
 //    Route::post('login', array('uses' => '\App\Modules\User\Controllers\UserController@postLogin'));
 //

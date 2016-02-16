@@ -226,6 +226,8 @@
 
                             <div class="form-group">
 
+                                    @if($photos)
+
                                         @foreach ($photos as $photo)
 
                                             <div class="row" style="padding: 10px;">
@@ -238,6 +240,8 @@
 
 
                                         @endforeach
+
+                                    @endif
 
                             </div>
 

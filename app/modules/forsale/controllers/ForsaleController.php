@@ -168,48 +168,23 @@ class ForsaleController extends \BaseController {
                                 }else{
 
                                     //Update quota for this user
-//
-//                                    //Upload Images, new logic - Start here
-//                                    $image_sizes =  Config::get('constant.image_sizes');
-//
-//                                    $imagePath = public_path('uploads') .'/images/';
-//
-//                                    $filnalDestinationPath = $imagePath . "foresale/";
-//
-//                                    if( !file_exists($filnalDestinationPath) ){
-//                                        mkdir($filnalDestinationPath, 0755, true);
-//                                    }
-//
-//                                    $imagenumber = 20;
-//                                    for($i=1;$i<=$imagenumber;$i++){
-//
-//                                        if (Input::hasFile('image'.$i) ) {
-//
-//                                        }else{
-//
-//                                        }
-//
-//
-//                                    }
-//                                    //Upload Images, new logic - Ends here
 
-                                    //Upload Images - Start here
-                                    if (Input::hasFile('images') ) {
+                                    //Upload Images, new logic - Start here
+                                    $image_sizes =  \Config::get('constant.image_sizes');
 
-                                        $image_sizes =  Config::get('constant.image_sizes');
+                                    $imagePath = public_path('uploads') .'/images/';
 
-                                        $imagePath = public_path('uploads') .'/images/';
+                                    $filnalDestinationPath = $imagePath . "foresale/";
 
-                                        $filnalDestinationPath = $imagePath . "foresale/";
+                                    if( !file_exists($filnalDestinationPath) ){
+                                        mkdir($filnalDestinationPath, 0755, true);
+                                    }
 
-                                        if( !file_exists($filnalDestinationPath) ){
-                                            mkdir($filnalDestinationPath, 0755, true);
-                                        }
+                                    $imagenumber = \Config::get('constant.number_of_image',10);
+                                    for($i=1; $i <= $imagenumber; $i++){
 
-                                        $files            = Input::file('images');
-
-                                        foreach($files as $file){
-
+                                        if (Input::hasFile('image'.$i) ) {
+                                            $file            = Input::file('image'.$i);
                                             $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
                                             $validator = Validator::make(array('file'=> $file), $validrules);
 
@@ -224,6 +199,12 @@ class ForsaleController extends \BaseController {
                                                 }
 
                                                 $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+
+                                                //Upload original image
+                                                $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                                                \Image::make( $file->getRealPath() )
+                                                    ->save($fileOriginalPath);
+
 
 
                                                 if( !empty($image_sizes) && is_array($image_sizes) ){
@@ -260,11 +241,86 @@ class ForsaleController extends \BaseController {
                                             unset($newFilename);
                                             unset($photo);
 
-
+                                        }else{
+                                            continue;
                                         }
 
+
                                     }
-                                    //Upload Images - Ends here
+                                    //Upload Images, new logic - Ends here
+
+//                                    //Upload Images - Start here
+//                                    if (Input::hasFile('images') ) {
+//
+//                                        $image_sizes =  Config::get('constant.image_sizes');
+//
+//                                        $imagePath = public_path('uploads') .'/images/';
+//
+//                                        $filnalDestinationPath = $imagePath . "foresale/";
+//
+//                                        if( !file_exists($filnalDestinationPath) ){
+//                                            mkdir($filnalDestinationPath, 0755, true);
+//                                        }
+//
+//                                        $files            = Input::file('images');
+//
+//                                        foreach($files as $file){
+//
+//                                            $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
+//                                            $validator = Validator::make(array('file'=> $file), $validrules);
+//
+//                                            if($validator->passes()) {
+//
+//
+//                                                //get File Name
+//                                                $fileExtension = $file->getClientOriginalExtension();
+//
+//                                                if( empty($fileExtension) ){
+//                                                    continue;
+//                                                }
+//
+//                                                $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+//
+//
+//                                                if( !empty($image_sizes) && is_array($image_sizes) ){
+//
+//                                                    foreach($image_sizes as $image_size){
+//
+//                                                        $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
+//
+//                                                        \Image::make( $file->getRealPath() )
+//                                                            ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
+//                                                            ->save($filePathImageSize);
+//
+//                                                        //Unset
+//                                                        unset($filePathImageSize);
+//                                                        unset($image_size);
+//
+//                                                    }
+//
+//
+//                                                }
+//
+//                                                //Save into db
+//                                                $photo = new Photos();
+//                                                $photo->forsale_id       = $forsale->forsale_id;
+//                                                $photo->photo_name       = $newFilename;
+//                                                $photo->save();
+//
+//                                            }else{
+//                                                continue;
+//                                            }
+//
+//                                            //Unset
+//                                            unset($fileExtension);
+//                                            unset($newFilename);
+//                                            unset($photo);
+//
+//
+//                                        }
+//
+//                                    }
+//                                    //Upload Images - Ends here
 
 
 
@@ -345,24 +401,23 @@ class ForsaleController extends \BaseController {
                         }else{
 
                             //Add this user
-                            //Upload Images - Start here
-                            if (Input::hasFile('images') ) {
 
-                                $files            = Input::file('images');
+                            //Upload Images, new logic - Start here
+                            $image_sizes =  \Config::get('constant.image_sizes');
 
-                                $image_sizes =  Config::get('constant.image_sizes');
+                            $imagePath = public_path('uploads') .'/images/';
 
-                                $imagePath = public_path('uploads') .'/images/';
+                            $filnalDestinationPath = $imagePath . "foresale/";
 
-                                $filnalDestinationPath = $imagePath . "foresale/";
+                            if( !file_exists($filnalDestinationPath) ){
+                                mkdir($filnalDestinationPath, 0755, true);
+                            }
 
-                                if( !file_exists($filnalDestinationPath) ){
-                                    mkdir($filnalDestinationPath, 0755, true);
-                                }
+                            $imagenumber = \Config::get('constant.number_of_image');
+                            for($i=1; $i <= $imagenumber; $i++){
 
-
-                                foreach($files as $file){
-
+                                if (Input::hasFile('image'.$i) ) {
+                                    $file            = Input::file('image'.$i);
                                     $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
                                     $validator = Validator::make(array('file'=> $file), $validrules);
 
@@ -377,6 +432,11 @@ class ForsaleController extends \BaseController {
                                         }
 
                                         $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+
+                                        //Upload original image
+                                        $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                                        \Image::make( $file->getRealPath() )
+                                            ->save($fileOriginalPath);
 
 
                                         if( !empty($image_sizes) && is_array($image_sizes) ){
@@ -413,11 +473,88 @@ class ForsaleController extends \BaseController {
                                     unset($newFilename);
                                     unset($photo);
 
-
+                                }else{
+                                    continue;
                                 }
 
+
                             }
-                            //Upload Images - Ends here
+                            //Upload Images, new logic - Ends here
+
+
+//                            //Upload Images - Start here
+//                            if (Input::hasFile('images') ) {
+//
+//                                $files            = Input::file('images');
+//
+//                                $image_sizes =  Config::get('constant.image_sizes');
+//
+//                                $imagePath = public_path('uploads') .'/images/';
+//
+//                                $filnalDestinationPath = $imagePath . "foresale/";
+//
+//                                if( !file_exists($filnalDestinationPath) ){
+//                                    mkdir($filnalDestinationPath, 0755, true);
+//                                }
+//
+//
+//                                foreach($files as $file){
+//
+//                                    $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
+//                                    $validator = Validator::make(array('file'=> $file), $validrules);
+//
+//                                    if($validator->passes()) {
+//
+//
+//                                        //get File Name
+//                                        $fileExtension = $file->getClientOriginalExtension();
+//
+//                                        if( empty($fileExtension) ){
+//                                            continue;
+//                                        }
+//
+//                                        $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+//
+//
+//                                        if( !empty($image_sizes) && is_array($image_sizes) ){
+//
+//                                            foreach($image_sizes as $image_size){
+//
+//                                                $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
+//
+//                                                \Image::make( $file->getRealPath() )
+//                                                    ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
+//                                                    ->save($filePathImageSize);
+//
+//                                                //Unset
+//                                                unset($filePathImageSize);
+//                                                unset($image_size);
+//
+//                                            }
+//
+//
+//                                        }
+//
+//                                        //Save into db
+//                                        $photo = new Photos();
+//                                        $photo->forsale_id       = $forsale->forsale_id;
+//                                        $photo->photo_name       = $newFilename;
+//                                        $photo->save();
+//
+//                                    }else{
+//                                        continue;
+//                                    }
+//
+//                                    //Unset
+//                                    unset($fileExtension);
+//                                    unset($newFilename);
+//                                    unset($photo);
+//
+//
+//                                }
+//
+//                            }
+//                            //Upload Images - Ends here
 
 
                             $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);

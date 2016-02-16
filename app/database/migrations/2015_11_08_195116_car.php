@@ -27,7 +27,7 @@ class Car extends Migration {
 			$table->longText('description')->nullable();
 			$table->text('contact')->nullable();
 			$table->text('working_hours')->nullable();
-			$table->tinyInteger('display');// 1 = House display, 2 = maintenance center
+			$table->tinyInteger('display')->comment('1 = House display, 2 = maintenance center');
 			//$table->string('slug');
 			$table->timestamps();
 		});

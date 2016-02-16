@@ -52,7 +52,7 @@ class ShowroomController extends \BaseController {
 
         $categories = ShowroomMake::lists('make', 'showroom_make_id');
         $list = ['' => 'Select Manufacture'] + $categories;
-        return View::make('showroom::add', array('make'=> $list , 'item' => new Showroom() ));
+        return View::make('showroom::add', array('make'=> $list , 'item' => new Showroom() , 'photos' => new \stdClass() ));
     }
 
     # handle change password post data
@@ -121,6 +121,14 @@ class ShowroomController extends \BaseController {
                     }
 
                     $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+
+
+                    //Upload original image
+                    $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                    \Image::make( $file->getRealPath() )
+                        ->save($fileOriginalPath);
+
+
 
 
                     if( !empty($image_sizes) && is_array($image_sizes) ){
@@ -214,7 +222,7 @@ class ShowroomController extends \BaseController {
 
         if(!empty($showroom->showroom_car_id)){
             $rules = array(
-                'phone'       => 'required',
+                'showroom_make_id'       => 'required',
                 'model'       => 'required',
             );
 
@@ -240,7 +248,9 @@ class ShowroomController extends \BaseController {
                 $showroom->display       = Input::get('display');
                 $showroom->save();
 
-                if (Input::hasFile('image') && !empty($showroom_car_id) ) {
+                $showroom_car_id = $showroom->showroom_car_id;
+
+                if (Input::hasFile('image')  ) {
 
                     $files            = Input::file('image');
 
@@ -265,6 +275,11 @@ class ShowroomController extends \BaseController {
                         }
 
                         $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+
+                        //Upload original image
+                        $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                        \Image::make( $file->getRealPath() )
+                            ->save($fileOriginalPath);
 
 
                         if( !empty($image_sizes) && is_array($image_sizes) ){
@@ -686,6 +701,26 @@ class ShowroomController extends \BaseController {
 
             return $dir_array;
         }
+    }
+
+    public function getParentModel($make_id) {
+
+        if (Request::ajax()) {
+
+            $response = array();
+            $response['data'] = '';
+
+            //$make_id = Input::get('make_id');
+
+            if( !empty($make_id) ){
+                $parentModels = Showroom::lists('make', 'showroom_make_id')->where('make_id','=',$make_id);
+                $response['data'] = $parentModels;
+            }
+            return json_encode($response);
+        }else{
+            App::abort(404);
+        }
+
     }
 
 
