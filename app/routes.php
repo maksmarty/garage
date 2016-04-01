@@ -770,9 +770,85 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
+//
+//
+//    Route::get ( 'showroom/{make}/{displaytype?}' , function($make,$displaytype = null) {
+//
+//
+//        $response = array( );
+//        //$catArray = array('mercedes','bmw','rangerover','volvowagon','jaguar','porsche','audi','peugeot','skoda','mini','renault','volvo');
+//        //$catArray = array('cadillac','dodgenchrysler','chevrolet','gmc','fordnlincoln','hummer','jeep');
+//
+//        $cnews = array () ;
+//        $category = 'showroom';
+//
+//        //if( !empty($category) && in_array($category,$catArray)){
+//        //Limit Query
+//        $limitArr = Helpers::apiLimitQuery();
+//
+//        $query = ' SELECT showroom_car.*, showroom_make.make, photo.photo_name FROM showroom_car ' .
+//            ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ' .
+//            ' LEFT JOIN photo ON ( showroom_car.showroom_car_id = photo.showroom_car_id AND photo.default = "1" )' .
+//            ' WHERE showroom_make.make = "'.$make.'" AND showroom_car.parent_model = "0" ';
+//
+//        if( !empty($displaytype) ){
+//
+//            $displayConf = \Config::get('constant.showroom_display');
+//
+//            $searchKey = array_search($displaytype,$displayConf);
+//
+//            if( $searchKey ){
+//                $query .= ' AND showroom_car.display = "'.$searchKey.'"  ';
+//            }
+//
+//        }
+//
+//
+//        $query .= ' '.$limitArr['query'].'  ';
+////echo '<pre>';print_r($query);die('======Debugging=======');
+//        $news = DB::select ( $query ) ;
+//
+//        if( count($news) > 0 ){
+//
+//            foreach ( $news as $news_ ) {
+//
+//                $nwsRow = [
+//                    'showroom_car_id'      => $news_->showroom_car_id ,
+//                    'make'        => $news_->make ,
+//                    'model'        => $news_->model ,
+//                    'year'        => $news_->year ,
+//                    'engine'      => $news_->engine ,
+//                    'transmission'      => $news_->transmission ,
+//                    'payment'      => $news_->payment ,
+//                    'price'      => $news_->price ,
+//                    'description'      => $news_->description ,
+//                    'contact'      => $news_->contact ,
+//                    'working_hours'      => $news_->working_hours ,
+//                    'parent_model'      => $news_->parent_model ,
+//                    'hasChild'      => $news_->hasChild ,
+//                    'image'        => Helpers::build_image ( $news_->photo_name, $category, 'original' ) ,
+//                ] ;
+//
+//                $cnews[] = ( object ) $nwsRow ;
+//            }
+//
+//            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+//
+//        }else{
+//            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+//        }
+//
+////        }else{
+////            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.' );
+////        }
+//
+//        return $response + array( 'results' => $cnews )  ;
+//
+//    } ) ;
+//
 
 
-    Route::get ( 'showroom/{make}/{displaytype?}' , function($make,$displaytype = null) {
+    Route::get ( 'showroom/{make}/{parentCarId?}' , function($make,$parentCarId = null) {
 
 
         $response = array( );
@@ -791,16 +867,12 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
             ' LEFT JOIN photo ON ( showroom_car.showroom_car_id = photo.showroom_car_id AND photo.default = "1" )' .
             ' WHERE showroom_make.make = "'.$make.'" ';
 
-        if( !empty($displaytype) ){
+        if( !empty($parentCarId) ){
 
-            $displayConf = \Config::get('constant.showroom_display');
+            $query .= ' AND showroom_car.parent_model = "'.$parentCarId.'"  ';
 
-            $searchKey = array_search($displaytype,$displayConf);
-
-            if( $searchKey ){
-                $query .= ' AND showroom_car.display = "'.$searchKey.'"  ';
-            }
-
+        }else{
+            $query .= ' AND showroom_car.parent_model = "0" ';
         }
 
 
@@ -824,6 +896,8 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     'description'      => $news_->description ,
                     'contact'      => $news_->contact ,
                     'working_hours'      => $news_->working_hours ,
+                    'parent_model'      => $news_->parent_model ,
+                    'hasChild'      => $news_->hasChild ,
                     'image'        => Helpers::build_image ( $news_->photo_name, $category, 'original' ) ,
                 ] ;
 
@@ -843,6 +917,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         return $response + array( 'results' => $cnews )  ;
 
     } ) ;
+
 
 
     Route::get ( 'showroomcar/{showroom_id}' , function($showroom_id) {

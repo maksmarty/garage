@@ -67,11 +67,13 @@ class Showroom extends \Eloquent {
 
         $base_query = $query_count = '';
 
-        $base_select_query = ' SELECT showroom_car.*,showroom_make.make FROM showroom_car ' .
-            ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ';
+        $base_select_query = ' SELECT showroom_car.*, showroom_make.make, showroom_car1.model as parent_model_name  FROM showroom_car ' .
+            ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ' .
+            ' LEFT JOIN showroom_car showroom_car1 ON showroom_car.parent_model = showroom_car1.showroom_car_id ';
 
         $base_count_query = ' SELECT count(showroom_car.showroom_car_id ) as num_records FROM showroom_car ' .
-            ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ';
+            ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ' .
+            ' LEFT JOIN showroom_car showroom_car1 ON showroom_car.parent_model = showroom_car1.showroom_car_id ';
 
 
 
@@ -80,9 +82,9 @@ class Showroom extends \Eloquent {
 
         $q = trim($q);
         if( is_numeric($q)){
-            $where .=  " AND ( showroom_car.model LIKE '%".$q."%'  )";
+            //$where .=  " AND ( showroom_car.model LIKE '%".$q."%'  )";
         }else{
-            $where .=  " AND ( showroom_make.make LIKE '%".$q."%'  )";
+            $where .=  " AND ( showroom_make.make LIKE '%".$q."%' OR showroom_car.model LIKE '%".$q."%'  )";
         }
 
         $base_query = $base_count_query . $where;

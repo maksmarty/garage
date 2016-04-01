@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="469fcb9a-eabc-4546-9ef4-70c17aea929f" name="Default" comment="" />
+    <list default="true" id="469fcb9a-eabc-4546-9ef4-70c17aea929f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/models/Showroom.php" afterPath="$PROJECT_DIR$/app/modules/showroom/models/Showroom.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php" afterPath="$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/views/add.blade.php" afterPath="$PROJECT_DIR$/app/modules/showroom/views/add.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/application.js" afterPath="$PROJECT_DIR$/public/js/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/constant.php" afterPath="$PROJECT_DIR$/app/config/constant.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/views/index.blade.php" afterPath="$PROJECT_DIR$/app/modules/showroom/views/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php" afterPath="$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="garage.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -22,63 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="2015_11_15_081535_CreateShowRoomMake.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_15_081535_CreateShowRoomMake.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2015_11_08_195116_car.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_08_195116_car.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="40" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016_02_14_071622_addParentToShowroomCar.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_02_14_071622_addParentToShowroomCar.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="102" selection-start-line="17" selection-start-column="102" selection-end-line="17" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/search.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/demo.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/showroom/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="32" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="32" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -96,21 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/js/application.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2635659">
-              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ShowroomController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="697" column="64" selection-start-line="697" selection-start-column="64" selection-end-line="697" selection-end-column="64" />
+            <state vertical-scroll-proportion="106.875">
+              <caret line="262" column="67" selection-start-line="262" selection-start-column="67" selection-end-line="262" selection-end-column="67" />
               <folding>
                 <element signature="e#7#108#0#PHP" expanded="true" />
               </folding>
@@ -118,12 +67,81 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="lists.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5780933">
+              <caret line="41" column="75" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2016_02_14_071622_addParentToShowroomCar.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_02_14_071622_addParentToShowroomCar.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.666667">
+              <caret line="32" column="11" selection-start-line="28" selection-start-column="8" selection-end-line="32" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2016_03_31_202436_addStatusWarrantyInShowroom.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_03_31_202436_addStatusWarrantyInShowroom.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.4313726">
+              <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2015_11_15_081535_CreateShowRoomMake.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_15_081535_CreateShowRoomMake.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.4166667">
+              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="906" column="60" selection-start-line="906" selection-start-column="60" selection-end-line="906" selection-end-column="60" />
+              <folding>
+                <marker date="1455991023000" expanded="true" signature="4142:4297" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="6067:6222" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="7925:8080" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="9505:9651" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="10848:10990" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="12189:12338" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="13552:13709" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="15405:15560" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="17440:17595" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="19464:19619" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="21039:21199" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="22910:23065" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="24909:25064" placeholder="SELECT items..items..." />
+                <marker date="1455991023000" expanded="true" signature="27153:27513" placeholder="SELECT showr..showroom_car..." />
+                <marker date="1455991023000" expanded="true" signature="27153:27549" placeholder="SELECT showr..showroom_car..." />
+                <marker date="1455991023000" expanded="true" signature="30240:30594" placeholder="SELECT showr..showroom_car..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/modules/category/routes.php" />
         <option value="$PROJECT_DIR$/app/modules/category/views/lists.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/category/views/index.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/items/controllers/ItemsController.php" />
@@ -141,11 +159,8 @@
         <option value="$PROJECT_DIR$/app/database/migrations/2015_11_15_081535_CreateShowRoomMake.php" />
         <option value="$PROJECT_DIR$/app/modules/showroom/controllers/showroomController.php" />
         <option value="$PROJECT_DIR$/app/modules/showroom/ServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/modules/showroom/models/Showroom.php" />
-        <option value="$PROJECT_DIR$/app/modules/showroom/views/index.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/showroom/models/ShowroomMake.php" />
         <option value="$PROJECT_DIR$/app/modules/showroom/models/photos.php" />
-        <option value="$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_11_22_194019_addCustomer.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_11_23_150158_CreateCarMakeRegion.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_11_23_153721_CreateCarMake.php" />
@@ -161,23 +176,28 @@
         <option value="$PROJECT_DIR$/app/modules/forsale/models/Makeregion.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_11_23_144218_CreateForSale.php" />
         <option value="$PROJECT_DIR$/app/database/seeds/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/app/config/constant.php" />
         <option value="$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php" />
         <option value="$PROJECT_DIR$/app/modules/forsale/routes.php" />
         <option value="$PROJECT_DIR$/app/modules/layout/views/sidebar.blade.php" />
         <option value="$PROJECT_DIR$/app/config/app.php" />
-        <option value="$PROJECT_DIR$/app/modules/showroom/views/add.blade.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_11_08_195116_car.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2015_11_23_155813_AddForSaleIdInPhotoTable.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2016_02_14_071622_addParentToShowroomCar.php" />
         <option value="$PROJECT_DIR$/app/modules/showroom/routes.php" />
         <option value="$PROJECT_DIR$/public/js/application.js" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/views/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/models/Showroom.php" />
+        <option value="$PROJECT_DIR$/app/config/constant.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_03_31_202436_addStatusWarrantyInShowroom.php" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/views/add.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
@@ -240,8 +260,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -257,6 +277,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -311,6 +363,58 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="showroom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="showroom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="showroom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -367,22 +471,8 @@
       <recent name="$PROJECT_DIR$/public/uploads/import/cadillac" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Web Application.item apge">
+  <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
-      <BehatRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application">
@@ -428,16 +518,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2641357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28029078" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29368576" sideWeight="0.503231" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2609047" sideWeight="0.4948605" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2035139" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20204978" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2536349" sideWeight="0.5051395" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -498,34 +588,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_08_201249_photo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="69" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/forsale/models/Make.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.375">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_04_062919_addParentFieldToCategoryTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/forsale/ServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41958043">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/dashboard/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -576,13 +638,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/storage/logs/laravel.log">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="276" column="0" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/forsale/models/Makeregion.php">
@@ -722,13 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/constant.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35657686">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/seeds/UsersTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -743,13 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="228" column="47" selection-start-line="228" selection-start-column="40" selection-end-line="228" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_23_155813_AddForSaleIdInPhotoTable.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20408164">
@@ -757,29 +805,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_08_195116_car.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="40" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_02_14_071622_addParentToShowroomCar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="102" selection-start-line="17" selection-start-column="102" selection-end-line="17" selection-end-column="102" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/demo.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -787,6 +816,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.667315">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="11" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="85" selection-start-line="5" selection-start-column="85" selection-end-line="5" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="81" column="100" selection-start-line="81" selection-start-column="100" selection-end-line="81" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/models/Showroom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding>
+            <marker date="1455701739000" expanded="true" signature="-1:-1" placeholder="SELECT showr..showroom_car..." />
+            <marker date="1455701739000" expanded="true" signature="-1:-1" placeholder="SELECT showr..showroom_car..." />
+            <marker date="1455701739000" expanded="true" signature="-1:-1" placeholder="SELECT showr..showroom_car..." />
+            <marker date="1455701739000" expanded="true" signature="-1:-1" placeholder="SELECT showr..showroom_car..." />
+            <marker date="1455701739000" expanded="true" signature="-1:-1" placeholder="SELECT count..showroom_car..." />
+            <marker date="1455701739000" expanded="true" signature="-1:-1" placeholder="SELECT count..showroom_car..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/constant.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="11" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="4" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -800,51 +883,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/search.js">
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_02_14_071622_addParentToShowroomCar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-14.666667">
+          <caret line="32" column="11" selection-start-line="28" selection-start-column="8" selection-end-line="32" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_08_195116_car.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5618661">
+          <caret line="28" column="54" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_15_081535_CreateShowRoomMake.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.4166667">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_03_31_202436_addStatusWarrantyInShowroom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.4313726">
+          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5476673">
+          <caret line="204" column="79" selection-start-line="204" selection-start-column="79" selection-end-line="204" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2265307">
-          <caret line="1089" column="0" selection-start-line="1089" selection-start-column="0" selection-end-line="1089" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_15_081535_CreateShowRoomMake.php">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-          <folding />
+          <caret line="906" column="60" selection-start-line="906" selection-start-column="60" selection-end-line="906" selection-end-column="60" />
+          <folding>
+            <marker date="1455991023000" expanded="true" signature="4142:4297" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="6067:6222" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="7925:8080" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="9505:9651" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="10848:10990" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="12189:12338" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="13552:13709" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="15405:15560" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="17440:17595" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="19464:19619" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="21039:21199" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="22910:23065" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="24909:25064" placeholder="SELECT items..items..." />
+            <marker date="1455991023000" expanded="true" signature="27153:27513" placeholder="SELECT showr..showroom_car..." />
+            <marker date="1455991023000" expanded="true" signature="27153:27549" placeholder="SELECT showr..showroom_car..." />
+            <marker date="1455991023000" expanded="true" signature="30240:30594" placeholder="SELECT showr..showroom_car..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="697" column="64" selection-start-line="697" selection-start-column="64" selection-end-line="697" selection-end-column="64" />
+        <state vertical-scroll-proportion="106.875">
+          <caret line="262" column="67" selection-start-line="262" selection-start-column="67" selection-end-line="262" selection-end-column="67" />
           <folding>
             <element signature="e#7#108#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/showroom/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="32" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2635659">
-          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.5780933">
+          <caret line="41" column="75" selection-start-line="41" selection-start-column="75" selection-end-line="41" selection-end-column="75" />
           <folding />
         </state>
       </provider>

@@ -15,4 +15,6 @@ return array(
     'showroom_display' => array('1'=>'house-display','2'=>'maintenance-center'),
     'max_number_post_per_day' => 2,
     'number_of_image' => 10,
+    'status' => array( '0' => 'Inactive', '1' => 'Active' ),
+    'parent' => array( '0' => 'No', '1' => 'Yes' ),
 );

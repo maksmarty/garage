@@ -22,6 +22,7 @@
 
 <!-- main content area start here -->
 @section('content')
+    {{ HTML::script('js/application.js');  }}
 <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
             <h1 class="page-title txt-color-blueDark">
@@ -93,7 +94,21 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="select-1">Make</label>
                                 <div class="col-md-8">
-                                        {{ Form::select('showroom_make_id', $make, $item->showroom_make_id, ['class' => 'form-control','required' => 'required']) }}
+                                        {{ Form::select('showroom_make_id', $make, $item->showroom_make_id, ['class' => 'form-control make_arequest','required' => 'required']) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="select-1">Parent Model</label>
+                                <div class="col-md-8">
+                                    {{ Form::select('parent_model', $parentModel, $item->parent_model, ['class' => 'form-control parent_model_arequest','required' => 'required']) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="select-1">Has Child ? </label>
+                                <div class="col-md-8">
+                                    {{ Form::select('hasChild', [''=>'Select one'] + \Config::get('constant.parent') , $item->hasChild, ['class' => 'form-control','required' => 'required']) }}
                                 </div>
                             </div>
 
@@ -169,10 +184,25 @@
                                 </div>
                             </div>
 
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Warranty</label>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" placeholder="Add/Update Warranty" rows="3" name="warranty" >{{$item->warranty}}</textarea>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="select-1">Display type</label>
                                 <div class="col-md-8">
                                     {{ Form::select('display', [''=>'Select display type'] + \Config::get('constant.showroom_display'), $item->display, ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="select-1">Status </label>
+                                <div class="col-md-8">
+                                    {{ Form::select('status', ['1'=>'Active','0'=>'Inactive'] , $item->status, ['class' => 'form-control']) }}
                                 </div>
                             </div>
 

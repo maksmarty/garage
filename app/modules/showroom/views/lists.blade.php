@@ -15,7 +15,9 @@
                     <th class="txt-color-blue " >#</th>
                     <th class="txt-color-blue " >Make</th>
                     <th class="txt-color-blue " >Model</th>
+                    <th class="txt-color-blue " >Parent Model</th>
                     <th class="txt-color-blue " >Display type</th>
+                    <th class="txt-color-blue " >Status</th>
                     <th class="txt-color-blue " >Action</th>
                 </tr>
             </thead>
@@ -35,7 +37,9 @@
                 <td><?php echo ++$count; ?></td>
                 <td><?php echo (!empty($row->make) ? $row->make : ''); ?></td>
                 <td><?php echo (!empty($row->model) ? $row->model : ''); ?></td>
+                <td><?php echo (!empty($row->parent_model_name) ? $row->parent_model_name : ''); ?></td>
                 <td><?php echo (!empty($row->display) ? \Config::get('constant.showroom_display')[$row->display] : ''); ?></td>
+                <td><?php echo (!empty($row->status) ? 'Active' : 'Inactive'); ?></td>
 
                 <!-- we will also add show, edit, and delete buttons -->
                 <td>

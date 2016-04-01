@@ -1,43 +1,43 @@
 $(document).ready(function() {
 
-    $("#parent_cat").change(function() {
+    $(".make_arequest").change(function() {
 
-        var payee_id = $('input[name=payee_id]').val();
-
-        var postArray = {
-            payee_id: payee_id
-        };
-
-        action_url = '/showroom/models/';
-
-        $.ajax({
-            url : action_url,
-            type : 'POST',
-            data : postArray,
-            dataType : 'JSON',
-            beforeSend: function() {
-                //Add processing button
-                _icon.removeClass().addClass('fa fa-gear fa-1x fa-spin');
-            },
-            success : function(response) {
-
-                if ( $.trim(response.status) == 'success' ) {
+        //Remove option
+        $('.parent_model_arequest').html($('<option>').val('0').text('Select Parent Model'));
 
 
-                    _icon.removeClass().addClass('glyphicon glyphicon-ok');
+        if (!$(this).val()) {
+            //DO nothing
+        } else {
 
-                    //_icon.show(slowmilliSecond, function(){
-                    //
-                    //});
+            var make_id = $(this).val();
 
-                    setTimeout( function()  {
-                        _icon.removeClass().addClass('fa fa-send');
-                        location.reload();
-                    }, slowmilliSecond);
+            //var postArray = {
+            //    make_id: make_id
+            //};
 
+            action_url = '/showroom/models/' + make_id;
+
+            $.ajax({
+                url: action_url,
+                type: 'GET',
+                //data : postArray,
+                dataType: 'JSON',
+                //beforeSend: function () {
+                //    //Add processing button
+                //   // _icon.removeClass().addClass('fa fa-gear fa-1x fa-spin');
+                //},
+                success: function (response) {
+
+                    if ($.trim(response.status) == 'success') {
+                        $.map(response.data,function(val,key) {
+                             $('<option>').val(key).text(val).appendTo('.parent_model_arequest');
+                        });
+                    }
                 }
-            }
-        });
+            });
+
+        }
 
 
     });

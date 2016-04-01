@@ -52,7 +52,8 @@ class ShowroomController extends \BaseController {
 
         $categories = ShowroomMake::lists('make', 'showroom_make_id');
         $list = ['' => 'Select Manufacture'] + $categories;
-        return View::make('showroom::add', array('make'=> $list , 'item' => new Showroom() , 'photos' => new \stdClass() ));
+        $parentModel = ['0' => 'Select Parent Model'];
+        return View::make('showroom::add', array('make'=> $list , 'item' => new Showroom() , 'parentModel' => $parentModel , 'photos' => new \stdClass() ));
     }
 
     # handle change password post data
@@ -92,7 +93,16 @@ class ShowroomController extends \BaseController {
             $showroom->description       = Input::get('description');
             $showroom->contact       = Input::get('contact');
             $showroom->working_hours       = Input::get('working_hours');
+            $showroom->warranty       = Input::get('warranty');
             $showroom->display       = Input::get('display');
+            $showroom->hasChild       = Input::get('hasChild');
+            $showroom->status       = Input::get('status');
+
+            if( Input::get('parent_model') ){
+                $showroom->parent_model       = Input::get('parent_model');
+            }
+
+
             $showroom->save();
 
             $showroom_car_id = $showroom->showroom_car_id;
@@ -196,7 +206,12 @@ class ShowroomController extends \BaseController {
 
             $categories = ShowroomMake::lists('make', 'showroom_make_id');
             $list = ['' => 'Select Manufacture'] + $categories;
-            return View::make('showroom::add', array('make'=> $list, 'item' => $item, 'photos' => $photos ));
+
+
+            $parentModels = Showroom::where('showroom_make_id','=',$item->showroom_make_id)->lists('model', 'showroom_car_id');
+            $parentModel = ['0' => 'Select Parent Model']+ $parentModels;
+
+            return View::make('showroom::add', array('make'=> $list, 'item' => $item, 'photos' => $photos , 'parentModel' => $parentModel));
         }else{
             //redirect
             Session::flash('message', 'Something went wrong.');
@@ -245,7 +260,16 @@ class ShowroomController extends \BaseController {
                 $showroom->description       = Input::get('description');
                 $showroom->contact       = Input::get('contact');
                 $showroom->working_hours       = Input::get('working_hours');
+                $showroom->warranty       = Input::get('warranty');
                 $showroom->display       = Input::get('display');
+                $showroom->hasChild       = Input::get('hasChild');
+                $showroom->status       = Input::get('status');
+
+                if( Input::get('parent_model') ){
+                    $showroom->parent_model       = Input::get('parent_model');
+                }
+
+
                 $showroom->save();
 
                 $showroom_car_id = $showroom->showroom_car_id;
@@ -708,12 +732,14 @@ class ShowroomController extends \BaseController {
         if (Request::ajax()) {
 
             $response = array();
+
+            $response['status'] = 'success';
             $response['data'] = '';
 
             //$make_id = Input::get('make_id');
 
             if( !empty($make_id) ){
-                $parentModels = Showroom::lists('make', 'showroom_make_id')->where('make_id','=',$make_id);
+                $parentModels = Showroom::where('showroom_make_id','=',$make_id)->lists('model', 'showroom_car_id');
                 $response['data'] = $parentModels;
             }
             return json_encode($response);

@@ -79,7 +79,7 @@
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-search"></i>
                         </span>
-                                <input type="text" id="filter__item_list" name="filter__item_list" class="search fr form-control" placeholder="Search by phone ..." />
+                                <input type="text" id="filter__showroom_list" name="filter__showroom_list" class="search fr form-control" placeholder="Search by phone ..." />
                             </label>
 
 
