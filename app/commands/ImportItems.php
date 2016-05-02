@@ -75,8 +75,9 @@ class ImportItems extends Command {
 		//$categories = array('tankad','taleemqayadat','nakalafsh','kafalshayarat','hadadatwamajlat','alshahnalbari','nasaaf','darkatar','crane');
 		//$categories = array('nasaaf','darkatar','crane');
 
-		/*$categories = array();
+		//$categories = array('fiberglassandsmithy', 'mobilemechanicselectricity','freelycenters');
 
+		/*$categories = array();
         $itemCont = new ItemsController();
 
         foreach($categories as $category){

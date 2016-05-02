@@ -132,6 +132,9 @@ return array(
         'App\Modules\Items\ServiceProvider' ,
 		'App\Modules\Showroom\ServiceProvider' ,
 		'App\Modules\Forsale\ServiceProvider' ,
+		'App\Modules\Sparepart\ServiceProvider' ,
+		'App\Modules\Servicecenter\ServiceProvider' ,
+		'App\Modules\Scrap\ServiceProvider' ,
 
 
 

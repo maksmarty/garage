@@ -5,10 +5,12 @@
  * Descripttion : Handle login and Register functionallity.
  */
 
-namespace App\Modules\Items\Controllers;
+namespace App\Modules\Servicecenter\Controllers;
 
-use App\Modules\Items\Models\Items;
-use App\Modules\Category\Models\Category;
+use App\Modules\Servicecenter\Models\Servicecenter;
+use App\Modules\Showroom\Models\ShowroomMake;
+
+
 use App,
     View,
     Helpers,
@@ -23,7 +25,7 @@ use App,
     Hash,
     Response;
 
-class ItemsController extends \BaseController {
+class ServicecenterController extends \BaseController {
 
     public $restful = true;
     
@@ -42,18 +44,16 @@ class ItemsController extends \BaseController {
         //$items = Items::all();
 
         // load the view and pass the nerds
-        return View::make('items::index');
+        return View::make('servicecenter::index');
     }
     
     # Show
     public function showAdd(){
-//        $categories = Category::lists('name', 'category_id');
-//
 
-        $categoryObj = new Category();
-        $list = ['' => 'Select Category'] + $categoryObj->getGroupedCategoriesForDropDown();
-        //echo '<pre>';print_r($list);die('======Debugging=======');
-        return View::make('items::add', array('categories'=> $list , 'item' => new items() ));
+        $categories =   ShowroomMake::lists('make', 'showroom_make_id');
+        $list = ['' => 'Select Manufacture'] + $categories;
+        $parentModel = ['0' => 'Select Parent Model'];
+        return View::make('servicecenter::add', array('make'=> $list , 'item' => new Servicecenter() ));
     }
 
     # handle change password post data
@@ -61,75 +61,35 @@ class ItemsController extends \BaseController {
 
         // validate
         $rules = array(
-            'category_id'       => 'required',
-            'phone'       => 'required',
-            'description'       => 'required'
+            'showroom_make_id'       => 'required',
+            'address'       => 'required',
+            //'description'       => 'required'
         );
-
-        if (Input::hasFile('image')) {
-            $rules['image'] = 'required|mimes:png,gif,jpeg';//|max:20000
-        }
-
 
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
         if ($validator->fails()) {
             //echo '<pre>';print_r($validator->messages());die('======Debugging=======');
-            return Redirect::route('item.add')
+            return Redirect::route('servicecenter.add')
                 ->withErrors($validator);
         } else {
 
 
             // store
-            $item = new Items;
-            $item->category_id       = Input::get('category_id');
-            $item->phone       = Input::get('phone');
-            $item->description       = Input::get('description');
-            //$item->save()
-
-//            if (Input::hasFile('image')) {
-//                $file            = Input::file('image');
-//
-//                //get File Name
-//                $fileExtension = $file->getClientOriginalExtension();
-//                $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
-//
-//
-//                //destination path
-//                $destinationPath = public_path('uploads') .'/images/';//'uploads/jav_'.str_random(8);
-//
-//                $uploadSuccess  = \Image::make( $file->getRealPath() )
-//                    ->resize(50,null, function ($constraint) { $constraint->aspectRatio(); })
-//                    ->save($destinationPath.'50/'.$newFilename);
-//
-//                \Image::make( $file->getRealPath() )
-//                    ->resize(100,null, function ($constraint) { $constraint->aspectRatio(); })
-//                    ->save($destinationPath.'100/'.$newFilename);
-//
-//                \Image::make( $file->getRealPath() )
-//                    ->resize(200,null, function ($constraint) { $constraint->aspectRatio(); })
-//                    ->save($destinationPath.'200/'.$newFilename);
-//
-//                \Image::make( $file->getRealPath() )
-//                    ->resize(400,null, function ($constraint) { $constraint->aspectRatio(); })
-//                    ->save($destinationPath.'400/'.$newFilename);
-//
-//                if( $uploadSuccess )
-//                {
-//                    //$item = Item::find( $item_id );
-//                    $item->image = $newFilename;
-//                    //$item->save();
-//                }
-//
-//            }
-
-            //Save data
-            $item->save();
+            $sparepart = new Servicecenter();
+            $sparepart->showroom_make_id       = Input::get('showroom_make_id');
+            $sparepart->branch_name       = Input::get('branch_name');
+            $sparepart->phone       = Input::get('phone');
+            $sparepart->internal_phone       = Input::get('internal_phone');
+            $sparepart->address       = Input::get('address');
+            $sparepart->working_time       = Input::get('working_time');
+            $sparepart->status       = Input::get('status');
+            $sparepart->save();
 
             // redirect
-            Session::flash('message', 'Successfully added Item!');
-            return Redirect::to(sprintf('%s/%s', 'item','add'));
+            Session::flash('message', 'Successfully added Spare Part!');
+            return Redirect::to(sprintf('%s/%s', 'servicecenter','add'));
         }
     }
 
@@ -139,21 +99,31 @@ class ItemsController extends \BaseController {
 //
         //$item = Items::find($id);
         //$item = Items::find($id);
-        $item = DB::table('items')
-            ->join('category', 'items.category_id', '=', 'category.category_id')
-            ->where('item_id','=',$id)
-            ->select('items.*','category.name as category_name')
+        $item = DB::table('showroom_car')
+            ->join('showroom_make', 'showroom_car.showroom_make_id', '=', 'showroom_make.showroom_make_id')
+            ->where('showroom_car_id','=',$id)
+            ->select('showroom_car.*','showroom_make.make as make_name')
             ->first();
-        if(!empty($item->item_id)){
+        if(!empty($item->showroom_car_id)){
 
-            $categoryObj = new Category();
-            $list = ['' => 'Select Category'] + $categoryObj->getGroupedCategoriesForDropDown();
+            $photos = DB::table('photo')
+                ->where('showroom_car_id','=',$id)
+                ->orderBy('default','DESC')
+                ->get();
 
-            return View::make('items::add', array('categories'=> $list, 'item' => $item ));
+
+            $categories = ShowroomMake::lists('make', 'showroom_make_id');
+            $list = ['' => 'Select Manufacture'] + $categories;
+
+
+            $parentModels = Showroom::where('showroom_make_id','=',$item->showroom_make_id)->lists('model', 'showroom_car_id');
+            $parentModel = ['0' => 'Select Parent Model']+ $parentModels;
+
+            return View::make('showroom::add', array('make'=> $list, 'item' => $item, 'photos' => $photos , 'parentModel' => $parentModel));
         }else{
-            // redirect
+            //redirect
             Session::flash('message', 'Something went wrong.');
-            return Redirect::route('item');
+            return Redirect::route('showroom');
         }
 
 
@@ -171,37 +141,123 @@ class ItemsController extends \BaseController {
     public function postUpdate($id)
     {
 
-        $item = Items::find($id);
+        $showroom = Showroom::find($id);
 
-        if(!empty($item->item_id)){
+        if(!empty($showroom->showroom_car_id)){
             $rules = array(
-                'phone'       => 'required',
-                'description'       => 'required'
+                'showroom_make_id'       => 'required',
+                'model'       => 'required',
             );
 
             $validator = Validator::make(Input::all(), $rules);
 
             // process the login
             if ($validator->fails()) {
-                return Redirect::route('item.update',$id)
+                return Redirect::route('showroom.update',$id)
                     ->withErrors($validator);
             } else {
                 // store
 
-                $item->phone       = Input::get('phone');
-                $item->phone1       = Input::get('phone1');
-                $item->phone2       = Input::get('phone2');
-                $item->description       = Input::get('description');
-                $item->save();
+                $showroom->showroom_make_id       = Input::get('showroom_make_id');
+                $showroom->model       = Input::get('model');
+                $showroom->year       = Input::get('year');
+                $showroom->engine       = Input::get('engine');
+                $showroom->transmission       = Input::get('transmission');
+                $showroom->payment       = Input::get('payment');
+                $showroom->price       = Input::get('price');
+                $showroom->description       = Input::get('description');
+                $showroom->contact       = Input::get('contact');
+                $showroom->working_hours       = Input::get('working_hours');
+                $showroom->warranty       = Input::get('warranty');
+                $showroom->display       = Input::get('display');
+                $showroom->hasChild       = Input::get('hasChild');
+                $showroom->status       = Input::get('status');
+
+                if( Input::get('parent_model') ){
+                    $showroom->parent_model       = Input::get('parent_model');
+                }
+
+
+                $showroom->save();
+
+                $showroom_car_id = $showroom->showroom_car_id;
+
+                if (Input::hasFile('image')  ) {
+
+                    $files            = Input::file('image');
+
+                    $image_sizes =  Config::get('constant.image_sizes');
+
+                    $imagePath = public_path('uploads') .'/images/';
+
+                    $filnalDestinationPath = $imagePath . "showroom/";
+
+                    if( !file_exists($filnalDestinationPath) ){
+                        mkdir($filnalDestinationPath, 0755, true);
+                    }
+
+
+                    foreach($files as $file){
+
+                        //get File Name
+                        $fileExtension = $file->getClientOriginalExtension();
+
+                        if( empty($fileExtension) ){
+                            continue;
+                        }
+
+                        $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+
+                        //Upload original image
+                        $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                        \Image::make( $file->getRealPath() )
+                            ->save($fileOriginalPath);
+
+
+                        if( !empty($image_sizes) && is_array($image_sizes) ){
+
+                            foreach($image_sizes as $image_size){
+
+                                $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
+
+                                \Image::make( $file->getRealPath() )
+                                    ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
+                                    ->save($filePathImageSize);
+
+                                //Unset
+                                unset($filePathImageSize);
+                                unset($image_size);
+
+                            }
+
+
+                        }
+
+                        //Save into db
+                        $photo = new Photos();
+                        $photo->showroom_car_id       = $showroom_car_id;
+                        $photo->photo_name       = $newFilename;
+                        $photo->save();
+
+                        //Unset
+                        unset($fileExtension);
+                        unset($newFilename);
+                        unset($photo);
+
+
+                    }
+
+                }
+
 
                 // redirect
-                Session::flash('message', 'Item Successfully updated!');
-                return Redirect::route('item');
+                Session::flash('message', 'Car Successfully updated!');
+                return Redirect::route('showroom');
             }
         }else{
             // redirect
             Session::flash('message', 'Something went wrong.');
-            return Redirect::route('item');
+            return Redirect::route('showroom');
         }
 
 
@@ -255,7 +311,7 @@ class ItemsController extends \BaseController {
 
 
     public function getLoadView($formType, $data, $section = NULL) {
-        $html = View::make('items::lists', $data)->render();
+        $html = View::make('servicecenter::lists', $data)->render();
         $response   = Response::make($html);
         return $response;
     }
@@ -263,16 +319,16 @@ class ItemsController extends \BaseController {
     public function getData() {
 
         $data  = array();
-        $items = new Items();
+        $items = new Servicecenter();
         $list  = $items->getList();
 
-        $arr   = array('ITEMS' => $list );
+        $arr   = array('SPAREPARTS' => $list );
         $data['results'] = $arr;
         $data['param']   = $list['param'];
         return $data;
     }
 
-    public function getImport($categoryName) {
+    private function getImport($categoryName) {
 
         ini_set('memory_limit', '1G');
         ini_set('max_execution_time', -1);
@@ -463,12 +519,6 @@ class ItemsController extends \BaseController {
                                     $newFilename = uniqid(). "_" . time() . '.' . $extension;
 
 
-                                    //Upload original image
-                                    $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
-                                    \Image::make( $currentFile )
-                                        ->save($fileOriginalPath);
-
-
                                     if( !empty($image_sizes) && is_array($image_sizes) ){
 
                                         foreach($image_sizes as $image_size){
@@ -583,6 +633,28 @@ class ItemsController extends \BaseController {
 
             return $dir_array;
         }
+    }
+
+    public function getParentModel($make_id) {
+
+        if (Request::ajax()) {
+
+            $response = array();
+
+            $response['status'] = 'success';
+            $response['data'] = '';
+
+            //$make_id = Input::get('make_id');
+
+            if( !empty($make_id) ){
+                $parentModels = Showroom::where('showroom_make_id','=',$make_id)->lists('model', 'showroom_car_id');
+                $response['data'] = $parentModels;
+            }
+            return json_encode($response);
+        }else{
+            App::abort(404);
+        }
+
     }
 
 

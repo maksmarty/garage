@@ -77,6 +77,34 @@
             </li>
 
 
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Spare Parts</span></a>
+                <ul>
+                    <li>
+                        <a href="{{route('sparepart')}}">Spare Parts</a>
+                    </li>
+                    <li>
+                        <a href="{{route('sparepart.add')}}">Add Spare Part</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Service Center</span></a>
+                <ul>
+                    <li>
+                        <a href="{{route('servicecenter')}}">Service Centers</a>
+                    </li>
+                    <li>
+                        <a href="{{route('servicecenter.add')}}">Add Service Center</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
 
             {{--<li>--}}
                 {{--<a href="inbox.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">14</span></a>--}}

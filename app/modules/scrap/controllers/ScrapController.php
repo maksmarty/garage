@@ -5,12 +5,11 @@
  * Descripttion : Handle login and Register functionallity.
  */
 
-namespace App\Modules\Forsale\Controllers;
+namespace App\Modules\Scrap\Controllers;
 
-use App\Modules\Forsale\Models\Forsale;
-use App\Modules\Forsale\Models\Usermobile;
 use App\Modules\Forsale\Models\Makeregion;
-use App\Modules\Forsale\Models\Make;
+use App\Modules\Scrap\Models\Userscrap;
+use App\Modules\Scrap\Models\Scrap;
 use App\Modules\Showroom\Models\Photos;
 use App,
     View,
@@ -26,7 +25,7 @@ use App,
     Hash,
     Response;
 
-class ForsaleController extends \BaseController {
+class ScrapController extends \BaseController {
 
     public $restful = true;
 
@@ -79,9 +78,8 @@ class ForsaleController extends \BaseController {
 
         // validate
         $rules = array(
-            'device_phone'      => 'required',
+            'uuid'      => 'required',
             'make_region'       => 'required',
-            'make'       => 'required',
             'title'       => 'required',
             'phone'       => 'required',
             'price'       => 'required',
@@ -93,13 +91,13 @@ class ForsaleController extends \BaseController {
 
         // process the login
         if ($validator->fails()) {
-            $response = array( 'status'=> 'fail', 'message'=> $validator->messages()->first() );
+            $response = array( 'status'=> 'error', 'message'=> $validator->messages()->first() );
         } else {
 
-            $mobileUser = Usermobile::where('phone','=',trim(Input::get('device_phone')))->first();
+            $mobileUser = Userscrap::where('uuid','=',trim(Input::get('uuid')))->first();
 
             //User already registered
-            if( !empty($mobileUser->user_mobile_id) && $mobileUser->status == '1'){
+            if( !empty($mobileUser->user_scrap_id) && $mobileUser->status == '1'){
 
                 $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
                 $today = date('Y-m-d');
@@ -140,8 +138,8 @@ class ForsaleController extends \BaseController {
 
                         if( !empty($makeRegion->make_region_id) ){
 
-                            $make = Make::where('slug','=',trim(Input::get('make')))
-                                ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
+//                            $make = Make::where('slug','=',trim(Input::get('make')))
+//                                ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
 
 //                    DB::table('make')
 //                        ->join('make_region', 'make.make_region_id', '=', 'make_region.make_region_id')
@@ -150,12 +148,12 @@ class ForsaleController extends \BaseController {
 //                        ->select('users.id', 'contacts.phone', 'orders.price')
 //                        ->get();
 
-                            if( !empty($make->make_id) ){
+                            //if( !empty($make->make_id) ){
 
                                 // Add forsale data
-                                $forsale = new Forsale();
-                                $forsale->make_id        = $make->make_id;
-                                $forsale->user_mobile_id        = $mobileUser->user_mobile_id;
+                                $forsale = new Scrap();
+                                $forsale->make_region_id        = $makeRegion->make_region_id;
+                                $forsale->user_scrap_id        = $mobileUser->user_scrap_id;
                                 $forsale->title        = trim(Input::get('title'));
                                 $forsale->phone         = trim(Input::get('phone'));
                                 $forsale->price         = trim(Input::get('price'));
@@ -174,7 +172,7 @@ class ForsaleController extends \BaseController {
 
                                     $imagePath = public_path('uploads') .'/images/';
 
-                                    $filnalDestinationPath = $imagePath . "foresale/";
+                                    $filnalDestinationPath = $imagePath . "scrap/";
 
                                     if( !file_exists($filnalDestinationPath) ){
                                         mkdir($filnalDestinationPath, 0755, true);
@@ -228,7 +226,7 @@ class ForsaleController extends \BaseController {
 
                                                 //Save into db
                                                 $photo = new Photos();
-                                                $photo->forsale_id       = $forsale->forsale_id;
+                                                $photo->scrap_id       = $forsale->scrap_id;
                                                 $photo->photo_name       = $newFilename;
                                                 $photo->save();
 
@@ -346,9 +344,9 @@ class ForsaleController extends \BaseController {
                                     }
 
                                 }
-                            }else{
-                                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
-                            }
+//                            }else{
+//                                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
+//                            }
 
 
                         }else{
@@ -362,7 +360,7 @@ class ForsaleController extends \BaseController {
                     $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
                 }
 
-            }elseif( !empty($mobileUser->user_mobile_id) && empty($mobileUser->status) ){
+            }elseif( !empty($mobileUser->user_scrap_id) && empty($mobileUser->status) ){
 
                 $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
 
@@ -374,8 +372,8 @@ class ForsaleController extends \BaseController {
 
                 if( !empty($makeRegion->make_region_id) ){
 
-                    $make = Make::where('slug','=',trim(Input::get('make')))
-                        ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
+//                    $make = Make::where('slug','=',trim(Input::get('make')))
+//                        ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
 
 //                    DB::table('make')
 //                        ->join('make_region', 'make.make_region_id', '=', 'make_region.make_region_id')
@@ -384,11 +382,11 @@ class ForsaleController extends \BaseController {
 //                        ->select('users.id', 'contacts.phone', 'orders.price')
 //                        ->get();
 
-                    if( !empty($make->make_id) ){
+//                    if( !empty($make->make_id) ){
 
                         // Add forsale data
-                        $forsale = new Forsale();
-                        $forsale->make_id        = $make->make_id;
+                        $forsale = new Scrap();
+                        $forsale->make_region_id        = $makeRegion->make_region_id;
                         $forsale->title        = trim(Input::get('title'));
                         $forsale->phone         = trim(Input::get('phone'));
                         $forsale->price         = trim(Input::get('price'));
@@ -407,7 +405,7 @@ class ForsaleController extends \BaseController {
 
                             $imagePath = public_path('uploads') .'/images/';
 
-                            $filnalDestinationPath = $imagePath . "foresale/";
+                            $filnalDestinationPath = $imagePath . "scrap/";
 
                             if( !file_exists($filnalDestinationPath) ){
                                 mkdir($filnalDestinationPath, 0755, true);
@@ -460,7 +458,7 @@ class ForsaleController extends \BaseController {
 
                                         //Save into db
                                         $photo = new Photos();
-                                        $photo->forsale_id       = $forsale->forsale_id;
+                                        $photo->scrap_id       = $forsale->scrap_id;
                                         $photo->photo_name       = $newFilename;
                                         $photo->save();
 
@@ -559,8 +557,8 @@ class ForsaleController extends \BaseController {
 
                             $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
 
-                            $usermobile = new Usermobile();
-                            $usermobile->phone        = trim(Input::get('device_phone'));
+                            $usermobile = new Userscrap();
+                            $usermobile->uuid        = trim(Input::get('uuid'));
                             $usermobile->max_number_post        = $maxNumberOfPostPerDay;
                             $usermobile->number_post_today         = '1';
                             $usermobile->last_post_date         = date('Y-m-d');
@@ -570,15 +568,15 @@ class ForsaleController extends \BaseController {
                                 $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
                             }else{
 
-                                $forsale->user_mobile_id       = $usermobile->user_mobile_id;
+                                $forsale->user_scrap_id       = $usermobile->user_scrap_id;
                                 $forsale->save();
                                 $response = array( 'status'=> 'success', 'message'=> 'Successfully added' );
                             }
 
                         }
-                    }else{
-                        $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
-                    }
+//                    }else{
+//                        $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
+//                    }
 
 
                 }else{

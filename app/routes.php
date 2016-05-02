@@ -865,7 +865,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         $query = ' SELECT showroom_car.*, showroom_make.make, photo.photo_name FROM showroom_car ' .
             ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ' .
             ' LEFT JOIN photo ON ( showroom_car.showroom_car_id = photo.showroom_car_id AND photo.default = "1" )' .
-            ' WHERE showroom_make.make = "'.$make.'" ';
+            ' WHERE showroom_car.status = "1" AND showroom_make.make = "'.$make.'" ';
 
         if( !empty($parentCarId) ){
 
@@ -896,6 +896,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     'description'      => $news_->description ,
                     'contact'      => $news_->contact ,
                     'working_hours'      => $news_->working_hours ,
+                    'warranty'      => $news_->warranty ,
                     'parent_model'      => $news_->parent_model ,
                     'hasChild'      => $news_->hasChild ,
                     'image'        => Helpers::build_image ( $news_->photo_name, $category, 'original' ) ,
@@ -968,6 +969,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     'description'      => $news->description ,
                     'contact'      => $news->contact ,
                     'working_hours'      => $news->working_hours ,
+                    'warranty'      => $news->warranty ,
                     'images'        => $photos  ,
                 ] ;
 
@@ -1156,6 +1158,369 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         return $response + array( 'results' => $cnews )  ;
 
     } ) ;
+
+
+
+    Route::get ( 'spareparts/{make}' , function($make) {
+
+
+        $response = array( );
+
+        $cnews = array () ;
+
+        //if( !empty($category) && in_array($category,$catArray)){
+        //Limit Query
+        $limitArr = Helpers::apiLimitQuery();
+
+        $query = ' SELECT spare_part.*, showroom_make.make FROM spare_part ' .
+            ' JOIN showroom_make ON spare_part.showroom_make_id = showroom_make.showroom_make_id ' .
+            ' WHERE spare_part.status = "1" AND showroom_make.make = "'.$make.'" ';
+
+
+        $query .= ' '.$limitArr['query'].'  ';
+//echo '<pre>';print_r($query);die('======Debugging=======');
+        $news = DB::select ( $query ) ;
+
+        if( count($news) > 0 ){
+
+            foreach ( $news as $news_ ) {
+
+                $nwsRow = [
+                    'spare_part_id'      => $news_->spare_part_id ,
+                    'branch_name'        => $news_->branch_name ,
+                    'phone'        => $news_->phone ,
+                    'internal_phone'      => $news_->internal_phone ,
+                    'address'      => $news_->address ,
+                    'working_time'      => $news_->working_time ,
+                    'make'        => $news_->make
+                ] ;
+
+                $cnews[] = ( object ) $nwsRow ;
+            }
+
+            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+        }
+
+//        }else{
+//            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.' );
+//        }
+
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+    Route::get ( 'sparepart/{spare_part_id}' , function($spare_part_id) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($spare_part_id) ){
+
+            //TODO::Item not in
+            $news = DB::table('spare_part')
+                ->join('showroom_make', 'spare_part.showroom_make_id', '=', 'showroom_make.showroom_make_id')
+                ->where('spare_part_id', $spare_part_id)
+                ->first();
+
+
+            if( !empty($news) ){
+
+                $cnews = [
+                    'spare_part_id'      => $news->spare_part_id ,
+                    'branch_name'        => $news->branch_name ,
+                    'phone'        => $news->phone ,
+                    'internal_phone'      => $news->internal_phone ,
+                    'address'      => $news->address ,
+                    'working_time'      => $news->working_time ,
+                    'make'        => $news->make
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+
+    Route::get ( 'servicecenters/{make}' , function($make) {
+
+
+        $response = array( );
+
+        $cnews = array () ;
+
+        //if( !empty($category) && in_array($category,$catArray)){
+        //Limit Query
+        $limitArr = Helpers::apiLimitQuery();
+
+        $query = ' SELECT service_center.*, showroom_make.make FROM service_center ' .
+            ' JOIN showroom_make ON service_center.showroom_make_id = showroom_make.showroom_make_id ' .
+            ' WHERE service_center.status = "1" AND showroom_make.make = "'.$make.'" ';
+
+
+        $query .= ' '.$limitArr['query'].'  ';
+//echo '<pre>';print_r($query);die('======Debugging=======');
+        $news = DB::select ( $query ) ;
+
+        if( count($news) > 0 ){
+
+            foreach ( $news as $news_ ) {
+
+                $nwsRow = [
+                    'service_center_id'      => $news_->service_center_id ,
+                    'branch_name'        => $news_->branch_name ,
+                    'phone'        => $news_->phone ,
+                    'internal_phone'      => $news_->internal_phone ,
+                    'address'      => $news_->address ,
+                    'working_time'      => $news_->working_time ,
+                    'make'        => $news_->make
+                ] ;
+
+                $cnews[] = ( object ) $nwsRow ;
+            }
+
+            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+        }
+
+//        }else{
+//            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.' );
+//        }
+
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+    Route::get ( 'servicecenter/{service_center_id}' , function($service_center_id) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($service_center_id) ){
+
+            //TODO::Item not in
+            $news = DB::table('service_center')
+                ->join('showroom_make', 'service_center.showroom_make_id', '=', 'showroom_make.showroom_make_id')
+                ->where('service_center_id', $service_center_id)
+                ->first();
+
+
+            if( !empty($news) ){
+
+                $cnews = [
+                    'service_center_id'      => $news->service_center_id ,
+                    'branch_name'        => $news->branch_name ,
+                    'phone'        => $news->phone ,
+                    'internal_phone'      => $news->internal_phone ,
+                    'address'      => $news->address ,
+                    'working_time'      => $news->working_time ,
+                    'make'        => $news->make
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+    Route::get ( 'marine/{category}' , function($category) {
+
+
+        $response = array( );
+        $catArray = array('fiberglassandsmithy', 'mobilemechanicselectricity','freelycenters');
+
+        $cnews = array () ;
+
+        if( !empty($category) && in_array($category,$catArray)){
+
+            //Limit Query
+            $limitArr = Helpers::apiLimitQuery();
+
+            $query = ' SELECT items.*, category.name FROM items,category ' .
+                ' WHERE items.category_id = category.category_id AND category.name = "'.$category.'" '.$limitArr['query'].' ';
+
+            $news = DB::select ( $query ) ;
+            
+            if( count($news) > 0 ){
+
+                foreach ( $news as $news_ ) {
+
+                    $nwsRow = [
+                        'item_id'      => $news_->item_id ,
+                        'phone'        => $news_->phone ,
+                        'phone1'        => $news_->phone1 ,
+                        'phone2'        => $news_->phone2 ,
+                        'description'      => $news_->description ,
+                        'image'        => Helpers::build_image ( $news_->image, $category ) ,
+                    ] ;
+
+                    $cnews[] = ( object ) $nwsRow ;
+                }
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.' );
+        }
+
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+
+
+    Route::get ( 'scrapuser/{makeregion}' , function($makeregion) {
+
+
+        $response = array( );
+        $cnews = array () ;
+        $category = 'scrap';
+
+        //Limit Query
+        $limitArr = Helpers::apiLimitQuery();
+
+        $query = ' SELECT scrap.*,make_region.name as make_region_name ' .
+            'FROM scrap ' .
+            'JOIN make_region ON scrap.make_region_id = make_region.make_region_id ' .
+            //'LEFT JOIN photo ON forsale.forsale_id = photo.forsale_id ' .
+            'WHERE scrap.status = "1" AND make_region.slug = "'.$makeregion.'" ';
+
+        $query .= ' '.$limitArr['query'].'  ';
+
+        $news = DB::select ( $query ) ;
+
+        if( count($news) > 0 ){
+
+            foreach ( $news as $news_ ) {
+
+
+                //Get one photo
+                $firstPhoto = DB::table('photo')
+                    ->where('scrap_id', $news_->scrap_id)
+                    ->orderBy('scrap_id','DESC')
+                    ->first();
+                $photo_name_first = '';
+                if( !empty($firstPhoto->photo_id) ){
+                    $photo_name_first = $firstPhoto->photo_name;
+                }
+
+
+
+                $nwsRow = [
+                    'scrap_id'      => $news_->scrap_id ,
+                    'make_region_name'        => $news_->make_region_name ,
+                    'title'        => $news_->title ,
+                    'phone'        => $news_->phone ,
+                    'price'      => $news_->price ,
+                    'description'      => $news_->description ,
+                    //'default'      => $news_->default ,
+                    'image'        => Helpers::build_image ( $photo_name_first, $category, '400' ) ,
+                ] ;
+
+                $cnews[] = ( object ) $nwsRow ;
+            }
+
+            //echo '<pre>';print_r($cnews);die('======Debugging=======');
+
+            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+        }
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+    Route::get ( 'scrapuserdetail/{scrap_id}' , function($scrap_id) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($scrap_id) ){
+
+            //TODO::Item not in
+            $news = DB::table('scrap')
+                ->join('make_region', 'scrap.make_region_id', '=', 'make_region.make_region_id')
+                ->where('scrap_id', $scrap_id)
+                ->where('scrap.status', '=','1')
+                ->first();
+
+//echo '<pre>';print_r($news);die('======Debugging=======');
+
+            if( !empty($news) ){
+
+                $photosRaws = DB::table('photo')
+                    ->where('scrap_id', $scrap_id)
+                    ->orderBy('default','DESC')
+                    ->get();
+
+                $photos = array();
+                foreach($photosRaws as $photosRaw){
+
+                    $photos[] = [
+                        'photo_id'      => $photosRaw->photo_id ,
+                        'photo_name'        => Helpers::build_image ( $photosRaw->photo_name , 'scrap', '400' ) ,
+                        'default'        => $photosRaw->default
+                    ] ;
+
+                }
+
+                $cnews = [
+                    'scrap_id'      => $news->scrap_id ,
+                    'make_region_name'        => $news->name ,
+                    'title'        => $news->title ,
+                    'phone'        => $news->phone ,
+                    'price'        => $news->price ,
+                    'description'      => $news->description ,
+                    'images'        => $photos  ,
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+
 
 
 });
