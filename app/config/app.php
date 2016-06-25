@@ -135,6 +135,10 @@ return array(
 		'App\Modules\Sparepart\ServiceProvider' ,
 		'App\Modules\Servicecenter\ServiceProvider' ,
 		'App\Modules\Scrap\ServiceProvider' ,
+		'App\Modules\Marine\ServiceProvider' ,
+		'App\Modules\Accessories\ServiceProvider' ,
+		'App\Modules\Boatfishing\ServiceProvider' ,
+
 
 
 

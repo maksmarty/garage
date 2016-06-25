@@ -5,12 +5,11 @@
  * Descripttion : Handle login and Register functionallity.
  */
 
-namespace App\Modules\Forsale\Controllers;
+namespace App\Modules\Marine\Controllers;
 
-use App\Modules\Forsale\Models\Forsale;
-use App\Modules\Forsale\Models\Usermobile;
-use App\Modules\Forsale\Models\Makeregion;
-use App\Modules\Forsale\Models\Make;
+use App\Modules\Marine\Models\Marinemakeregion;
+use App\Modules\Marine\Models\Usermarine;
+use App\Modules\Marine\Models\Marine;
 use App\Modules\Showroom\Models\Photos;
 use App,
     View,
@@ -26,7 +25,7 @@ use App,
     Hash,
     Response;
 
-class ForsaleController extends \BaseController {
+class MarineController extends \BaseController {
 
     public $restful = true;
 
@@ -44,7 +43,7 @@ class ForsaleController extends \BaseController {
     public function index() {
 
 
-        $durations = Forsale::all();
+        $durations = Marine::all();
 
 //
 //        $items = array();
@@ -79,11 +78,10 @@ class ForsaleController extends \BaseController {
 
         // validate
         $rules = array(
-            'device_phone'      => 'required',
+            'uuid'      => 'required',
             'make_region'       => 'required',
-            'model'       => 'required',
-            'make'       => 'required',
             'title'       => 'required',
+            'model'       => 'required',
             'phone'       => 'required',
             'price'       => 'required',
             'description'   => 'required',
@@ -94,13 +92,13 @@ class ForsaleController extends \BaseController {
 
         // process the login
         if ($validator->fails()) {
-            $response = array( 'status'=> 'fail', 'message'=> $validator->messages()->first() );
+            $response = array( 'status'=> 'error', 'message'=> $validator->messages()->first() );
         } else {
 
-            $mobileUser = Usermobile::where('phone','=',trim(Input::get('device_phone')))->first();
+            $mobileUser = Usermarine::where('uuid','=',trim(Input::get('uuid')))->first();
 
             //User already registered
-            if( !empty($mobileUser->user_mobile_id) && $mobileUser->status == '1'){
+            if( !empty($mobileUser->user_marine_id) && $mobileUser->status == '1'){
 
                 $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
                 $today = date('Y-m-d');
@@ -135,14 +133,14 @@ class ForsaleController extends \BaseController {
                     if( $isEligibleToPost ){
 
                         //User already exists
-                        $makeRegion = Makeregion::where('slug','=',trim(Input::get('make_region')))->first();
+                        $makeRegion = Marinemakeregion::where('slug','=',trim(Input::get('make_region')))->first();
                         //echo '<pre>';print_r($makeRegion);die('======Debugging=======');
                         //dd(DB::getQueryLog());die;
 
-                        if( !empty($makeRegion->make_region_id) ){
+                        if( !empty($makeRegion->marine_make_region_id) ){
 
-                            $make = Make::where('slug','=',trim(Input::get('make')))
-                                ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
+//                            $make = Make::where('slug','=',trim(Input::get('make')))
+//                                ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
 
 //                    DB::table('make')
 //                        ->join('make_region', 'make.make_region_id', '=', 'make_region.make_region_id')
@@ -151,12 +149,12 @@ class ForsaleController extends \BaseController {
 //                        ->select('users.id', 'contacts.phone', 'orders.price')
 //                        ->get();
 
-                            if( !empty($make->make_id) ){
+                            //if( !empty($make->make_id) ){
 
                                 // Add forsale data
-                                $forsale = new Forsale();
-                                $forsale->make_id        = $make->make_id;
-                                $forsale->user_mobile_id        = $mobileUser->user_mobile_id;
+                                $forsale = new Marine();
+                                $forsale->marine_make_region_id        = $makeRegion->marine_make_region_id;
+                                $forsale->user_marine_id        = $mobileUser->user_marine_id;
                                 $forsale->model        = trim(Input::get('model'));
                                 $forsale->title        = trim(Input::get('title'));
                                 $forsale->phone         = trim(Input::get('phone'));
@@ -176,7 +174,7 @@ class ForsaleController extends \BaseController {
 
                                     $imagePath = public_path('uploads') .'/images/';
 
-                                    $filnalDestinationPath = $imagePath . "foresale/";
+                                    $filnalDestinationPath = $imagePath . "marine/";
 
                                     if( !file_exists($filnalDestinationPath) ){
                                         mkdir($filnalDestinationPath, 0755, true);
@@ -230,7 +228,7 @@ class ForsaleController extends \BaseController {
 
                                                 //Save into db
                                                 $photo = new Photos();
-                                                $photo->forsale_id       = $forsale->forsale_id;
+                                                $photo->marine_id       = $forsale->marine_id;
                                                 $photo->photo_name       = $newFilename;
                                                 $photo->save();
 
@@ -348,9 +346,9 @@ class ForsaleController extends \BaseController {
                                     }
 
                                 }
-                            }else{
-                                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
-                            }
+//                            }else{
+//                                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
+//                            }
 
 
                         }else{
@@ -364,20 +362,20 @@ class ForsaleController extends \BaseController {
                     $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
                 }
 
-            }elseif( !empty($mobileUser->user_mobile_id) && empty($mobileUser->status) ){
+            }elseif( !empty($mobileUser->user_marine_id) && empty($mobileUser->status) ){
 
                 $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
 
             }else{
                 //New User
-                $makeRegion = Makeregion::where('slug','=',trim(Input::get('make_region')))->first();
+                $makeRegion = Marinemakeregion::where('slug','=',trim(Input::get('make_region')))->first();
                 //echo '<pre>';print_r($makeRegion);die('======Debugging=======');
                 //dd(DB::getQueryLog());die;
 
-                if( !empty($makeRegion->make_region_id) ){
+                if( !empty($makeRegion->marine_make_region_id) ){
 
-                    $make = Make::where('slug','=',trim(Input::get('make')))
-                        ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
+//                    $make = Make::where('slug','=',trim(Input::get('make')))
+//                        ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
 
 //                    DB::table('make')
 //                        ->join('make_region', 'make.make_region_id', '=', 'make_region.make_region_id')
@@ -386,11 +384,11 @@ class ForsaleController extends \BaseController {
 //                        ->select('users.id', 'contacts.phone', 'orders.price')
 //                        ->get();
 
-                    if( !empty($make->make_id) ){
+//                    if( !empty($make->make_id) ){
 
                         // Add forsale data
-                        $forsale = new Forsale();
-                        $forsale->make_id        = $make->make_id;
+                        $forsale = new Marine();
+                        $forsale->marine_make_region_id        = $makeRegion->marine_make_region_id;
                         $forsale->model        = trim(Input::get('model'));
                         $forsale->title        = trim(Input::get('title'));
                         $forsale->phone         = trim(Input::get('phone'));
@@ -410,7 +408,7 @@ class ForsaleController extends \BaseController {
 
                             $imagePath = public_path('uploads') .'/images/';
 
-                            $filnalDestinationPath = $imagePath . "foresale/";
+                            $filnalDestinationPath = $imagePath . "marine/";
 
                             if( !file_exists($filnalDestinationPath) ){
                                 mkdir($filnalDestinationPath, 0755, true);
@@ -463,7 +461,7 @@ class ForsaleController extends \BaseController {
 
                                         //Save into db
                                         $photo = new Photos();
-                                        $photo->forsale_id       = $forsale->forsale_id;
+                                        $photo->marine_id       = $forsale->marine_id;
                                         $photo->photo_name       = $newFilename;
                                         $photo->save();
 
@@ -562,8 +560,8 @@ class ForsaleController extends \BaseController {
 
                             $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
 
-                            $usermobile = new Usermobile();
-                            $usermobile->phone        = trim(Input::get('device_phone'));
+                            $usermobile = new Usermarine();
+                            $usermobile->uuid        = trim(Input::get('uuid'));
                             $usermobile->max_number_post        = $maxNumberOfPostPerDay;
                             $usermobile->number_post_today         = '1';
                             $usermobile->last_post_date         = date('Y-m-d');
@@ -573,15 +571,15 @@ class ForsaleController extends \BaseController {
                                 $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
                             }else{
 
-                                $forsale->user_mobile_id       = $usermobile->user_mobile_id;
+                                $forsale->user_marine_id       = $usermobile->user_marine_id;
                                 $forsale->save();
                                 $response = array( 'status'=> 'success', 'message'=> 'Successfully added' );
                             }
 
                         }
-                    }else{
-                        $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
-                    }
+//                    }else{
+//                        $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make not exist.' );
+//                    }
 
 
                 }else{
@@ -604,6 +602,27 @@ class ForsaleController extends \BaseController {
      * curl --user admin:admin localhost/project/api/v1/pages/2
      */
 
+//    public function show($id) {
+//
+//        $page = Page::where('id', $id)
+//            ->take(1)
+//            ->get();
+//
+//        return Response::json(array(
+//            'status' => 'success',
+//            'pages' => $page->toArray()),
+//            200
+//        );
+//    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     * curl -i -X PUT --user admin:admin -d 'title=Updated Title' localhost/project/api/v1/pages/2
+     */
 
     public function update() {
 
@@ -612,7 +631,7 @@ class ForsaleController extends \BaseController {
         // validate
         $rules = array(
             'id'      => 'required',
-            'device_phone'      => 'required',
+            'uuid'      => 'required',
             //'model'       => 'required',
             //'title'       => 'required',
             //'phone'       => 'required',
@@ -627,15 +646,15 @@ class ForsaleController extends \BaseController {
             $response = array( 'status'=> 'fail', 'message'=> $validator->messages()->first() );
         } else {
 
-            $mobileUser = Usermobile::where('phone','=',trim(Input::get('device_phone')))->first();
+            $mobileUser = Usermarine::where('uuid','=',trim(Input::get('uuid')))->first();
 
             //User already registered
-            if( !empty($mobileUser->user_mobile_id) && $mobileUser->status == '1'){
+            if( !empty($mobileUser->user_marine_id) && $mobileUser->status == '1'){
 
                 $id = trim(Input::get('id'));
-                $forsale = Forsale::find($id);
+                $forsale = Marine::find($id);
 
-                if( !empty($forsale->forsale_id) && $forsale->user_mobile_id == $mobileUser->user_mobile_id ){
+                if( !empty($forsale->marine_id) && $forsale->user_marine_id == $mobileUser->user_marine_id ){
 
                     //$forsale->make_id        = $make->make_id;
                     //$forsale->user_mobile_id        = $mobileUser->user_mobile_id;
@@ -678,7 +697,7 @@ class ForsaleController extends \BaseController {
 
                         $imagePath = public_path('uploads') .'/images/';
 
-                        $filnalDestinationPath = $imagePath . "foresale/";
+                        $filnalDestinationPath = $imagePath . "marine/";
 
                         if( !file_exists($filnalDestinationPath) ){
                             mkdir($filnalDestinationPath, 0755, true);
@@ -686,7 +705,7 @@ class ForsaleController extends \BaseController {
 
 
                         //Start - Delete old images
-                        $photos = Photos::where('forsale_id', '=', $forsale->forsale_id)->get();
+                        $photos = Photos::where('marine_id', '=', $forsale->marine_id)->get();
                         foreach($photos as $photo){
 
                             $photo_name = $photo->photo_name;
@@ -730,8 +749,6 @@ class ForsaleController extends \BaseController {
 
 
 
-
-                        //Upload latest comming images
                         $imagenumber = \Config::get('constant.number_of_image',10);
                         for($i=1; $i <= $imagenumber; $i++){
 
@@ -780,7 +797,7 @@ class ForsaleController extends \BaseController {
 
                                     //Save into db
                                     $photo = new Photos();
-                                    $photo->forsale_id       = $forsale->forsale_id;
+                                    $photo->marine_id       = $forsale->marine_id;
                                     $photo->photo_name       = $newFilename;
                                     $photo->save();
 
@@ -809,7 +826,7 @@ class ForsaleController extends \BaseController {
                 }
 
 
-            }elseif( !empty($mobileUser->user_mobile_id) && empty($mobileUser->status) ){
+            }elseif( !empty($mobileUser->user_scrap_id) && empty($mobileUser->status) ){
 
                 $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
 
@@ -825,50 +842,6 @@ class ForsaleController extends \BaseController {
 
 
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     * curl -i -X PUT --user admin:admin -d 'title=Updated Title' localhost/project/api/v1/pages/2
-     */
-
-//    public function update($id) {
-//
-//        $input = Input::all();
-//
-//        $page = Duration::find($id);
-//
-//        if ( !empty($input['level']) ) {
-//            $page->level =$input['level'];
-//        }
-//
-//        if ( !empty($input['date']) ) {
-//            $page->date =$input['date'];
-//        }
-//
-//        if ( !empty($input['time']) ) {
-//            $page->time =$input['time'];
-//        }
-//
-//        if ( !empty($input['location']) ) {
-//            $page->location =$input['location'];
-//        }
-//
-//        if ( !empty($input['status']) ) {
-//            $page->status =$input['status'];
-//        }
-//
-//        $page->save();
-//
-//        return Response::json(array(
-//            'error' => false,
-//            'message' => 'Page Updated'),
-//            200
-//        );
-//    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -876,6 +849,7 @@ class ForsaleController extends \BaseController {
      * @return Response
      * curl -i -X DELETE --user admin:admin localhost/project/api/v1/pages/1
      */
+
 
     public function destroy() {
 
@@ -891,15 +865,15 @@ class ForsaleController extends \BaseController {
             $response = array( 'status'=> 'fail', 'message'=> $validator->messages()->first() );
         } else {
 
-            $mobileUser = Usermobile::where('phone', '=', trim(Input::get('device_phone')))->first();
+            $mobileUser = Usermarine::where('uuid', '=', trim(Input::get('device_phone')))->first();
 
             //User already registered
-            if (!empty($mobileUser->user_mobile_id) && $mobileUser->status == '1') {
+            if (!empty($mobileUser->user_marine_id) && $mobileUser->status == '1') {
 
                 $delete_id = trim(Input::get('delete_id'));
-                $page = Forsale::find($delete_id);
+                $page = Marine::find($delete_id);
 
-                if( !empty($page->forsale_id) &&  $page->user_mobile_id == $mobileUser->user_mobile_id ){
+                if( !empty($page->marine_id) &&  $page->user_marine_id == $mobileUser->user_marine_id ){
 
 
                     //Upload Images, new logic - Start here
@@ -907,11 +881,11 @@ class ForsaleController extends \BaseController {
 
                     $imagePath = public_path('uploads') .'/images/';
 
-                    $filnalDestinationPath = $imagePath . "foresale/";
+                    $filnalDestinationPath = $imagePath . "marine/";
 
 
                     //Delete Photos
-                    $photos = Photos::where('forsale_id', '=', $page->forsale_id)->get();
+                    $photos = Photos::where('marine_id', '=', $page->marine_id)->get();
                     foreach($photos as $photo){
 
                         $photo_name = $photo->photo_name;
@@ -971,6 +945,7 @@ class ForsaleController extends \BaseController {
 
         return $response ;
     }
+
 
 
 

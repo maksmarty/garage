@@ -5,10 +5,9 @@
  * Descripttion : Handle login and Register functionallity.
  */
 
-namespace App\Modules\Showroom\Controllers;
+namespace App\Modules\Boatfishing\Controllers;
 
-use App\Modules\Showroom\Models\Showroom;
-use App\Modules\Showroom\Models\ShowroomMake;
+use App\Modules\Boatfishing\Models\Boatfishing;
 use App\Modules\Showroom\Models\Photos;
 
 use App,
@@ -25,7 +24,7 @@ use App,
     Hash,
     Response;
 
-class ShowroomController extends \BaseController {
+class BoatfishingController extends \BaseController {
 
     public $restful = true;
     
@@ -44,16 +43,14 @@ class ShowroomController extends \BaseController {
         //$items = Items::all();
 
         // load the view and pass the nerds
-        return View::make('showroom::index');
+        return View::make('boatfishing::index');
     }
     
     # Show
     public function showAdd(){
 
-        $categories = ShowroomMake::lists('make', 'showroom_make_id');
-        $list = ['' => 'Select Manufacture'] + $categories;
-        $parentModel = ['0' => 'Select Parent Model'];
-        return View::make('showroom::add', array('make'=> $list , 'item' => new Showroom() , 'parentModel' => $parentModel , 'photos' => new \stdClass() ));
+
+        return View::make('boatfishing::add', array( 'item' => new Boatfishing() , 'photos' => new \stdClass() ));
     }
 
     # handle change password post data
@@ -61,9 +58,9 @@ class ShowroomController extends \BaseController {
 
         // validate
         $rules = array(
-            'showroom_make_id'       => 'required',
-            'model'       => 'required',
-            //'description'       => 'required'
+            'phone'       => 'required',
+            'contact'       => 'required',
+            'description'       => 'required'
         );
 
         if (Input::hasFile('image')) {
@@ -76,36 +73,18 @@ class ShowroomController extends \BaseController {
         // process the login
         if ($validator->fails()) {
             //echo '<pre>';print_r($validator->messages());die('======Debugging=======');
-            return Redirect::route('showroom.add')
+            return Redirect::route('boatfishing.add')
                 ->withErrors($validator);
         } else {
 
 
             // store
-            $showroom = new Showroom();
-            $showroom->showroom_make_id       = Input::get('showroom_make_id');
-            $showroom->model       = Input::get('model');
-            $showroom->year       = Input::get('year');
-            $showroom->engine       = Input::get('engine');
-            $showroom->transmission       = Input::get('transmission');
-            $showroom->payment       = Input::get('payment');
-            $showroom->price       = Input::get('price');
+            $showroom = new Boatfishing();
             $showroom->description       = Input::get('description');
             $showroom->contact       = Input::get('contact');
-            $showroom->working_hours       = Input::get('working_hours');
-            $showroom->warranty       = Input::get('warranty');
-            $showroom->display       = Input::get('display');
-            $showroom->hasChild       = Input::get('hasChild');
-            $showroom->status       = Input::get('status');
-
-            if( Input::get('parent_model') ){
-                $showroom->parent_model       = Input::get('parent_model');
-            }
-
-
             $showroom->save();
 
-            $showroom_car_id = $showroom->showroom_car_id;
+            $showroom_car_id = $showroom->boat_fishing_id;
 
             if (Input::hasFile('image') && !empty($showroom_car_id) ) {
                 $files            = Input::file('image');
@@ -114,7 +93,7 @@ class ShowroomController extends \BaseController {
 
                 $imagePath = public_path('uploads') .'/images/';
 
-                $filnalDestinationPath = $imagePath . "showroom/";
+                $filnalDestinationPath = $imagePath . "boatfishing/";
 
                 if( !file_exists($filnalDestinationPath) ){
                     mkdir($filnalDestinationPath, 0755, true);
@@ -162,7 +141,7 @@ class ShowroomController extends \BaseController {
 
                     //Save into db
                     $photo = new Photos();
-                    $photo->showroom_car_id       = $showroom_car_id;
+                    $photo->boat_fishing_id       = $showroom_car_id;
                     $photo->photo_name       = $newFilename;
                     $photo->save();
 
@@ -181,7 +160,7 @@ class ShowroomController extends \BaseController {
 
             // redirect
             Session::flash('message', 'Successfully added cars!');
-            return Redirect::to(sprintf('%s/%s', 'showroom','add'));
+            return Redirect::to(sprintf('%s/%s', 'boatfishing','add'));
         }
     }
 

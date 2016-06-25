@@ -60,4 +60,6 @@ Route::group(array( 'before' => 'auth'), function() {
 //    Route::get('edit-profile', array('uses' => '\App\Modules\User\Controllers\UserController@editProfile'));
 
 
+    Route::get('showroom/phone', array('as' => 'showroom.phone','uses' => '\App\Modules\Showroom\Controllers\ShowroomController@getPhone'));
+
 });

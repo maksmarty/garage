@@ -770,82 +770,81 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
-//
-//
-//    Route::get ( 'showroom/{make}/{displaytype?}' , function($make,$displaytype = null) {
-//
-//
-//        $response = array( );
-//        //$catArray = array('mercedes','bmw','rangerover','volvowagon','jaguar','porsche','audi','peugeot','skoda','mini','renault','volvo');
-//        //$catArray = array('cadillac','dodgenchrysler','chevrolet','gmc','fordnlincoln','hummer','jeep');
-//
-//        $cnews = array () ;
-//        $category = 'showroom';
-//
-//        //if( !empty($category) && in_array($category,$catArray)){
-//        //Limit Query
-//        $limitArr = Helpers::apiLimitQuery();
-//
-//        $query = ' SELECT showroom_car.*, showroom_make.make, photo.photo_name FROM showroom_car ' .
-//            ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ' .
-//            ' LEFT JOIN photo ON ( showroom_car.showroom_car_id = photo.showroom_car_id AND photo.default = "1" )' .
-//            ' WHERE showroom_make.make = "'.$make.'" AND showroom_car.parent_model = "0" ';
-//
-//        if( !empty($displaytype) ){
-//
-//            $displayConf = \Config::get('constant.showroom_display');
-//
-//            $searchKey = array_search($displaytype,$displayConf);
-//
-//            if( $searchKey ){
-//                $query .= ' AND showroom_car.display = "'.$searchKey.'"  ';
-//            }
-//
-//        }
-//
-//
-//        $query .= ' '.$limitArr['query'].'  ';
-////echo '<pre>';print_r($query);die('======Debugging=======');
-//        $news = DB::select ( $query ) ;
-//
-//        if( count($news) > 0 ){
-//
-//            foreach ( $news as $news_ ) {
-//
-//                $nwsRow = [
-//                    'showroom_car_id'      => $news_->showroom_car_id ,
-//                    'make'        => $news_->make ,
-//                    'model'        => $news_->model ,
-//                    'year'        => $news_->year ,
-//                    'engine'      => $news_->engine ,
-//                    'transmission'      => $news_->transmission ,
-//                    'payment'      => $news_->payment ,
-//                    'price'      => $news_->price ,
-//                    'description'      => $news_->description ,
-//                    'contact'      => $news_->contact ,
-//                    'working_hours'      => $news_->working_hours ,
-//                    'parent_model'      => $news_->parent_model ,
-//                    'hasChild'      => $news_->hasChild ,
-//                    'image'        => Helpers::build_image ( $news_->photo_name, $category, 'original' ) ,
-//                ] ;
-//
-//                $cnews[] = ( object ) $nwsRow ;
-//            }
-//
-//            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
-//
-//        }else{
-//            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
-//        }
-//
-////        }else{
-////            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.' );
-////        }
-//
-//        return $response + array( 'results' => $cnews )  ;
-//
-//    } ) ;
-//
+
+    /*
+        Route::get ( 'showroom/{make}/{displaytype?}' , function($make,$displaytype = null) {
+
+
+            $response = array( );
+            //$catArray = array('mercedes','bmw','rangerover','volvowagon','jaguar','porsche','audi','peugeot','skoda','mini','renault','volvo');
+            //$catArray = array('cadillac','dodgenchrysler','chevrolet','gmc','fordnlincoln','hummer','jeep');
+
+            $cnews = array () ;
+            $category = 'showroom';
+
+            //if( !empty($category) && in_array($category,$catArray)){
+                //Limit Query
+                $limitArr = Helpers::apiLimitQuery();
+
+                $query = ' SELECT showroom_car.*, showroom_make.make, photo.photo_name FROM showroom_car ' .
+                    ' JOIN showroom_make ON showroom_car.showroom_make_id = showroom_make.showroom_make_id ' .
+                    ' LEFT JOIN photo ON ( showroom_car.showroom_car_id = photo.showroom_car_id AND photo.default = "1" )' .
+                    ' WHERE showroom_make.make = "'.$make.'" ';
+
+                if( !empty($displaytype) ){
+
+                    $displayConf = \Config::get('constant.showroom_display');
+
+                    $searchKey = array_search($displaytype,$displayConf);
+
+                    if( $searchKey ){
+                        $query .= ' AND showroom_car.display = "'.$searchKey.'"  ';
+                    }
+
+                }
+
+
+                $query .= ' '.$limitArr['query'].'  ';
+    //echo '<pre>';print_r($query);die('======Debugging=======');
+                $news = DB::select ( $query ) ;
+
+                if( count($news) > 0 ){
+
+                    foreach ( $news as $news_ ) {
+
+                        $nwsRow = [
+                            'showroom_car_id'      => $news_->showroom_car_id ,
+                            'make'        => $news_->make ,
+                            'model'        => $news_->model ,
+                            'year'        => $news_->year ,
+                            'engine'      => $news_->engine ,
+                            'transmission'      => $news_->transmission ,
+                            'payment'      => $news_->payment ,
+                            'price'      => $news_->price ,
+                            'description'      => $news_->description ,
+                            'contact'      => $news_->contact ,
+                            'working_hours'      => $news_->working_hours ,
+                            'image'        => Helpers::build_image ( $news_->photo_name, $category, 'original' ) ,
+                        ] ;
+
+                        $cnews[] = ( object ) $nwsRow ;
+                    }
+
+                    $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+                }else{
+                    $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+                }
+
+    //        }else{
+    //            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.' );
+    //        }
+
+            return $response + array( 'results' => $cnews )  ;
+
+        } ) ;
+
+    */
 
 
     Route::get ( 'showroom/{make}/{parentCarId?}' , function($make,$parentCarId = null) {
@@ -883,6 +882,12 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         if( count($news) > 0 ){
 
             foreach ( $news as $news_ ) {
+//echo '<pre>';print_r($news_);die('======Debugging=======');
+
+                $phones = array();
+                if( !empty($news_->phone) ){
+                    $phones = explode(',',$news_->phone);
+                }
 
                 $nwsRow = [
                     'showroom_car_id'      => $news_->showroom_car_id ,
@@ -895,6 +900,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     'price'      => $news_->price ,
                     'description'      => $news_->description ,
                     'contact'      => $news_->contact ,
+                    'phones'      => $phones ,
                     'working_hours'      => $news_->working_hours ,
                     'warranty'      => $news_->warranty ,
                     'parent_model'      => $news_->parent_model ,
@@ -955,6 +961,10 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
                 }
 
+                $phones = array();
+                if( !empty($news->phone) ){
+                    $phones = explode(',',$news->phone);
+                }
 
 
                 $cnews = [
@@ -968,6 +978,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     'price'        => $news->price ,
                     'description'      => $news->description ,
                     'contact'      => $news->contact ,
+                    'phones'      => $phones ,
                     'working_hours'      => $news->working_hours ,
                     'warranty'      => $news->warranty ,
                     'images'        => $photos  ,
@@ -1035,11 +1046,22 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
-    Route::get ( 'foresale/{makeregion}/{make}' , function($makeregion,$make) {
+
+    Route::get ( 'foresale/{makeregion}/{make}/{uuid}' , function($makeregion,$make,$uuid) {
 
 
         $response = array( );
         $cnews = array () ;
+
+        $mobileUser = App\Modules\Forsale\Models\Usermobile::where('phone', '=', trim($uuid))->first();
+
+        $request_user_mobile_id = null;
+        //User already registered
+        if (!empty($mobileUser->user_mobile_id) && $mobileUser->status == '1') {
+            $request_user_mobile_id = $mobileUser->user_mobile_id;
+        }
+
+
         $category = 'foresale';
 
         //Limit Query
@@ -1049,7 +1071,8 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
             'FROM forsale JOIN make ON forsale.make_id = make.make_id ' .
             'JOIN make_region ON make.make_region_id = make_region.make_region_id ' .
             //'LEFT JOIN photo ON forsale.forsale_id = photo.forsale_id ' .
-            'WHERE forsale.status = "1" AND make.slug = "'.$make.'" AND make_region.slug = "'.$makeregion.'" ';
+            'WHERE forsale.status = "1" AND make.slug = "'.$make.'" AND make_region.slug = "'.$makeregion.'" ' .
+            'ORDER BY forsale.updated_at DESC';
 
         $query .= ' '.$limitArr['query'].'  ';
 
@@ -1070,16 +1093,27 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     $photo_name_first = $firstPhoto->photo_name;
                 }
 
+                $date = '';
+                if( !empty($news_->created_at) ){
+                    $date = date('Y-m-d',strtotime($news_->created_at));
+                }
 
+                $isOwner = 0;
+                if( $request_user_mobile_id == $news_->user_mobile_id ){
+                    $isOwner = 1;
+                }
 
                 $nwsRow = [
                     'forsale_id'      => $news_->forsale_id ,
                     'make'      => $news_->make ,
                     'make_region_name'        => $news_->make_region_name ,
+                    'model'        => $news_->model ,
                     'title'        => $news_->title ,
                     'phone'        => $news_->phone ,
                     'price'      => $news_->price ,
                     'description'      => $news_->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
                     //'default'      => $news_->default ,
                     'image'        => Helpers::build_image ( $photo_name_first, $category, '400' ) ,
                 ] ;
@@ -1099,12 +1133,21 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
     } ) ;
 
 
-    Route::get ( 'foresalead/{foresale_id}' , function($foresale_id) {
+    Route::get ( 'foresalead/{foresale_id}/{uuid}' , function($foresale_id,$uuid) {
 
         $response = array( );
         $cnews = array () ;
 
         if( !empty($foresale_id) ){
+
+            $mobileUser = App\Modules\Forsale\Models\Usermobile::where('phone', '=', trim($uuid))->first();
+
+            $request_user_mobile_id = null;
+            //User already registered
+            if (!empty($mobileUser->user_mobile_id) && $mobileUser->status == '1') {
+                $request_user_mobile_id = $mobileUser->user_mobile_id;
+            }
+
 
             //TODO::Item not in
             $news = DB::table('forsale')
@@ -1134,14 +1177,29 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
                 }
 
+                $date = '';
+                if( !empty($news->created_at) ){
+                    $date = date('Y-m-d',strtotime($news->created_at));
+                }
+
+                $isOwner = 0;
+                if( $request_user_mobile_id == $news->user_mobile_id ){
+                    $isOwner = 1;
+                }
+
+
+
                 $cnews = [
                     'forsale_id'      => $news->forsale_id ,
                     'make'        => $news->make ,
                     'make_region_name'        => $news->name ,
+                    'model'        => $news->model ,
                     'title'        => $news->title ,
                     'phone'        => $news->phone ,
                     'price'        => $news->price ,
                     'description'      => $news->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
                     'images'        => $photos  ,
                 ] ;
 
@@ -1158,6 +1216,9 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         return $response + array( 'results' => $cnews )  ;
 
     } ) ;
+
+
+
 
 
 
@@ -1252,6 +1313,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         return $response + array( 'results' => $cnews )  ;
 
     } ) ;
+
 
 
 
@@ -1365,7 +1427,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 ' WHERE items.category_id = category.category_id AND category.name = "'.$category.'" '.$limitArr['query'].' ';
 
             $news = DB::select ( $query ) ;
-            
+
             if( count($news) > 0 ){
 
                 foreach ( $news as $news_ ) {
@@ -1376,7 +1438,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                         'phone1'        => $news_->phone1 ,
                         'phone2'        => $news_->phone2 ,
                         'description'      => $news_->description ,
-                        'image'        => Helpers::build_image ( $news_->image, $category ) ,
+                        'image'        => Helpers::build_image ( $news_->image, $category, '400' ) ,
                     ] ;
 
                     $cnews[] = ( object ) $nwsRow ;
@@ -1399,11 +1461,21 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
-    Route::get ( 'scrapuser/{makeregion}' , function($makeregion) {
+    Route::get ( 'scrapuser/{makeregion}/{uuid}' , function($makeregion,$uuid) {
 
 
         $response = array( );
         $cnews = array () ;
+
+        $userScrap = App\Modules\Scrap\Models\Userscrap::where('uuid', '=', trim($uuid))->first();
+
+        $request_user_scrap_id = null;
+        //User already registered
+        if (!empty($userScrap->user_scrap_id) && $userScrap->status == '1') {
+            $request_user_scrap_id = $userScrap->user_scrap_id;
+        }
+
+
         $category = 'scrap';
 
         //Limit Query
@@ -1413,7 +1485,8 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
             'FROM scrap ' .
             'JOIN make_region ON scrap.make_region_id = make_region.make_region_id ' .
             //'LEFT JOIN photo ON forsale.forsale_id = photo.forsale_id ' .
-            'WHERE scrap.status = "1" AND make_region.slug = "'.$makeregion.'" ';
+            'WHERE scrap.status = "1" AND make_region.slug = "'.$makeregion.'" ' .
+            ' ORDER BY updated_at DESC ';
 
         $query .= ' '.$limitArr['query'].'  ';
 
@@ -1434,15 +1507,28 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     $photo_name_first = $firstPhoto->photo_name;
                 }
 
+                $date = '';
+                if( !empty($news_->created_at) ){
+                    $date = date('Y-m-d',strtotime($news_->created_at));
+                }
+
+                $isOwner = 0;
+                if( $request_user_scrap_id == $news_->user_scrap_id ){
+                    $isOwner = 1;
+                }
+
 
 
                 $nwsRow = [
                     'scrap_id'      => $news_->scrap_id ,
                     'make_region_name'        => $news_->make_region_name ,
+                    'model'        => $news_->model ,
                     'title'        => $news_->title ,
                     'phone'        => $news_->phone ,
                     'price'      => $news_->price ,
                     'description'      => $news_->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
                     //'default'      => $news_->default ,
                     'image'        => Helpers::build_image ( $photo_name_first, $category, '400' ) ,
                 ] ;
@@ -1461,12 +1547,22 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
     } ) ;
 
-    Route::get ( 'scrapuserdetail/{scrap_id}' , function($scrap_id) {
+    Route::get ( 'scrapuserdetail/{scrap_id}/{uuid}' , function($scrap_id,$uuid) {
 
         $response = array( );
         $cnews = array () ;
 
         if( !empty($scrap_id) ){
+
+            $userScrap = App\Modules\Scrap\Models\Userscrap::where('uuid', '=', trim($uuid))->first();
+
+            $request_user_scrap_id = null;
+            //User already registered
+            if (!empty($userScrap->user_scrap_id) && $userScrap->status == '1') {
+                $request_user_scrap_id = $userScrap->user_scrap_id;
+            }
+
+
 
             //TODO::Item not in
             $news = DB::table('scrap')
@@ -1495,13 +1591,27 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
                 }
 
+
+                $date = '';
+                if( !empty($news->created_at) ){
+                    $date = date('Y-m-d',strtotime($news->created_at));
+                }
+
+                $isOwner = 0;
+                if( $request_user_scrap_id == $news->user_scrap_id ){
+                    $isOwner = 1;
+                }
+
                 $cnews = [
                     'scrap_id'      => $news->scrap_id ,
                     'make_region_name'        => $news->name ,
+                    'model'        => $news->model ,
                     'title'        => $news->title ,
                     'phone'        => $news->phone ,
                     'price'        => $news->price ,
                     'description'      => $news->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
                     'images'        => $photos  ,
                 ] ;
 
@@ -1520,6 +1630,467 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
     } ) ;
 
 
+
+    Route::get ( 'marineuser/{makeregion}/{uuid}' , function($makeregion,$uuid) {
+
+
+        $response = array( );
+        $cnews = array () ;
+
+        $userMarine = App\Modules\Marine\Models\Usermarine::where('uuid', '=', trim($uuid))->first();
+
+        $request_user_marine_id = null;
+        //User already registered
+        if (!empty($userMarine->user_marine_id) && $userMarine->status == '1') {
+            $request_user_marine_id = $userMarine->user_marine_id;
+        }
+
+
+
+
+        $category = 'marine';
+
+        //Limit Query
+        $limitArr = Helpers::apiLimitQuery();
+
+        $query = ' SELECT marine.*,marine_make_region.name as make_region_name ' .
+            'FROM marine ' .
+            'JOIN marine_make_region ON marine.marine_make_region_id = marine_make_region.marine_make_region_id ' .
+            //'LEFT JOIN photo ON forsale.forsale_id = photo.forsale_id ' .
+            'WHERE marine.status = "1" AND marine_make_region.slug = "'.$makeregion.'" '.
+            'ORDER BY updated_at DESC';
+
+        $query .= ' '.$limitArr['query'].'  ';
+
+        $news = DB::select ( $query ) ;
+
+        if( count($news) > 0 ){
+
+            foreach ( $news as $news_ ) {
+
+
+                //Get one photo
+                $firstPhoto = DB::table('photo')
+                    ->where('marine_id', $news_->marine_id)
+                    ->orderBy('marine_id','DESC')
+                    ->first();
+                $photo_name_first = '';
+                if( !empty($firstPhoto->photo_id) ){
+                    $photo_name_first = $firstPhoto->photo_name;
+                }
+
+                $date = '';
+                if( !empty($news_->created_at) ){
+                    $date = date('Y-m-d',strtotime($news_->created_at));
+                }
+
+                $isOwner = 0;
+                if( $request_user_marine_id == $news_->user_marine_id ){
+                    $isOwner = 1;
+                }
+
+
+
+                $nwsRow = [
+                    'marine_id'      => $news_->marine_id ,
+                    'make_region_name'        => $news_->make_region_name ,
+                    'model'        => $news_->model ,
+                    'title'        => $news_->title ,
+                    'phone'        => $news_->phone ,
+                    'price'      => $news_->price ,
+                    'description'      => $news_->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
+                    //'default'      => $news_->default ,
+                    'image'        => Helpers::build_image ( $photo_name_first, $category, '400' ) ,
+                ] ;
+
+                $cnews[] = ( object ) $nwsRow ;
+            }
+
+            //echo '<pre>';print_r($cnews);die('======Debugging=======');
+
+            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+        }
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+    Route::get ( 'marineuserdetail/{marine_id}/{uuid}' , function($marine_id,$uuid) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($marine_id) ){
+
+
+            $userMarine = App\Modules\Marine\Models\Usermarine::where('uuid', '=', trim($uuid))->first();
+
+            $request_user_marine_id = null;
+            //User already registered
+            if (!empty($userMarine->user_marine_id) && $userMarine->status == '1') {
+                $request_user_marine_id = $userMarine->user_marine_id;
+            }
+
+
+
+
+            //TODO::Item not in
+            $news = DB::table('marine')
+                ->join('marine_make_region', 'marine.marine_make_region_id', '=', 'marine_make_region.marine_make_region_id')
+                ->where('marine_id', $marine_id)
+                ->where('marine.status', '=','1')
+                ->first();
+
+//echo '<pre>';print_r($news);die('======Debugging=======');
+
+            if( !empty($news) ){
+
+                $photosRaws = DB::table('photo')
+                    ->where('marine_id', $marine_id)
+                    ->orderBy('default','DESC')
+                    ->get();
+
+                $photos = array();
+                foreach($photosRaws as $photosRaw){
+
+                    $photos[] = [
+                        'photo_id'      => $photosRaw->photo_id ,
+                        'photo_name'        => Helpers::build_image ( $photosRaw->photo_name , 'marine', '400' ) ,
+                        'default'        => $photosRaw->default
+                    ] ;
+
+                }
+
+                $date = '';
+                if( !empty($news->created_at) ){
+                    $date = date('Y-m-d',strtotime($news->created_at));
+                }
+
+                $isOwner = 0;
+                if( $request_user_marine_id == $news->user_marine_id ){
+                    $isOwner = 1;
+                }
+
+
+                $cnews = [
+                    'marine_id'      => $news->marine_id ,
+                    'make_region_name'        => $news->name ,
+                    'model'        => $news->model ,
+                    'title'        => $news->title ,
+                    'phone'        => $news->phone ,
+                    'price'        => $news->price ,
+                    'description'      => $news->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
+                    'images'        => $photos  ,
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+
+
+    Route::get ( 'accessoriesuser/{makeregion}/{uuid}' , function($makeregion,$uuid) {
+
+
+        $response = array( );
+        $cnews = array () ;
+
+        $userAccessories = App\Modules\Accessories\Models\Useraccessories::where('uuid', '=', trim($uuid))->first();
+
+        $request_user_accessories_id = null;
+        //User already registered
+        if (!empty($userAccessories->user_accessories_id) && $userAccessories->status == '1') {
+            $request_user_accessories_id = $userAccessories->user_accessories_id;
+        }
+
+
+
+        $category = 'accessories';
+
+        //Limit Query
+        $limitArr = Helpers::apiLimitQuery();
+
+        $query = ' SELECT accessories.*,accessories_make_region.name as make_region_name ' .
+            'FROM accessories ' .
+            'JOIN accessories_make_region ON accessories.accessories_make_region_id = accessories_make_region.accessories_make_region_id ' .
+            //'LEFT JOIN photo ON forsale.forsale_id = photo.forsale_id ' .
+            'WHERE accessories.status = "1" AND accessories_make_region.slug = "'.$makeregion.'" ' .
+            'ORDER BY updated_at DESC';
+
+        $query .= ' '.$limitArr['query'].'  ';
+
+        $news = DB::select ( $query ) ;
+
+        if( count($news) > 0 ){
+
+            foreach ( $news as $news_ ) {
+
+
+                //Get one photo
+                $firstPhoto = DB::table('photo')
+                    ->where('accessories_id', $news_->accessories_id)
+                    ->orderBy('accessories_id','DESC')
+                    ->first();
+                $photo_name_first = '';
+                if( !empty($firstPhoto->photo_id) ){
+                    $photo_name_first = $firstPhoto->photo_name;
+                }
+
+                $date = '';
+                if( !empty($news_->created_at) ){
+                    $date = date('Y-m-d',strtotime($news_->created_at));
+                }
+
+                $isOwner = 0;
+                if( $request_user_accessories_id == $news_->user_accessories_id ){
+                    $isOwner = 1;
+                }
+
+
+
+                $nwsRow = [
+                    'accessories_id'      => $news_->accessories_id ,
+                    'make_region_name'        => $news_->make_region_name ,
+                    'model'        => $news_->model ,
+                    'title'        => $news_->title ,
+                    'phone'        => $news_->phone ,
+                    'price'      => $news_->price ,
+                    'description'      => $news_->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
+                    //'default'      => $news_->default ,
+                    'image'        => Helpers::build_image ( $photo_name_first, $category, '400' ) ,
+                ] ;
+
+                $cnews[] = ( object ) $nwsRow ;
+            }
+
+            //echo '<pre>';print_r($cnews);die('======Debugging=======');
+
+            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+        }
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+    Route::get ( 'accessoriesuserdetail/{accessories_id}/{uuid}' , function($accessories_id,$uuid) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($accessories_id) ){
+
+
+            $userAccessories = App\Modules\Accessories\Models\Useraccessories::where('uuid', '=', trim($uuid))->first();
+
+            $request_user_accessories_id = null;
+            //User already registered
+            if (!empty($userAccessories->user_accessories_id) && $userAccessories->status == '1') {
+                $request_user_accessories_id = $userAccessories->user_accessories_id;
+            }
+
+
+            //TODO::Item not in
+            $news = DB::table('accessories')
+                ->join('accessories_make_region', 'accessories.accessories_make_region_id', '=', 'accessories_make_region.accessories_make_region_id')
+                ->where('accessories_id', $accessories_id)
+                ->where('accessories.status', '=','1')
+                ->first();
+
+//echo '<pre>';print_r($news);die('======Debugging=======');
+
+            if( !empty($news) ){
+
+                $photosRaws = DB::table('photo')
+                    ->where('accessories_id', $accessories_id)
+                    ->orderBy('default','DESC')
+                    ->get();
+
+                $photos = array();
+                foreach($photosRaws as $photosRaw){
+
+                    $photos[] = [
+                        'photo_id'      => $photosRaw->photo_id ,
+                        'photo_name'        => Helpers::build_image ( $photosRaw->photo_name , 'accessories', '400' ) ,
+                        'default'        => $photosRaw->default
+                    ] ;
+
+                }
+
+                $date = '';
+                if( !empty($news->created_at) ){
+                    $date = date('Y-m-d',strtotime($news->created_at));
+                }
+
+                $isOwner = 0;
+                if( $request_user_accessories_id == $news->user_accessories_id ){
+                    $isOwner = 1;
+                }
+
+
+
+                $cnews = [
+                    'accessories_id'      => $news->accessories_id ,
+                    'make_region_name'        => $news->name ,
+                    'model'        => $news->model ,
+                    'title'        => $news->title ,
+                    'phone'        => $news->phone ,
+                    'price'        => $news->price ,
+                    'description'      => $news->description ,
+                    'post_date'      => $date ,
+                    'is_owner'      => $isOwner ,
+                    'images'        => $photos  ,
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+
+    Route::get ( 'boatfishinglist' , function() {
+
+
+        $response = array( );
+        $cnews = array () ;
+
+
+        $category = 'boatfishing';
+
+        //Limit Query
+        $limitArr = Helpers::apiLimitQuery();
+
+        $query = ' SELECT boat_fishing.*  ' .
+            'FROM boat_fishing ' ;
+
+        $query .= ' '.$limitArr['query'].'  ';
+
+        $news = DB::select ( $query ) ;
+
+        if( count($news) > 0 ){
+
+            foreach ( $news as $news_ ) {
+
+
+                //Get one photo
+                $firstPhoto = DB::table('photo')
+                    ->where('boat_fishing_id', $news_->boat_fishing_id)
+                    ->orderBy('boat_fishing_id','DESC')
+                    ->first();
+                $photo_name_first = '';
+                if( !empty($firstPhoto->photo_id) ){
+                    $photo_name_first = $firstPhoto->photo_name;
+                }
+
+
+                $nwsRow = [
+                    'boat_fishing_id'      => $news_->boat_fishing_id ,
+                    'description'      => $news_->description ,
+                    'phone'        => $news_->phone ,
+                    'contact'      => $news_->contact ,
+                    'image'        => Helpers::build_image ( $photo_name_first, $category, '400' ) ,
+                ] ;
+
+                $cnews[] = ( object ) $nwsRow ;
+            }
+
+            //echo '<pre>';print_r($cnews);die('======Debugging=======');
+
+            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+        }
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+    Route::get ( 'boatfishinglist/{boat_fishing_id}' , function($boat_fishing_id) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($boat_fishing_id) ){
+
+
+            //TODO::Item not in
+            $news = DB::table('boat_fishing')
+                ->where('boat_fishing_id', $boat_fishing_id)
+                ->first();
+
+//echo '<pre>';print_r($news);die('======Debugging=======');
+
+            if( !empty($news) ){
+
+                $photosRaws = DB::table('photo')
+                    ->where('boat_fishing_id', $boat_fishing_id)
+                    ->orderBy('default','DESC')
+                    ->get();
+
+                $photos = array();
+                foreach($photosRaws as $photosRaw){
+
+                    $photos[] = [
+                        'photo_id'      => $photosRaw->photo_id ,
+                        'photo_name'        => Helpers::build_image ( $photosRaw->photo_name , 'boatfishing', '400' ) ,
+                        'default'        => $photosRaw->default
+                    ] ;
+
+                }
+
+
+                $cnews = [
+                    'boat_fishing_id'      => $news->boat_fishing_id ,
+                    'description'      => $news->description ,
+                    'phone'        => $news->phone ,
+                    'contact'      => $news->contact ,
+                    'images'        => $photos  ,
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
 
 
 

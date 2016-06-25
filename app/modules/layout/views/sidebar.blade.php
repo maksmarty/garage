@@ -105,6 +105,19 @@
             </li>
 
 
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Boat Fishing</span></a>
+                <ul>
+                    <li>
+                        <a href="{{route('boatfishing')}}">Boat Fishing</a>
+                    </li>
+                    <li>
+                        <a href="{{route('boatfishing.add')}}">Add Boat Fishing</a>
+                    </li>
+
+                </ul>
+            </li>
+
 
             {{--<li>--}}
                 {{--<a href="inbox.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Inbox</span><span class="badge pull-right inbox-badge">14</span></a>--}}
