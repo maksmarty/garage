@@ -1053,12 +1053,12 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         $response = array( );
         $cnews = array () ;
 
-        $mobileUser = App\Modules\Forsale\Models\Usermobile::where('phone', '=', trim($uuid))->first();
+        $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
         $request_user_mobile_id = null;
         //User already registered
-        if (!empty($mobileUser->user_mobile_id) && $mobileUser->status == '1') {
-            $request_user_mobile_id = $mobileUser->user_mobile_id;
+        if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+            $request_user_mobile_id = $apiUser->api_users_id;
         }
 
 
@@ -1099,7 +1099,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_mobile_id == $news_->user_mobile_id ){
+                if( $request_user_mobile_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1140,12 +1140,12 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
         if( !empty($foresale_id) ){
 
-            $mobileUser = App\Modules\Forsale\Models\Usermobile::where('phone', '=', trim($uuid))->first();
+            $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
             $request_user_mobile_id = null;
             //User already registered
-            if (!empty($mobileUser->user_mobile_id) && $mobileUser->status == '1') {
-                $request_user_mobile_id = $mobileUser->user_mobile_id;
+            if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+                $request_user_mobile_id = $apiUser->api_users_id;
             }
 
 
@@ -1183,7 +1183,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_mobile_id == $news->user_mobile_id ){
+                if( $request_user_mobile_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1467,12 +1467,12 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         $response = array( );
         $cnews = array () ;
 
-        $userScrap = App\Modules\Scrap\Models\Userscrap::where('uuid', '=', trim($uuid))->first();
+        $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
         $request_user_scrap_id = null;
         //User already registered
-        if (!empty($userScrap->user_scrap_id) && $userScrap->status == '1') {
-            $request_user_scrap_id = $userScrap->user_scrap_id;
+        if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+            $request_user_scrap_id = $apiUser->api_users_id;
         }
 
 
@@ -1513,7 +1513,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_scrap_id == $news_->user_scrap_id ){
+                if( $request_user_scrap_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1554,14 +1554,13 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
         if( !empty($scrap_id) ){
 
-            $userScrap = App\Modules\Scrap\Models\Userscrap::where('uuid', '=', trim($uuid))->first();
+            $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
             $request_user_scrap_id = null;
             //User already registered
-            if (!empty($userScrap->user_scrap_id) && $userScrap->status == '1') {
-                $request_user_scrap_id = $userScrap->user_scrap_id;
+            if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+                $request_user_scrap_id = $apiUser->api_users_id;
             }
-
 
 
             //TODO::Item not in
@@ -1598,7 +1597,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_scrap_id == $news->user_scrap_id ){
+                if( $request_user_scrap_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1637,12 +1636,12 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         $response = array( );
         $cnews = array () ;
 
-        $userMarine = App\Modules\Marine\Models\Usermarine::where('uuid', '=', trim($uuid))->first();
+        $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
         $request_user_marine_id = null;
         //User already registered
-        if (!empty($userMarine->user_marine_id) && $userMarine->status == '1') {
-            $request_user_marine_id = $userMarine->user_marine_id;
+        if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+            $request_user_marine_id = $apiUser->api_users_id;
         }
 
 
@@ -1685,7 +1684,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_marine_id == $news_->user_marine_id ){
+                if( $request_user_marine_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1727,14 +1726,13 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         if( !empty($marine_id) ){
 
 
-            $userMarine = App\Modules\Marine\Models\Usermarine::where('uuid', '=', trim($uuid))->first();
+            $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
             $request_user_marine_id = null;
             //User already registered
-            if (!empty($userMarine->user_marine_id) && $userMarine->status == '1') {
-                $request_user_marine_id = $userMarine->user_marine_id;
+            if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+                $request_user_marine_id = $apiUser->api_users_id;
             }
-
 
 
 
@@ -1771,7 +1769,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_marine_id == $news->user_marine_id ){
+                if( $request_user_marine_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1812,12 +1810,13 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
         $response = array( );
         $cnews = array () ;
 
-        $userAccessories = App\Modules\Accessories\Models\Useraccessories::where('uuid', '=', trim($uuid))->first();
+
+        $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
         $request_user_accessories_id = null;
         //User already registered
-        if (!empty($userAccessories->user_accessories_id) && $userAccessories->status == '1') {
-            $request_user_accessories_id = $userAccessories->user_accessories_id;
+        if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+            $request_user_accessories_id = $apiUser->api_users_id;
         }
 
 
@@ -1859,7 +1858,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_accessories_id == $news_->user_accessories_id ){
+                if( $request_user_accessories_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1900,15 +1899,13 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
         if( !empty($accessories_id) ){
 
-
-            $userAccessories = App\Modules\Accessories\Models\Useraccessories::where('uuid', '=', trim($uuid))->first();
+            $apiUser = App\Modules\Forsale\Models\Apiuser::where('token', '=', trim($uuid))->first();
 
             $request_user_accessories_id = null;
             //User already registered
-            if (!empty($userAccessories->user_accessories_id) && $userAccessories->status == '1') {
-                $request_user_accessories_id = $userAccessories->user_accessories_id;
+            if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
+                $request_user_accessories_id = $apiUser->api_users_id;
             }
-
 
             //TODO::Item not in
             $news = DB::table('accessories')
@@ -1943,7 +1940,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_accessories_id == $news->user_accessories_id ){
+                if( $request_user_accessories_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 

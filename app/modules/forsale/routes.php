@@ -12,4 +12,12 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
     Route::post('foresale/delete' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@destroy'));
     Route::post('foresale/update' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@update'));
 
+
+    Route::post('register' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@register'));
+
+    Route::get('register/verify/{confirmationCode}' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@verify'));
+
+    Route::post('login' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@login'));
+
+
 });

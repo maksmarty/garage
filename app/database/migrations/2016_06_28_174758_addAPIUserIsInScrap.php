@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddModelInForsaleTable extends Migration {
+class AddAPIUserIsInScrap extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class AddModelInForsaleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('forsale', function($table)
+		Schema::table('scrap', function($table)
 		{
-			$table->string("model")->nullable()->after('user_mobile_id');
+			$table->bigInteger("api_users_id")->unsigned()->after('user_scrap_id');
 		});
 
 
@@ -27,13 +27,11 @@ class AddModelInForsaleTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('forsale', function($table)
+		Schema::table('scrap', function($table)
 		{
-			$table->dropColumn('model');
+			$table->dropColumn('api_users_id');
 		});
 
 	}
-
-
 
 }

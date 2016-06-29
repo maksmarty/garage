@@ -11,6 +11,7 @@ use App\Modules\Accessories\Models\Accessoriesmakeregion;
 use App\Modules\Accessories\Models\Useraccessories;
 use App\Modules\Accessories\Models\Accessories;
 use App\Modules\Showroom\Models\Photos;
+use App\Modules\Forsale\Models\Apiuser;
 use App,
     View,
     Helpers,
@@ -95,49 +96,54 @@ class AccessoriesController extends \BaseController {
             $response = array( 'status'=> 'error', 'message'=> $validator->messages()->first() );
         } else {
 
-            $mobileUser = Useraccessories::where('uuid','=',trim(Input::get('uuid')))->first();
+            $apiUser = Apiuser::where('token','=',trim(Input::get('uuid')))->first();
 
-            //User already registered
-            if( !empty($mobileUser->user_accessories_id) && $mobileUser->status == '1'){
+            if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
 
-                $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
-                $today = date('Y-m-d');
 
-                if( !empty($mobileUser->last_post_date) ){
+                $mobileUser = Useraccessories::where('api_users_id','=',$apiUser->api_users_id)->first();
 
-                    $todayObj = new \DateTime($today);
-                    $lastPostDateObj = new \DateTime($mobileUser->last_post_date);
+                //User already registered
+                if( !empty($mobileUser->user_accessories_id) && $mobileUser->status == '1'){
 
-                    $isEligibleToPost = false;
+                    $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
+                    $today = date('Y-m-d');
 
-                    if( $mobileUser->number_post_today == $mobileUser->max_number_post){
+                    if( !empty($mobileUser->last_post_date) ){
 
-                        if( $todayObj == $lastPostDateObj ){
-                            //Last update today and current number is meets max number
-                            $isEligibleToPost = false;
+                        $todayObj = new \DateTime($today);
+                        $lastPostDateObj = new \DateTime($mobileUser->last_post_date);
 
-                        }elseif( $todayObj > $lastPostDateObj ){
-                            //Last update yesterday, allowed for max quota
+                        $isEligibleToPost = false;
+
+                        if( $mobileUser->number_post_today == $mobileUser->max_number_post){
+
+                            if( $todayObj == $lastPostDateObj ){
+                                //Last update today and current number is meets max number
+                                $isEligibleToPost = false;
+
+                            }elseif( $todayObj > $lastPostDateObj ){
+                                //Last update yesterday, allowed for max quota
+                                $isEligibleToPost = true;
+                            }else{
+                                //Last update tommorow ( Not possible )
+                                $isEligibleToPost = false;
+                            }
+
+                        } elseif ( $mobileUser->number_post_today < $mobileUser->max_number_post){
+                            //Number does not meet max number of post
                             $isEligibleToPost = true;
-                        }else{
-                            //Last update tommorow ( Not possible )
-                            $isEligibleToPost = false;
                         }
 
-                    } elseif ( $mobileUser->number_post_today < $mobileUser->max_number_post){
-                        //Number does not meet max number of post
-                        $isEligibleToPost = true;
-                    }
 
+                        if( $isEligibleToPost ){
 
-                    if( $isEligibleToPost ){
+                            //User already exists
+                            $makeRegion = Accessoriesmakeregion::where('slug','=',trim(Input::get('make_region')))->first();
+                            //echo '<pre>';print_r($makeRegion);die('======Debugging=======');
+                            //dd(DB::getQueryLog());die;
 
-                        //User already exists
-                        $makeRegion = Accessoriesmakeregion::where('slug','=',trim(Input::get('make_region')))->first();
-                        //echo '<pre>';print_r($makeRegion);die('======Debugging=======');
-                        //dd(DB::getQueryLog());die;
-
-                        if( !empty($makeRegion->accessories_make_region_id) ){
+                            if( !empty($makeRegion->accessories_make_region_id) ){
 
 //                            $make = Make::where('slug','=',trim(Input::get('make')))
 //                                ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
@@ -149,12 +155,13 @@ class AccessoriesController extends \BaseController {
 //                        ->select('users.id', 'contacts.phone', 'orders.price')
 //                        ->get();
 
-                            //if( !empty($make->make_id) ){
+                                //if( !empty($make->make_id) ){
 
                                 // Add forsale data
                                 $forsale = new Accessories();
                                 $forsale->accessories_make_region_id        = $makeRegion->accessories_make_region_id;
                                 $forsale->user_accessories_id        = $mobileUser->user_accessories_id;
+                                $forsale->api_users_id        = $apiUser->api_users_id;
                                 $forsale->model        = trim(Input::get('model'));
                                 $forsale->title        = trim(Input::get('title'));
                                 $forsale->phone         = trim(Input::get('phone'));
@@ -249,82 +256,6 @@ class AccessoriesController extends \BaseController {
                                     }
                                     //Upload Images, new logic - Ends here
 
-//                                    //Upload Images - Start here
-//                                    if (Input::hasFile('images') ) {
-//
-//                                        $image_sizes =  Config::get('constant.image_sizes');
-//
-//                                        $imagePath = public_path('uploads') .'/images/';
-//
-//                                        $filnalDestinationPath = $imagePath . "foresale/";
-//
-//                                        if( !file_exists($filnalDestinationPath) ){
-//                                            mkdir($filnalDestinationPath, 0755, true);
-//                                        }
-//
-//                                        $files            = Input::file('images');
-//
-//                                        foreach($files as $file){
-//
-//                                            $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
-//                                            $validator = Validator::make(array('file'=> $file), $validrules);
-//
-//                                            if($validator->passes()) {
-//
-//
-//                                                //get File Name
-//                                                $fileExtension = $file->getClientOriginalExtension();
-//
-//                                                if( empty($fileExtension) ){
-//                                                    continue;
-//                                                }
-//
-//                                                $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
-//
-//
-//                                                if( !empty($image_sizes) && is_array($image_sizes) ){
-//
-//                                                    foreach($image_sizes as $image_size){
-//
-//                                                        $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
-//
-//                                                        \Image::make( $file->getRealPath() )
-//                                                            ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
-//                                                            ->save($filePathImageSize);
-//
-//                                                        //Unset
-//                                                        unset($filePathImageSize);
-//                                                        unset($image_size);
-//
-//                                                    }
-//
-//
-//                                                }
-//
-//                                                //Save into db
-//                                                $photo = new Photos();
-//                                                $photo->forsale_id       = $forsale->forsale_id;
-//                                                $photo->photo_name       = $newFilename;
-//                                                $photo->save();
-//
-//                                            }else{
-//                                                continue;
-//                                            }
-//
-//                                            //Unset
-//                                            unset($fileExtension);
-//                                            unset($newFilename);
-//                                            unset($photo);
-//
-//
-//                                        }
-//
-//                                    }
-//                                    //Upload Images - Ends here
-
-
-
-
                                     //$maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
 
                                     //$usermobile = new Usermobile();
@@ -351,28 +282,28 @@ class AccessoriesController extends \BaseController {
 //                            }
 
 
+                            }else{
+                                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make region not exist.' );
+                            }
                         }else{
-                            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make region not exist.' );
+                            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, you exceeded you per day quota.' );
                         }
+
                     }else{
-                        $response = array( 'status'=> 'fail', 'message'=> 'Sorry, you exceeded you per day quota.' );
+                        $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
                     }
 
+                }elseif( !empty($mobileUser->user_marine_id) && empty($mobileUser->status) ){
+
+                    $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
+
                 }else{
-                    $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
-                }
+                    //New User
+                    $makeRegion = Accessoriesmakeregion::where('slug','=',trim(Input::get('make_region')))->first();
+                    //echo '<pre>';print_r($makeRegion);die('======Debugging=======');
+                    //dd(DB::getQueryLog());die;
 
-            }elseif( !empty($mobileUser->user_marine_id) && empty($mobileUser->status) ){
-
-                $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
-
-            }else{
-                //New User
-                $makeRegion = Accessoriesmakeregion::where('slug','=',trim(Input::get('make_region')))->first();
-                //echo '<pre>';print_r($makeRegion);die('======Debugging=======');
-                //dd(DB::getQueryLog());die;
-
-                if( !empty($makeRegion->accessories_make_region_id) ){
+                    if( !empty($makeRegion->accessories_make_region_id) ){
 
 //                    $make = Make::where('slug','=',trim(Input::get('make')))
 //                        ->where('make_region_id', '=', $makeRegion->make_region_id)->first();
@@ -389,6 +320,7 @@ class AccessoriesController extends \BaseController {
                         // Add forsale data
                         $forsale = new Accessories();
                         $forsale->accessories_make_region_id        = $makeRegion->accessories_make_region_id;
+                        $forsale->api_users_id        = $apiUser->api_users_id;
                         $forsale->model        = trim(Input::get('model'));
                         $forsale->title        = trim(Input::get('title'));
                         $forsale->phone         = trim(Input::get('phone'));
@@ -482,86 +414,11 @@ class AccessoriesController extends \BaseController {
                             }
                             //Upload Images, new logic - Ends here
 
-
-//                            //Upload Images - Start here
-//                            if (Input::hasFile('images') ) {
-//
-//                                $files            = Input::file('images');
-//
-//                                $image_sizes =  Config::get('constant.image_sizes');
-//
-//                                $imagePath = public_path('uploads') .'/images/';
-//
-//                                $filnalDestinationPath = $imagePath . "foresale/";
-//
-//                                if( !file_exists($filnalDestinationPath) ){
-//                                    mkdir($filnalDestinationPath, 0755, true);
-//                                }
-//
-//
-//                                foreach($files as $file){
-//
-//                                    $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
-//                                    $validator = Validator::make(array('file'=> $file), $validrules);
-//
-//                                    if($validator->passes()) {
-//
-//
-//                                        //get File Name
-//                                        $fileExtension = $file->getClientOriginalExtension();
-//
-//                                        if( empty($fileExtension) ){
-//                                            continue;
-//                                        }
-//
-//                                        $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
-//
-//
-//                                        if( !empty($image_sizes) && is_array($image_sizes) ){
-//
-//                                            foreach($image_sizes as $image_size){
-//
-//                                                $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
-//
-//                                                \Image::make( $file->getRealPath() )
-//                                                    ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
-//                                                    ->save($filePathImageSize);
-//
-//                                                //Unset
-//                                                unset($filePathImageSize);
-//                                                unset($image_size);
-//
-//                                            }
-//
-//
-//                                        }
-//
-//                                        //Save into db
-//                                        $photo = new Photos();
-//                                        $photo->forsale_id       = $forsale->forsale_id;
-//                                        $photo->photo_name       = $newFilename;
-//                                        $photo->save();
-//
-//                                    }else{
-//                                        continue;
-//                                    }
-//
-//                                    //Unset
-//                                    unset($fileExtension);
-//                                    unset($newFilename);
-//                                    unset($photo);
-//
-//
-//                                }
-//
-//                            }
-//                            //Upload Images - Ends here
-
-
                             $maxNumberOfPostPerDay = \Config::get('constant.max_number_post_per_day',2);
 
                             $usermobile = new Useraccessories();
-                            $usermobile->uuid        = trim(Input::get('uuid'));
+                            //$usermobile->uuid        = trim(Input::get('uuid'));
+                            $usermobile->api_users_id        = $apiUser->api_users_id;
                             $usermobile->max_number_post        = $maxNumberOfPostPerDay;
                             $usermobile->number_post_today         = '1';
                             $usermobile->last_post_date         = date('Y-m-d');
@@ -582,12 +439,21 @@ class AccessoriesController extends \BaseController {
 //                    }
 
 
-                }else{
-                    $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make region not exist.' );
+                    }else{
+                        $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Requested manufacturing or make region not exist.' );
+                    }
+
+
                 }
 
 
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
             }
+
+
+
+
         }
 
         return $response ;
@@ -646,195 +512,208 @@ class AccessoriesController extends \BaseController {
             $response = array( 'status'=> 'fail', 'message'=> $validator->messages()->first() );
         } else {
 
-            $mobileUser = Useraccessories::where('uuid','=',trim(Input::get('uuid')))->first();
 
-            //User already registered
-            if( !empty($mobileUser->user_accessories_id) && $mobileUser->status == '1'){
+            $apiUser = Apiuser::where('token','=',trim(Input::get('uuid')))->first();
 
-                $id = trim(Input::get('id'));
-                $forsale = Accessories::find($id);
+            if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
 
-                if( !empty($forsale->accessories_id) && $forsale->user_accessories_id == $mobileUser->user_accessories_id ){
+                $mobileUser = Useraccessories::where('api_users_id','=',$apiUser->api_users_id)->first();
 
-                    //$forsale->make_id        = $make->make_id;
-                    //$forsale->user_mobile_id        = $mobileUser->user_mobile_id;
-                    $model = trim(Input::get('model'));
-                    if( !empty($model) ){
-                        $forsale->model        = $model;
-                    }
+                //User already registered
+                if( !empty($mobileUser->user_accessories_id) && $mobileUser->status == '1'){
 
-                    $title = trim(Input::get('title'));
-                    if( !empty($title) ){
-                        $forsale->title        = $title;
-                    }
+                    $id = trim(Input::get('id'));
+                    $forsale = Accessories::find($id);
 
-                    $phone = trim(Input::get('phone'));
-                    if( !empty($phone) ){
-                        $forsale->phone        = $phone;
-                    }
+                    if( !empty($forsale->accessories_id) && $forsale->api_users_id == $apiUser->api_users_id ){
 
-                    $price = trim(Input::get('price'));
-                    if( !empty($price) ){
-                        $forsale->price        = $price;
-                    }
+                        //$forsale->make_id        = $make->make_id;
+                        //$forsale->user_mobile_id        = $mobileUser->user_mobile_id;
+                        $model = trim(Input::get('model'));
+                        if( !empty($model) ){
+                            $forsale->model        = $model;
+                        }
 
-                    $description = trim(Input::get('description'));
-                    if( !empty($description) ){
-                        $forsale->description        = $description;
-                    }
+                        $title = trim(Input::get('title'));
+                        if( !empty($title) ){
+                            $forsale->title        = $title;
+                        }
 
+                        $phone = trim(Input::get('phone'));
+                        if( !empty($phone) ){
+                            $forsale->phone        = $phone;
+                        }
 
-                    //$forsale->save();
+                        $price = trim(Input::get('price'));
+                        if( !empty($price) ){
+                            $forsale->price        = $price;
+                        }
 
-                    if( ! $forsale->save() ){
-                        $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
-                    }else{
-
-                        //Update quota for this user
-
-                        //Upload Images, new logic - Start here
-                        $image_sizes =  \Config::get('constant.image_sizes');
-
-                        $imagePath = public_path('uploads') .'/images/';
-
-                        $filnalDestinationPath = $imagePath . "accessories/";
-
-                        if( !file_exists($filnalDestinationPath) ){
-                            mkdir($filnalDestinationPath, 0755, true);
+                        $description = trim(Input::get('description'));
+                        if( !empty($description) ){
+                            $forsale->description        = $description;
                         }
 
 
+                        //$forsale->save();
 
-                        //Start - Delete old images
-                        $photos = Photos::where('accessories_id', '=', $forsale->accessories_id)->get();
-                        foreach($photos as $photo){
+                        if( ! $forsale->save() ){
+                            $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
+                        }else{
 
-                            $photo_name = $photo->photo_name;
+                            //Update quota for this user
 
-                            //Upload original image
-                            $fileOriginalPath = $filnalDestinationPath . "original/" . $photo_name;
+                            //Upload Images, new logic - Start here
+                            $image_sizes =  \Config::get('constant.image_sizes');
 
-                            if( !empty($image_sizes) && is_array($image_sizes) ){
+                            $imagePath = public_path('uploads') .'/images/';
 
-                                foreach($image_sizes as $image_size){
+                            $filnalDestinationPath = $imagePath . "accessories/";
 
-                                    $filePathImageSize = $filnalDestinationPath . "$image_size/" . $photo_name;
+                            if( !file_exists($filnalDestinationPath) ){
+                                mkdir($filnalDestinationPath, 0755, true);
+                            }
 
-                                    //Delete file
-                                    unlink($filePathImageSize);
 
-                                    //Unset
-                                    unset($filePathImageSize);
+
+                            //Start - Delete old images
+                            $photos = Photos::where('accessories_id', '=', $forsale->accessories_id)->get();
+                            foreach($photos as $photo){
+
+                                $photo_name = $photo->photo_name;
+
+                                //Upload original image
+                                $fileOriginalPath = $filnalDestinationPath . "original/" . $photo_name;
+
+                                if( !empty($image_sizes) && is_array($image_sizes) ){
+
+                                    foreach($image_sizes as $image_size){
+
+                                        $filePathImageSize = $filnalDestinationPath . "$image_size/" . $photo_name;
+
+                                        //Delete file
+                                        unlink($filePathImageSize);
+
+                                        //Unset
+                                        unset($filePathImageSize);
+
+
+                                    }
 
 
                                 }
 
 
+                                //delete original image
+                                unlink($fileOriginalPath);
+
+                                //Delete photo
+                                $photo->delete();
+
+                                unset($photo_name);
+
+
+
                             }
 
-
-                            //delete original image
-                            unlink($fileOriginalPath);
-
-                            //Delete photo
-                            $photo->delete();
-
-                            unset($photo_name);
+                            unset($photos,$photo,$fileOriginalPath);
+                            //End - old image deleted
 
 
 
-                        }
+                            $imagenumber = \Config::get('constant.number_of_image',10);
+                            for($i=1; $i <= $imagenumber; $i++){
 
-                        unset($photos,$photo,$fileOriginalPath);
-                        //End - old image deleted
+                                if (Input::hasFile('image'.$i) ) {
+                                    $file            = Input::file('image'.$i);
+                                    $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
+                                    $validator = Validator::make(array('file'=> $file), $validrules);
 
-
-
-                        $imagenumber = \Config::get('constant.number_of_image',10);
-                        for($i=1; $i <= $imagenumber; $i++){
-
-                            if (Input::hasFile('image'.$i) ) {
-                                $file            = Input::file('image'.$i);
-                                $validrules = array('file' => 'required|mimes:png,gif,jpeg,jpg'); // 'required|mimes:png,gif,jpeg,txt,pdf,doc'
-                                $validator = Validator::make(array('file'=> $file), $validrules);
-
-                                if($validator->passes()) {
+                                    if($validator->passes()) {
 
 
-                                    //get File Name
-                                    $fileExtension = $file->getClientOriginalExtension();
+                                        //get File Name
+                                        $fileExtension = $file->getClientOriginalExtension();
 
-                                    if( empty($fileExtension) ){
-                                        continue;
-                                    }
+                                        if( empty($fileExtension) ){
+                                            continue;
+                                        }
 
-                                    $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+                                        $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
 
-                                    //Upload original image
-                                    $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
-                                    \Image::make( $file->getRealPath() )
-                                        ->save($fileOriginalPath);
+                                        //Upload original image
+                                        $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                                        \Image::make( $file->getRealPath() )
+                                            ->save($fileOriginalPath);
 
 
 
-                                    if( !empty($image_sizes) && is_array($image_sizes) ){
+                                        if( !empty($image_sizes) && is_array($image_sizes) ){
 
-                                        foreach($image_sizes as $image_size){
+                                            foreach($image_sizes as $image_size){
 
-                                            $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
+                                                $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
 
-                                            \Image::make( $file->getRealPath() )
-                                                ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
-                                                ->save($filePathImageSize);
+                                                \Image::make( $file->getRealPath() )
+                                                    ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
+                                                    ->save($filePathImageSize);
 
-                                            //Unset
-                                            unset($filePathImageSize);
-                                            unset($image_size);
+                                                //Unset
+                                                unset($filePathImageSize);
+                                                unset($image_size);
+
+                                            }
+
 
                                         }
 
+                                        //Save into db
+                                        $photo = new Photos();
+                                        $photo->accessories_id       = $forsale->accessories_id;
+                                        $photo->photo_name       = $newFilename;
+                                        $photo->save();
 
+                                    }else{
+                                        continue;
                                     }
 
-                                    //Save into db
-                                    $photo = new Photos();
-                                    $photo->accessories_id       = $forsale->accessories_id;
-                                    $photo->photo_name       = $newFilename;
-                                    $photo->save();
+                                    //Unset
+                                    unset($fileExtension);
+                                    unset($newFilename);
+                                    unset($photo);
 
                                 }else{
                                     continue;
                                 }
 
-                                //Unset
-                                unset($fileExtension);
-                                unset($newFilename);
-                                unset($photo);
 
-                            }else{
-                                continue;
                             }
 
+                            $response = array( 'status'=> 'success', 'message'=> 'Successfully Updated.' );
 
                         }
 
-                        $response = array( 'status'=> 'success', 'message'=> 'Successfully Updated.' );
-
+                    }else{
+                        $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
                     }
 
-                }else{
+
+                }elseif( !empty($mobileUser->user_scrap_id) && empty($mobileUser->status) ){
+
                     $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
+
+                }else{
+                    //New User
+                    $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
                 }
 
 
-            }elseif( !empty($mobileUser->user_scrap_id) && empty($mobileUser->status) ){
-
-                $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
-
             }else{
-                //New User
-                $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
+                $response = array( 'status'=> 'fail', 'message'=> 'Unauthorize access.' );
             }
+
+
+
         }
 
         return $response ;
@@ -866,15 +745,15 @@ class AccessoriesController extends \BaseController {
             $response = array( 'status'=> 'fail', 'message'=> $validator->messages()->first() );
         } else {
 
-            $mobileUser = Useraccessories::where('uuid', '=', trim(Input::get('device_phone')))->first();
+            $apiUser = Apiuser::where('token','=',trim(Input::get('device_phone')))->first();
 
             //User already registered
-            if (!empty($mobileUser->user_accessories_id) && $mobileUser->status == '1') {
+            if( !empty($apiUser->api_users_id) && !empty($apiUser->is_active) ){
 
                 $delete_id = trim(Input::get('delete_id'));
                 $page = Accessories::find($delete_id);
 
-                if( !empty($page->accessories_id) &&  $page->user_accessories_id == $mobileUser->user_accessories_id ){
+                if( !empty($page->accessories_id) &&  $page->api_users_id == $apiUser->api_users_id ){
 
 
                     //Upload Images, new logic - Start here
