@@ -15,9 +15,11 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
     Route::post('register' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@register'));
 
-    Route::get('register/verify/{confirmationCode}' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@verify'));
-
     Route::post('login' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@login'));
 
+    Route::post('reset-password' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@resetpassword'));
 
 });
+
+Route::get('register/verify/{confirmationCode}' , array('uses' => '\App\Modules\Forsale\Controllers\ForsaleController@verify'));
+

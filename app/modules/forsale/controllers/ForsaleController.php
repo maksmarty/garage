@@ -932,7 +932,9 @@ class ForsaleController extends \BaseController {
             $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
         }
 
-        return $response ;
+        return View::make('verification', $response);
+
+        //return $response ;
     }
 
 
@@ -997,6 +999,53 @@ class ForsaleController extends \BaseController {
     }
 
 
+    public function resetpassword() {
+
+        // validate
+        $rules = array(
+            'email'      => 'required|email'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            $response = array( 'status'=> 'fail', 'message'=> $validator->messages()->first() );
+        } else {
+
+            $apiuser = Apiuser::whereEmail(trim(Input::get('email')))->first();
+
+            if( !empty($apiuser->api_users_id) && !empty($apiuser->is_active) ){
+
+                $generatePassword = str_random(8);
+                $apiuser->password        = Hash::make($generatePassword);
+
+                $token = $this->generateToken();
+                $apiuser->token = $token;
+
+                if( ! $apiuser->save() ){
+                    $response = array( 'status'=> 'fail', 'message'=> 'Something went wrong.' );
+                }else{
+
+                    \Mail::send('reset_password', array('generated_password'=> $generatePassword), function ($message)  {
+                        $message->to(Input::get('email'), Input::get('email'))
+                            ->subject('Garage - Your new password');
+                    });
+
+
+                    $response = array( 'status'=> 'success', 'message'=> 'Your new password sent to this email successfully.' );
+
+                }
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Unauthorized access.' );
+            }
+
+        }
+
+        return $response ;
+
+    }
 
 
 

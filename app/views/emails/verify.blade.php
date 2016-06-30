@@ -9,7 +9,7 @@
 <div>
 	Thanks for creating an account with us.
 	Please follow the link below to verify your email address
-	{{ URL::to('api/register/verify/' . $verification_code) }}.<br/>
+	{{ URL::to('register/verify/' . $verification_code) }}.<br/>
 
 </div>
 
