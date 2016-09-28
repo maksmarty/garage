@@ -12,7 +12,11 @@
 <!-- Set the title here -->
 @section('title')    
     <title>Add Car | Show Room</title>
-@stop	
+@stop
+
+@section('scripts')
+    {{ HTML::script('js/search.js'); }}
+@stop
  
 <!-- Set the breadcrumb here -->
 @section('breadcrumb')   
@@ -23,6 +27,34 @@
 <!-- main content area start here -->
 @section('content')
     {{ HTML::script('js/application.js');  }}
+
+    <style>
+        .img-wrap {
+            position: relative;
+            display: inline-block;
+            border: 1px red solid;
+            font-size: 0;
+        }
+        .img-wrap .close {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 100;
+            background-color: #FFF;
+            padding: 5px 2px 2px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: .2;
+            text-align: center;
+            font-size: 22px;
+            line-height: 10px;
+            border-radius: 50%;
+        }
+        .img-wrap:hover .close {
+            opacity: 1;
+        }
+    </style>
 <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
             <h1 class="page-title txt-color-blueDark">
@@ -254,7 +286,7 @@
                             </div>
 
 
-                            <div class="form-group">
+                            <div class="form-group" id="list__photo_delete">
 
                                     @if($photos)
 
@@ -263,8 +295,9 @@
                                             <div class="row" style="padding: 10px;">
 
                                                 <label class="col-md-2"></label>
-                                                <div class="col-md-2">
-                                                <img src="{{Helpers::build_image ( $photo->photo_name, 'showroom', '100' )}}">
+                                                <div class="col-md-2 img-wrap">
+                                                    <span class="close btn_close">&times;</span>
+                                                    <img src="{{Helpers::build_image ( $photo->photo_name, 'showroom', '100' )}}" id="delete__{{$photo->photo_id}}">
                                                 </div>
                                             </div>
 

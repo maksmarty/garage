@@ -26,4 +26,5 @@
 
 
 {{--Ajax Message Container--}}
+<div id="message"></div>
 <div id="ajax_message"></div>

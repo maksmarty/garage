@@ -42,6 +42,7 @@ class Items extends \Eloquent {
         //$sequence_ID = 1;
        $PER_PAGE = Config::get('constant.records_per_page');
 
+
         $q = Input::get('q');
         $p = 1;
 
@@ -60,23 +61,92 @@ class Items extends \Eloquent {
 
         $base_query = $query_count = '';
 
-        $base_select_query = ' SELECT items.*,category.name FROM items ' .
-            ' JOIN category ON items.category_id = category.category_id ';
+        $base_select_query = ' SELECT items.*,CONCAT(phone,"<br>", phone1, "<br>", phone2) as phones ,category1.name FROM items ' .
+            ' JOIN category category1 ON items.category_id = category1.category_id ' ;
 
         $base_count_query = ' SELECT count(items.item_id ) as num_records FROM items ' .
-            ' JOIN category ON items.category_id = category.category_id ';
+            ' JOIN category category1 ON items.category_id = category1.category_id ';
+
+
 
 
 
         $where = ' WHERE 1 ';
 
 
-        $q = trim($q);
-        if( is_numeric($q)){
-            $where .=  " AND ( phone LIKE '%".$q."%'  )";
+        $searchCategory    = trim(Input::get('category'));
+
+        if( !empty($searchCategory) ){
+
+            $where .=  " AND ( items.category_id = '".$searchCategory."'  )";
+
+            $q = trim($q);
+            if( !empty($q) ){
+                if( is_numeric($q)){
+                    $where .=  " AND ( phone LIKE '%".$q."%'  )";
+                }else{
+                    $where .=  " AND ( category1.name LIKE '%".$q."%'  )";
+                }
+            }
+
+
         }else{
-            $where .=  " AND ( category.name LIKE '%".$q."%'  )";
+
+            $category    = trim(Input::get('section'));
+            if( !empty($category) ){
+
+                $queryCat = ' SELECT category_id FROM `category` WHERE name = "'.$category.'" ' .
+                    ' UNION ALL ' .
+                    ' SELECT  category2.category_id FROM `category` category1  ' .
+                    ' JOIN  category category2 ON category2.parent = category1.category_id  ' .
+                    ' WHERE category1.name = "'.$category.'" ';
+
+                $categs = DB::select($queryCat);
+
+                $cat = array();
+                if( !empty($categs) && count($categs) > 0 ){
+                    foreach($categs as $categ){
+
+                        if( !empty($categ->category_id) ){
+                            $cat[] = $categ->category_id;
+                        }
+
+                    }
+
+                    if( !empty($cat) ){
+                        $where .=  " AND ( items.category_id IN (". implode(',',$cat)  .")  )";
+                    }else{
+                        $where .=  " AND ( items.category_id IS NULL ) ";
+                    }
+
+                    $q = trim($q);
+
+                    if( !empty($q) ){
+                        if( is_numeric($q)){
+                            $where .=  " AND ( phone LIKE '%".$q."%'  )";
+                        }else{
+                            $where .=  " AND ( category1.name LIKE '%".$q."%'  )";
+                        }
+                    }
+
+
+
+
+                }else{
+                    $where .=  " AND ( items.category_id IS NULL ) ";
+                }
+
+                //echo '<pre>';print_r($cat);die('======Debugging=======');
+
+
+            }else{
+                $where .=  " AND ( items.category_id IS NULL ) ";
+            }
+
+
         }
+
+
 
         $base_query = $base_count_query . $where;
         $response = DB::select($base_query);
@@ -102,7 +172,7 @@ class Items extends \Eloquent {
         }
 
         if (empty($order)) {
-            $order = 'ASC';
+            $order = 'DESC';
         }
 
         $query = $base_select_query . $where .$sort_query . $order;

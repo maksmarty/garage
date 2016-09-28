@@ -138,8 +138,7 @@ return array(
 		'App\Modules\Marine\ServiceProvider' ,
 		'App\Modules\Accessories\ServiceProvider' ,
 		'App\Modules\Boatfishing\ServiceProvider' ,
-
-
+		'App\Modules\Carwash\ServiceProvider' ,
 
 
 	),

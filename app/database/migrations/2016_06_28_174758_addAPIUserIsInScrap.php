@@ -12,10 +12,10 @@ class AddAPIUserIsInScrap extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('scrap', function($table)
-		{
-			$table->bigInteger("api_users_id")->unsigned()->after('user_scrap_id');
-		});
+//		Schema::table('scrap', function($table)
+//		{
+//			$table->bigInteger("api_users_id")->unsigned()->after('user_scrap_id');
+//		});
 
 
 	}

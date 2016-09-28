@@ -5,10 +5,9 @@
  * Descripttion : Handle login and Register functionallity.
  */
 
-namespace App\Modules\Showroom\Controllers;
+namespace App\Modules\Carwash\Controllers;
 
-use App\Modules\Showroom\Models\Showroom;
-use App\Modules\Showroom\Models\ShowroomMake;
+use App\Modules\Carwash\Models\Carwash;
 use App\Modules\Showroom\Models\Photos;
 
 use App,
@@ -25,7 +24,7 @@ use App,
     Hash,
     Response;
 
-class ShowroomController extends \BaseController {
+class CarwashController extends \BaseController {
 
     public $restful = true;
     
@@ -44,16 +43,14 @@ class ShowroomController extends \BaseController {
         //$items = Items::all();
 
         // load the view and pass the nerds
-        return View::make('showroom::index');
+        return View::make('carwash::index');
     }
     
     # Show
     public function showAdd(){
 
-        $categories = ShowroomMake::lists('make', 'showroom_make_id');
-        $list = ['' => 'Select Manufacture'] + $categories;
-        $parentModel = ['0' => 'Select Parent Model'];
-        return View::make('showroom::add', array('make'=> $list , 'item' => new Showroom() , 'parentModel' => $parentModel , 'photos' => new \stdClass() ));
+
+        return View::make('carwash::add', array( 'item' => new Carwash() , 'photos' => new \stdClass() ));
     }
 
     # handle change password post data
@@ -61,9 +58,9 @@ class ShowroomController extends \BaseController {
 
         // validate
         $rules = array(
-            'showroom_make_id'       => 'required',
-            'model'       => 'required',
-            //'description'       => 'required'
+            'name'       => 'required',
+            'description'       => 'required',
+            'phone'       => 'required'
         );
 
         if (Input::hasFile('image')) {
@@ -76,36 +73,19 @@ class ShowroomController extends \BaseController {
         // process the login
         if ($validator->fails()) {
             //echo '<pre>';print_r($validator->messages());die('======Debugging=======');
-            return Redirect::route('showroom.add')
+            return Redirect::route('carwash.add')
                 ->withErrors($validator);
         } else {
 
 
             // store
-            $showroom = new Showroom();
-            $showroom->showroom_make_id       = Input::get('showroom_make_id');
-            $showroom->model       = Input::get('model');
-            $showroom->year       = Input::get('year');
-            $showroom->engine       = Input::get('engine');
-            $showroom->transmission       = Input::get('transmission');
-            $showroom->payment       = Input::get('payment');
-            $showroom->price       = Input::get('price');
+            $showroom = new Carwash();
+            $showroom->name       = Input::get('name');
             $showroom->description       = Input::get('description');
-            $showroom->contact       = Input::get('contact');
-            $showroom->working_hours       = Input::get('working_hours');
-            $showroom->warranty       = Input::get('warranty');
-            $showroom->display       = Input::get('display');
-            $showroom->hasChild       = Input::get('hasChild');
-            $showroom->status       = Input::get('status');
-
-            if( Input::get('parent_model') ){
-                $showroom->parent_model       = Input::get('parent_model');
-            }
-
-
+            $showroom->phone       = Input::get('phone');
             $showroom->save();
 
-            $showroom_car_id = $showroom->showroom_car_id;
+            $showroom_car_id = $showroom->car_wash_id;
 
             if (Input::hasFile('image') && !empty($showroom_car_id) ) {
                 $files            = Input::file('image');
@@ -114,7 +94,7 @@ class ShowroomController extends \BaseController {
 
                 $imagePath = public_path('uploads') .'/images/';
 
-                $filnalDestinationPath = $imagePath . "showroom/";
+                $filnalDestinationPath = $imagePath . "carwash/";
 
                 if( !file_exists($filnalDestinationPath) ){
                     mkdir($filnalDestinationPath, 0755, true);
@@ -162,7 +142,7 @@ class ShowroomController extends \BaseController {
 
                     //Save into db
                     $photo = new Photos();
-                    $photo->showroom_car_id       = $showroom_car_id;
+                    $photo->car_wash_id       = $showroom_car_id;
                     $photo->photo_name       = $newFilename;
                     $photo->save();
 
@@ -170,7 +150,6 @@ class ShowroomController extends \BaseController {
                     unset($fileExtension);
                     unset($newFilename);
                     unset($photo);
-
 
                 }
 
@@ -180,8 +159,8 @@ class ShowroomController extends \BaseController {
             //$item->save();
 
             // redirect
-            Session::flash('message', 'Successfully added cars!');
-            return Redirect::to(sprintf('%s/%s', 'showroom','add'));
+            Session::flash('message', 'Successfully added car wash!');
+            return Redirect::to(sprintf('%s/%s', 'carwash','add'));
         }
     }
 
@@ -757,159 +736,6 @@ die('======End of code=======');
                 $parentModels = Showroom::where('showroom_make_id','=',$make_id)->lists('model', 'showroom_car_id');
                 $response['data'] = $parentModels;
             }
-            return json_encode($response);
-        }else{
-            App::abort(404);
-        }
-
-    }
-
-
-
-
-    public function destroy()
-    {
-
-        if (Request::ajax()) {
-
-            $response = array();
-
-            $item_id = Input::get('showroom_car_id');
-
-            if(!empty($item_id)){
-
-
-                $item = Showroom::find($item_id);
-
-                if( !empty($item->showroom_car_id) ){
-
-                    //Get all images
-                    $photos = Photos::where('showroom_car_id','=',$item_id)->get();
-                    //echo '<pre>';print_r($photos);die('======Debugging=======');
-
-                    $image_sizes =  Config::get('constant.image_sizes');
-
-                    $imagePath = public_path('uploads') .'/images/';
-
-                    $filnalDestinationPath = $imagePath  . "showroom/";
-
-                    foreach($photos as $photo){
-
-                        //Remove all images
-                        if ( !empty($photo->photo_id) ) {
-
-
-                            //Delete originalimages
-                            $orgImg = $filnalDestinationPath . "original/" . $photo->photo_name;
-
-                            if( file_exists($orgImg) ){
-                                unlink($orgImg);
-                            }
-
-
-                            if( !empty($image_sizes) && is_array($image_sizes) ){
-
-                                foreach($image_sizes as $image_size){
-                                    $imgdel = $filnalDestinationPath . "$image_size/" . $photo->photo_name;
-                                    if( file_exists($imgdel) ){
-                                        unlink($imgdel);
-                                    }
-                                }
-                            }
-
-                            //Delete record
-                            Photos::destroy($photo->photo_id);
-
-                        }
-
-
-                    }
-
-
-                    Showroom::destroy($item_id);
-                    $response['status'] = 'success';
-                    $response['message'] = 'Showroom car removed successfully.';
-
-                }else{
-                    $response['status'] = 'error';
-                    $response['message'] = 'Something went wrong.';
-                }
-
-
-
-            }else{
-                $response['status'] = 'error';
-                $response['message'] = 'Something went wrong.';
-            }
-
-
-            return json_encode($response);
-        }else{
-            App::abort(404);
-        }
-
-    }
-
-
-    public function destroyImage()
-    {
-
-        if (Request::ajax()) {
-
-            $response = array();
-
-            $photo_id = Input::get('photo_id');
-
-            if(!empty($photo_id)){
-
-
-                $photo = Photos::find($photo_id);
-
-                if( !empty($photo->photo_id) ){
-
-                    $image_sizes =  Config::get('constant.image_sizes');
-
-                    $imagePath = public_path('uploads') .'/images/';
-
-                    $filnalDestinationPath = $imagePath  . "showroom/";
-
-                    //Delete originalimages
-                    $orgImg = $filnalDestinationPath . "original/" . $photo->photo_name;
-
-                    if( file_exists($orgImg) ){
-                        unlink($orgImg);
-                    }
-
-
-                    if( !empty($image_sizes) && is_array($image_sizes) ){
-
-                        foreach($image_sizes as $image_size){
-                            $imgdel = $filnalDestinationPath . "$image_size/" . $photo->photo_name;
-                            if( file_exists($imgdel) ){
-                                unlink($imgdel);
-                            }
-                        }
-                    }
-
-                    //Delete record
-                    Photos::destroy($photo->photo_id);
-
-                    $response['status'] = 'success';
-                    $response['message'] = 'Photo removed successfully.';
-
-                }else{
-                    $response['status'] = 'error';
-                    $response['message'] = 'Something went wrong.';
-                }
-
-
-
-            }else{
-                $response['status'] = 'error';
-                $response['message'] = 'Something went wrong.';
-            }
-
-
             return json_encode($response);
         }else{
             App::abort(404);

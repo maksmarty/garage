@@ -180,6 +180,171 @@ $(document).ready(function() {
             }); 
             
         });
+
+
+
+
+    // Delete button for news
+    $( '#list__item_list' ).on('click', 'a.openModal',function(e){
+        e.preventDefault();
+
+        //TODO::Secure id with md5 etc
+        string_id = $(this).attr('id');
+        arr = string_id.split('__');
+        var item_id = arr[1];
+
+        // the link
+        var elem = $(this);
+        var masterList = elem.closest('tr');
+        //console.log(masterList);
+        var answer = confirm('Are you sure you want to delete this?');
+
+        if(answer){
+            var postArray = {
+                item_id: item_id,
+            };
+
+            action_url = '/item/delete';
+
+            $.ajax({
+                url : action_url,
+                type : 'POST',
+                data : postArray,
+                dataType : 'JSON',
+                beforeSend: function() {
+                },
+                success : function(response) {
+                    if ($.trim(response.status) == 'success') {
+
+
+                        $("#message").removeClass().addClass("alert alert-success fade in").html('<button data-dismiss="alert" class="close">x</button><i class="fa-fw fa fa-check"></i><strong>Success : </strong>' + response.message).show('slow');
+
+                        masterList.fadeOut('slow', function(){
+                            masterList.remove();
+                        });
+
+                    } else {
+                        $("#message").removeClass().addClass("alert alert-danger fade in")
+                            .html('<button data-dismiss="alert" class="close">x</button><i class="fa-fw fa fa-warning"></i><strong>Exists : </strong>' + response.message).show('slow');;
+                    }
+                }
+            });
+
+        }
+
+
+    })
+
+
+
+
+
+    // Delete button for showroom
+    $( '#list__showroom_list' ).on('click', 'a.openModal',function(e){
+        e.preventDefault();
+
+        //TODO::Secure id with md5 etc
+        string_id = $(this).attr('id');
+        arr = string_id.split('__');
+        var showroom_car_id = arr[1];
+
+        // the link
+        var elem = $(this);
+        var masterList = elem.closest('tr');
+        //console.log(masterList);
+        var answer = confirm('Are you sure you want to delete this?');
+
+        if(answer){
+            var postArray = {
+                showroom_car_id: showroom_car_id,
+            };
+
+            action_url = '/showroom/delete';
+
+            $.ajax({
+                url : action_url,
+                type : 'POST',
+                data : postArray,
+                dataType : 'JSON',
+                beforeSend: function() {
+                },
+                success : function(response) {
+                    if ($.trim(response.status) == 'success') {
+
+
+                        $("#message").removeClass().addClass("alert alert-success fade in").html('<button data-dismiss="alert" class="close">x</button><i class="fa-fw fa fa-check"></i><strong>Success : </strong>' + response.message).show('slow');
+
+                        masterList.fadeOut('slow', function(){
+                            masterList.remove();
+                        });
+
+                    } else {
+                        $("#message").removeClass().addClass("alert alert-danger fade in")
+                            .html('<button data-dismiss="alert" class="close">x</button><i class="fa-fw fa fa-warning"></i><strong>Exists : </strong>' + response.message).show('slow');;
+                    }
+                }
+            });
+
+        }
+
+
+    });
+
+
+    // Delete single photo form showroom
+    $( '#list__photo_delete' ).on('click', 'span.btn_close',function(e){
+        e.preventDefault();
+
+        //TODO::Secure id with md5 etc
+        var delete_image = $(this).siblings('img');
+
+        string_id = delete_image.attr('id');
+        arr = string_id.split('__');
+        var photo_id = arr[1];
+
+        // the link
+        var elem = $(this);
+        var masterList = elem.closest('div.row');
+        //console.log(masterList);
+        var answer = confirm('Are you sure you want to delete this?');
+
+        if(answer){
+            var postArray = {
+                photo_id: photo_id,
+            };
+
+            action_url = '/showroom/delete/photo';
+
+            $.ajax({
+                url : action_url,
+                type : 'POST',
+                data : postArray,
+                dataType : 'JSON',
+                beforeSend: function() {
+                },
+                success : function(response) {
+                    if ($.trim(response.status) == 'success') {
+
+
+                        $("#message").removeClass().addClass("alert alert-success fade in").html('<button data-dismiss="alert" class="close">x</button><i class="fa-fw fa fa-check"></i><strong>Success : </strong>' + response.message).show('slow');
+
+                        masterList.fadeOut('slow', function(){
+                            masterList.remove();
+                        });
+
+                    } else {
+                        $("#message").removeClass().addClass("alert alert-danger fade in")
+                            .html('<button data-dismiss="alert" class="close">x</button><i class="fa-fw fa fa-warning"></i><strong>Exists : </strong>' + response.message).show('slow');;
+                    }
+                }
+            });
+
+        }
+
+
+    });
+
+
 });
 
 function reinitializeFilterBox(field) {

@@ -15,6 +15,8 @@
                     <th class="txt-color-blue " >#</th>
                     <th class="txt-color-blue " >Category</th>
                     <th class="txt-color-blue " >Phone</th>
+                    <th class="txt-color-blue " >Description</th>
+                    <th class="txt-color-blue " >Photo</th>
                     <th class="txt-color-blue " >Updated date</th>
                     <th class="txt-color-blue " >Action</th>
                 </tr>
@@ -33,8 +35,17 @@
             ?>
             <tr id ="files_<?php echo $row->item_id; ?>" >
                 <td><?php echo ++$count; ?></td>
-                <td><?php echo (!empty($row->name) ? \Lang::get("messages.{$row->name}", array(), 'ar') : ''); ?></td>
-                <td><?php echo (!empty($row->phone) ? $row->phone : ''); ?></td>
+                <td><?php //echo (!empty($row->name) ? \Lang::get("messages.{$row->name}", array(), 'ar') : ''); ?>
+                    <?php echo (!empty($row->name) ? $row->name  : ''); ?></td>
+                <td><?php echo (!empty($row->phones) ? $row->phones : ''); ?></td>
+                <td><?php echo (!empty($row->description) ? $row->description : ''); ?></td>
+                <td>
+                    <?php if( !empty($row->name) && in_array($row->name,array('delivery','taxi','movablewash'))) { ?>
+                        {{ HTML::image(URL::to(sprintf('uploads/images/%s/%s/%s', $row->name ,'100', $row->name . '.png')),'no photo', array('style' => 'width:30px;')) }}
+                    <?php }else{ ?>
+                        {{ HTML::image(URL::to(sprintf('uploads/images/%s/%s/%s', $row->name ,'100', $row->image)),'no photo', array('style' => 'width:30px;')) }}
+                    <?php } ?>
+                </td>
                 <td><?php echo (!empty($row->updated_at) ? $row->updated_at : ''); ?></td>
 
                 <!-- we will also add show, edit, and delete buttons -->
@@ -49,9 +60,14 @@
                     <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
                     {{--<a class="btn btn-small btn-info" href="{{ route('item.update',$row->item_id)}}">Edit</a>--}}
 
-                    <a class="btn btn-info" href="{{route('item.update',$row->item_id)}}">
-                        <i class="fa fa-edit"></i> <span class="hidden-mobile">Update</span>
+
+                    <a title="Update {{ucwords($row->name)}}"  class="editpage" href="{{route('item.update',$row->item_id)}}">
+                        <i class="fa fa-edit fa-2x"></i>
                     </a>
+
+
+
+                    <a title="Delete  {{ucwords($row->name)}}" class="openModal" href="#" id="delete__{{$row->item_id}}"> <i class="fa fa fa-trash-o fa-2x"></i></a>
 
                 </td>
             </tr>

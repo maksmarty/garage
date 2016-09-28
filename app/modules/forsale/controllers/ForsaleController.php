@@ -782,7 +782,6 @@ class ForsaleController extends \BaseController {
 
                 if( !empty($page->forsale_id) &&  $page->api_users_id == $apiUser->api_users_id ){
 
-
                     //Upload Images, new logic - Start here
                     $image_sizes =  \Config::get('constant.image_sizes');
 
@@ -858,7 +857,10 @@ class ForsaleController extends \BaseController {
 
         // validate
         $rules = array(
-            'email'      => 'required|email|unique:api_users',
+            'first_name'      => 'required',
+            'last_name'      => 'required',
+            //'email'      => '',
+            'phone'      => 'required||min:6|max:14|unique:api_users',
             'password'       => 'required|min:8',
             'confirm_password'       => 'required|same:password'
 
@@ -873,11 +875,14 @@ class ForsaleController extends \BaseController {
 
             // Add forsale data
             $apiuser = new Apiuser();
+            $apiuser->first_name        = trim(Input::get('first_name'));
+            $apiuser->last_name        = trim(Input::get('last_name'));
             $apiuser->email        = trim(Input::get('email'));
+            $apiuser->phone        = trim(Input::get('phone'));
             $apiuser->password        = Hash::make(Input::get('password'));
-            $verification_code = str_random(30);
-            $apiuser->verification_code        = $verification_code;
-            $apiuser->is_active       = '0';
+            //$verification_code = str_random(30);
+            //$apiuser->verification_code        = $verification_code;
+            $apiuser->is_active       = '1';
             //$forsale->save();
 
             if( ! $apiuser->save() ){
@@ -889,13 +894,13 @@ class ForsaleController extends \BaseController {
 //                });
 
 
-                \Mail::send('emails.verify', array('verification_code'=> $verification_code), function ($message)  {
-                    $message->to(Input::get('email'), Input::get('email'))
-                        ->subject('Garage - Verify your email address');
-                });
+//                \Mail::send('emails.verify', array('verification_code'=> $verification_code), function ($message)  {
+//                    $message->to(Input::get('email'), Input::get('email'))
+//                        ->subject('Garage - Verify your email address');
+//                });
 
 
-                $response = array( 'status'=> 'success', 'message'=> 'Successfully registered.An email sent to you.Please verify account.' );
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully registered.' );
 
             }
         }
@@ -942,10 +947,9 @@ class ForsaleController extends \BaseController {
 
         // validate
         $rules = array(
-            'email'      => 'required|email',
+            'phone'      => 'required||min:6|max:14',
             'password'       => 'required',
             'confirm_password'       => 'required|same:password'
-
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -956,7 +960,7 @@ class ForsaleController extends \BaseController {
         } else {
 
 
-            $apiuser = Apiuser::whereEmail(trim(Input::get('email')))->first();
+            $apiuser = Apiuser::wherePhone(trim(Input::get('phone')))->first();
 
             $password = Input::get('password');
 
@@ -1001,6 +1005,8 @@ class ForsaleController extends \BaseController {
 
     public function resetpassword() {
 
+
+        return $response = array( 'status'=> 'fail', 'message'=> 'Unauthorized access.' );
         // validate
         $rules = array(
             'email'      => 'required|email'

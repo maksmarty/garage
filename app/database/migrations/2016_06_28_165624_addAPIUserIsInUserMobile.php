@@ -12,10 +12,10 @@ class AddAPIUserIsInUserMobile extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('user_mobile', function($table)
-		{
-			$table->bigInteger("api_users_id")->unsigned()->after('user_mobile_id');
-		});
+//		Schema::table('user_mobile', function($table)
+//		{
+//			$table->bigInteger("api_users_id")->unsigned()->after('user_mobile_id');
+//		});
 
 
 	}

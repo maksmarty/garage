@@ -1047,7 +1047,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
-    Route::get ( 'foresale/{makeregion}/{make}/{uuid}' , function($makeregion,$make,$uuid) {
+    Route::get ( 'foresale/{makeregion}/{make}/{uuid?}' , function($makeregion,$make,$uuid = null) {
 
 
         $response = array( );
@@ -1099,7 +1099,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_mobile_id == $news_->api_users_id ){
+                if(  !empty($news_->api_users_id) && $request_user_mobile_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1133,7 +1133,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
     } ) ;
 
 
-    Route::get ( 'foresalead/{foresale_id}/{uuid}' , function($foresale_id,$uuid) {
+    Route::get ( 'foresalead/{foresale_id}/{uuid?}' , function($foresale_id,$uuid = null) {
 
         $response = array( );
         $cnews = array () ;
@@ -1183,7 +1183,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_mobile_id == $news->api_users_id ){
+                if( !empty($news->api_users_id) && $request_user_mobile_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1461,7 +1461,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
-    Route::get ( 'scrapuser/{makeregion}/{uuid}' , function($makeregion,$uuid) {
+    Route::get ( 'scrapuser/{makeregion}/{uuid?}' , function($makeregion,$uuid = null) {
 
 
         $response = array( );
@@ -1513,7 +1513,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_scrap_id == $news_->api_users_id ){
+                if(  !empty($news_->api_users_id) && $request_user_scrap_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1547,7 +1547,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
     } ) ;
 
-    Route::get ( 'scrapuserdetail/{scrap_id}/{uuid}' , function($scrap_id,$uuid) {
+    Route::get ( 'scrapuserdetail/{scrap_id}/{uuid?}' , function($scrap_id,$uuid = null) {
 
         $response = array( );
         $cnews = array () ;
@@ -1597,7 +1597,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_scrap_id == $news->api_users_id ){
+                if(  !empty($news->api_users_id) && $request_user_scrap_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1630,7 +1630,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
-    Route::get ( 'marineuser/{makeregion}/{uuid}' , function($makeregion,$uuid) {
+    Route::get ( 'marineuser/{makeregion}/{uuid?}' , function($makeregion,$uuid = null) {
 
 
         $response = array( );
@@ -1684,7 +1684,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_marine_id == $news_->api_users_id ){
+                if(  !empty($news_->api_users_id) && $request_user_marine_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1718,7 +1718,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
     } ) ;
 
-    Route::get ( 'marineuserdetail/{marine_id}/{uuid}' , function($marine_id,$uuid) {
+    Route::get ( 'marineuserdetail/{marine_id}/{uuid?}' , function($marine_id,$uuid=null) {
 
         $response = array( );
         $cnews = array () ;
@@ -1769,7 +1769,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_marine_id == $news->api_users_id ){
+                if(  !empty($news->api_users_id) && $request_user_marine_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1804,7 +1804,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
 
 
-    Route::get ( 'accessoriesuser/{makeregion}/{uuid}' , function($makeregion,$uuid) {
+    Route::get ( 'accessoriesuser/{makeregion}/{uuid?}' , function($makeregion,$uuid=null) {
 
 
         $response = array( );
@@ -1858,7 +1858,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_accessories_id == $news_->api_users_id ){
+                if(  !empty($news_->api_users_id) && $request_user_accessories_id == $news_->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -1892,7 +1892,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
 
     } ) ;
 
-    Route::get ( 'accessoriesuserdetail/{accessories_id}/{uuid}' , function($accessories_id,$uuid) {
+    Route::get ( 'accessoriesuserdetail/{accessories_id}/{uuid?}' , function($accessories_id,$uuid=null) {
 
         $response = array( );
         $cnews = array () ;
@@ -1940,7 +1940,7 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                 }
 
                 $isOwner = 0;
-                if( $request_user_accessories_id == $news->api_users_id ){
+                if(  !empty($news->api_users_id) && $request_user_accessories_id == $news->api_users_id ){
                     $isOwner = 1;
                 }
 
@@ -2072,6 +2072,133 @@ Route::api ( ['version' => 'v1' , 'prefix' => 'api' , 'protected' => false ] , f
                     'description'      => $news->description ,
                     'phone'        => $news->phone ,
                     'contact'      => $news->contact ,
+                    'images'        => $photos  ,
+                ] ;
+
+                $response = array( 'status'=> 'success', 'message'=> 'Successfully executed'  );
+
+            }else{
+                $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+            }
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, Request can not be executed.');
+        }
+//echo '<pre>';print_r($cnews);die('======Debugging=======');
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+
+    Route::get ( 'carwashlist' , function() {
+
+
+        $response = array( );
+        $cnews = array () ;
+
+
+        $category = 'carwash';
+
+        //Limit Query
+        $limitArr = Helpers::apiLimitQuery();
+
+        $query = ' SELECT car_wash.*  ' .
+            'FROM car_wash ' ;
+
+        $query .= ' '.$limitArr['query'].'  ';
+
+        $news = DB::select ( $query ) ;
+
+        if( count($news) > 0 ){
+
+            foreach ( $news as $news_ ) {
+
+
+                //Get one photo
+                $firstPhoto = DB::table('photo')
+                    ->where('car_wash_id', $news_->car_wash_id)
+                    ->orderBy('car_wash_id','ASC')
+                    ->first();
+                $photo_name_first = '';
+                if( !empty($firstPhoto->photo_id) ){
+                    $photo_name_first = $firstPhoto->photo_name;
+                }
+
+
+                $phones = array();
+                if( !empty($news_->phone) ){
+                    $phones = explode(',',$news_->phone);
+                }
+
+
+                $nwsRow = [
+                    'car_wash_id'      => $news_->car_wash_id ,
+                    'name'      => $news_->name ,
+                    'description'      => $news_->description ,
+                    'phone'        => $phones ,
+                    'image'        => Helpers::build_image ( $photo_name_first, $category, '400' ) ,
+                ] ;
+
+                $cnews[] = ( object ) $nwsRow ;
+            }
+
+            //echo '<pre>';print_r($cnews);die('======Debugging=======');
+
+            $response = array( 'status'=> 'success', 'message'=> 'Successfully executed','data_count' => count($news) );
+
+        }else{
+            $response = array( 'status'=> 'fail', 'message'=> 'Sorry, There is no relevant data found.' );
+        }
+        return $response + array( 'results' => $cnews )  ;
+
+    } ) ;
+
+
+    Route::get ( 'carwashlist/{car_wash_id}' , function($car_wash_id) {
+
+        $response = array( );
+        $cnews = array () ;
+
+        if( !empty($car_wash_id) ){
+
+
+            //TODO::Item not in
+            $news = DB::table('car_wash')
+                ->where('car_wash_id', $car_wash_id)
+                ->first();
+
+//echo '<pre>';print_r($news);die('======Debugging=======');
+
+            if( !empty($news) ){
+
+                $photosRaws = DB::table('photo')
+                    ->where('car_wash_id', $car_wash_id)
+                    ->orderBy('default','DESC')
+                    ->get();
+
+                $photos = array();
+                foreach($photosRaws as $photosRaw){
+
+                    $photos[] = [
+                        'photo_id'      => $photosRaw->photo_id ,
+                        'photo_name'        => Helpers::build_image ( $photosRaw->photo_name , 'carwash', '400' ) ,
+                        'default'        => $photosRaw->default
+                    ] ;
+
+                }
+
+                $phones = array();
+                if( !empty($news->phone) ){
+                    $phones = explode(',',$news->phone);
+                }
+
+
+                $cnews = [
+                    'car_wash_id'      => $news->car_wash_id ,
+                    'name'      => $news->name ,
+                    'description'      => $news->description ,
+                    'phone'        => $phones ,
                     'images'        => $photos  ,
                 ] ;
 

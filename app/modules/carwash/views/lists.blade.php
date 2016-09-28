@@ -57,8 +57,6 @@
                         <i class="fa fa-edit"></i> <span class="hidden-mobile">Update</span>
                     </a>
 
-                    <a title="Delete this record" class="openModal" href="#" id="delete__{{$row->showroom_car_id}}"> <i class="fa fa fa-trash-o fa-2x"></i></a>
-
                 </td>
             </tr>
             <?php

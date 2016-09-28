@@ -12,10 +12,10 @@ class AddAPIUserIsInUserMarine extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('user_marine', function($table)
-		{
-			$table->bigInteger("api_users_id")->unsigned()->after('user_marine_id');
-		});
+//		Schema::table('user_marine', function($table)
+//		{
+//			$table->bigInteger("api_users_id")->unsigned()->after('user_marine_id');
+//		});
 
 
 	}

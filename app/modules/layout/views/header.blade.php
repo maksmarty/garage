@@ -5,7 +5,7 @@
     <div id="logo-group">
 
         <!-- PLACE YOUR LOGO HERE -->
-        <span id="logo"> <img src="{{ URL::asset('img/logo.jpg'); }}" alt="SmartAdmin"> </span>
+        <span id="logo"> <img src="{{ URL::asset('img/garage_29x29.png'); }}" alt="SmartAdmin" style="width: 30px;"> </span>
         <!-- END LOGO PLACEHOLDER -->
 
         <!-- Note: The activity badge color changes when clicked and resets the number to 0

@@ -3,7 +3,6 @@
  * Template     : File/change password view 
  * Descripttion : Change password Home Page.
  */
-$firstSeg = Request::segment(1);
 ?>
 
 <!-- extend the master layout | /app/modules/layout/master.blade.php -->
@@ -12,38 +11,32 @@ $firstSeg = Request::segment(1);
 
 <!-- Set the title here -->
 @section('title')    
-    <title>
-        @if($item->item_id)
-            Update {{ucwords($item->parent_name)}}
-        @else
-            Add {{ucwords($firstSeg)}}
-        @endif
-
-        | Garage</title>
+    <title>Add Car wash | Garage</title>
 @stop	
  
 <!-- Set the breadcrumb here -->
 @section('breadcrumb')   
-    <li>Home</li><li>Add {{ucwords($firstSeg)}}</li>
+    <li>Home</li><li>Add Car wash</li>
 @stop
 
 
 <!-- main content area start here -->
 @section('content')
+    {{ HTML::script('js/application.js');  }}
 <div class="row">
         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-6">
             <h1 class="page-title txt-color-blueDark">
                 <i class="fa fa-edit fa-fw "></i>
 
-                @if($item->item_id)
-                    <strong> Update {{ucwords($item->parent_name)}} Category : </strong>
+                @if($item->boat_fishing_id)
+                    <strong> Update Car wash : </strong>
                     <span>
-                        Update {{ucwords($item->parent_name)}} here.
+                        Update Car wash here.
                     </span>
                 @else
-                    <strong> Add {{ucwords($firstSeg)}} Category : </strong>
+                    <strong> Car wash : </strong>
                     <span>
-                        Add {{ucwords($firstSeg)}} here.
+                        Car wash here.
                     </span>
                 @endif
 
@@ -63,10 +56,10 @@ $firstSeg = Request::segment(1);
 
                 <header>
                     <span class="widget-icon"> <i class="fa fa-eye"></i> </span>
-                    @if($item->item_id)
-                        <h2>Update {{ucwords($item->category_name)}} subcategory</h2>
+                    @if($item->car_wash_id)
+                        <h2>Update Car wash</h2>
                     @else
-                        <h2>Add {{ucwords($firstSeg)}} subcategory </h2>
+                        <h2>Add Car wash</h2>
                     @endif
 
                 </header>
@@ -77,10 +70,10 @@ $firstSeg = Request::segment(1);
                     <!-- widget content -->
                     <div class="widget-body">
 
-                        @if($item->item_id)
-                            <form class="form-horizontal" name="addUpdateItemsForm" id="addUpdateItemsForm" method="post" action="{{route('item.post.update',$item->item_id)}}" enctype="multipart/form-data">
+                        @if($item->car_wash_id)
+                            <form class="form-horizontal" name="addUpdateCarwashForm" id="addUpdateCarwashForm" method="post" action="{{route('carwash.post.update',$item->boat_fishing_id)}}" enctype="multipart/form-data">
                         @else
-                            <form class="form-horizontal" name="addUpdateItemsForm" id="addUpdateItemsForm" method="post" action="{{route( $firstSeg . '.post.add')}}" enctype="multipart/form-data">
+                            <form class="form-horizontal" name="addUpdateCarwashForm" id="addUpdateCarwashForm" method="post" action="{{route('carwash.post.add')}}" enctype="multipart/form-data">
                         @endif
 
                         @include('layout::partials.alerts.errors')
@@ -98,93 +91,115 @@ $firstSeg = Request::segment(1);
                                 {{--</div>--}}
                             {{--@endif--}}
 
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="select-1">Categories</label>
-                                <div class="col-md-8">
-
-                                    @if($item->item_id)
-                                        {{--{{\Lang::get("messages.{$item->category_name}", array(), 'ar')}}--}}
-                                        {{$item->category_name}}
-                                    @else
-                                        {{ Form::select('category_id', $categories, null, ['class' => 'form-control','required' => 'required']) }}
-                                    @endif
-
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Phone</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone" id="phone" value="{{$item->phone}}" required>
-
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Phone 2</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone1" id="phone1" value="{{$item->phone1}}" >
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Phone 3</label>
-                                <div class="col-md-8">
-                                    <input class="form-control" placeholder="Add/Update Phone" type="tel" name="phone2" id="phone2" value="{{$item->phone2}}" >
-
-                                </div>
-                            </div>
 
 
 
 
 
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Description</label>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" placeholder="Add/Update Description" rows="3" name="description" required>{{$item->description}}</textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Image</label>
-                                <div class="col-md-8">
-                                    <input type="file" id="image" name="image" onchange="this.parentNode.nextSibling.value = this.value">
-                                </div>
 
 
-                            </div>
+
+
+
+
 
                                 <div class="form-group">
+                                    <label class="col-md-2 control-label">Name</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" placeholder="Add/Update Name" type="text" name="name" id="name" value="{{$item->name}}" required>
 
-                                    <div class="row" style="padding: 10px;">
-
-                                        <label class="col-md-2"></label>
-                                        <div class="col-md-2">
-                                            <?php if( !empty($item->category_name) && in_array($item->category_name,array('delivery','taxi','movablewash'))) { ?>
-                                                {{ HTML::image(URL::to(sprintf('uploads/images/%s/%s/%s', $item->category_name ,'100', $item->category_name . '.png')),'') }}
-                                            <?php }else{ ?>
-                                                {{ HTML::image(URL::to(sprintf('uploads/images/%s/%s/%s', $item->category_name ,'100', $item->image)),'') }}
-                                            <?php } ?>
-
-                                        </div>
                                     </div>
-
-
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Description</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" placeholder="Add/Update description" type="text" name="description" id="description" value="{{$item->description}}" required>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Phone</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" placeholder="Add/Update Phone" type="text" name="phone" id="phone" value="{{$item->phone}}" required>
+
+                                    </div>
+                                </div>
+
+
+                            <div class="image-groups-custom">
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Image</label>
+                                    <div class="col-md-8">
+                                        <input type="file" id="image" name="image[]" onchange="this.parentNode.nextSibling.value = this.value">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-8">
+                                        <a id="add-more" href="">Add More</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                    @if($photos)
+
+                                        @foreach ($photos as $photo)
+
+                                            <div class="row" style="padding: 10px;">
+
+                                                <label class="col-md-2"></label>
+                                                <div class="col-md-2">
+                                                <img src="{{Helpers::build_image ( $photo->photo_name, 'carwash', '100' )}}">
+                                                </div>
+                                            </div>
+
+
+                                        @endforeach
+
+                                    @endif
+
+                            </div>
 
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="hidden" name="item_id" id="item_id" value="">
+                                        <input type="hidden" name="boat_fishing_id" id="boat_fishing_id" value="">
                                         <button type="submit" class="btn btn-primary" id="submitButton" name="submitButton">
                                             <i class="fa fa-save"></i>
                                             Submit
@@ -212,6 +227,15 @@ $firstSeg = Request::segment(1);
     
      <script type="text/javascript">
             //runAllForms();
+
+            $(function() {
+                $('#add-more').on('click',function(e){
+                    e.preventDefault();
+                    var imageContainer = $(this).closest('.image-groups-custom');
+                    var firstImage = imageContainer.children(":nth-child(5)").clone();
+                    imageContainer.append(firstImage);
+                });
+            });
             
            /* $(function() {
                 

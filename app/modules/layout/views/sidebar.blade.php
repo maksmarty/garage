@@ -63,6 +63,217 @@
             </li>
 
 
+            <hr>
+            <span style="color: #FFF;font-weight: 400;font-size: 18px;padding-left: 10px;">Static data</span>
+            <hr>
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Scrap</span></a>
+                <ul>
+                    <li>
+                        <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">American</span></a>
+
+                        <ul>
+                            <li>
+
+                                <a href="{{route('american')}}">List American</a>
+                            </li>
+                            <li>
+                                <a href="{{route('american.add')}}">Add American</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">European</span></a>
+
+                        <ul>
+                            <li>
+
+                                <a href="{{route('european')}}">List European</a>
+                            </li>
+                            <li>
+                                <a href="{{route('european.add')}}">Add European</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Asian</span></a>
+
+                        <ul>
+                            <li>
+
+                                <a href="{{route('asian')}}">List Asian</a>
+                            </li>
+                            <li>
+                                <a href="{{route('asian.add')}}">Add Asian</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Delivery</span></a>
+
+                        <ul>
+                            <li>
+
+                                <a href="{{route('delivery')}}">List Delivery</a>
+                            </li>
+                            <li>
+                                <a href="{{route('delivery.add')}}">Add Delivery</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Garage</span></a>
+
+                <ul>
+                    <li>
+
+                        <a href="{{route('garage')}}">List Garage</a>
+                    </li>
+                    <li>
+                        <a href="{{route('garage.add')}}">Add Garage</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">General Services</span></a>
+
+                <ul>
+                    <li>
+
+                        <a href="{{route('generalservices')}}">List General Services</a>
+                    </li>
+                    <li>
+                        <a href="{{route('generalservices.add')}}">Add General Services</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Help in road</span></a>
+
+                <ul>
+                    <li>
+
+                        <a href="{{route('helpinroad')}}">List Help in road</a>
+                    </li>
+                    <li>
+                        <a href="{{route('helpinroad.add')}}">Add Help in road</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Technical Inspection</span></a>
+
+                <ul>
+                    <li>
+
+                        <a href="{{route('technicalinspection')}}">List Technical Inspection</a>
+                    </li>
+                    <li>
+                        <a href="{{route('technicalinspection.add')}}">Add Technical Inspection</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Tintin Car</span></a>
+
+                <ul>
+                    <li>
+
+                        <a href="{{route('talsywahamayatwatajlil')}}">List Tintin Car</a>
+                    </li>
+                    <li>
+                        <a href="{{route('talsywahamayatwatajlil.add')}}">Add Tintin Car</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+
+
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Taxi</span></a>
+
+                <ul>
+                    <li>
+
+                        <a href="{{route('taxi')}}">List Taxi</a>
+                    </li>
+                    <li>
+                        <a href="{{route('taxi.add')}}">Add Taxi</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-trash-o"></i> <span class="menu-item-parent">Movable wash</span></a>
+
+                <ul>
+                    <li>
+
+                        <a href="{{route('movablewash')}}">List Movable wash</a>
+                    </li>
+                    <li>
+                        <a href="{{route('movablewash.add')}}">Add Movable wash</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <hr>
+            <span style="color: #FFF;font-weight: 400;font-size: 18px;padding-left: 10px;">Dynamic data</span>
+            <hr>
+
+
             <li>
                 <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Show Rooms</span></a>
                 <ul>
@@ -113,6 +324,20 @@
                     </li>
                     <li>
                         <a href="{{route('boatfishing.add')}}">Add Boat Fishing</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span class="menu-item-parent">Car Wash</span></a>
+                <ul>
+                    <li>
+                        <a href="{{route('carwash')}}">Car Wash</a>
+                    </li>
+                    <li>
+                        <a href="{{route('carwash.add')}}">Add Car Wash</a>
                     </li>
 
                 </ul>

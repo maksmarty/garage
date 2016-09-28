@@ -62,4 +62,8 @@ Route::group(array( 'before' => 'auth'), function() {
 
     Route::get('showroom/phone', array('as' => 'showroom.phone','uses' => '\App\Modules\Showroom\Controllers\ShowroomController@getPhone'));
 
+    Route::post('showroom/delete', array( 'as' => 'showroom.delete','uses' => '\App\Modules\Showroom\Controllers\ShowroomController@destroy'));
+
+    Route::post('showroom/delete/photo', array( 'as' => 'showroom.delete_image','uses' => '\App\Modules\Showroom\Controllers\ShowroomController@destroyImage'));
+
 });

@@ -35,6 +35,25 @@ class Category extends \Eloquent {
         return $this->hasMany('Items');
     }
 
+    public function getCategoriesByParent($parent)
+    {
+
+        $queryCat = 'SELECT  category2.category_id,category2.name FROM `category` category1' .
+            ' JOIN  category category2 ON category2.parent = category1.category_id' .
+            ' WHERE category1.name = "'.$parent.'"';
+        $categs = DB::select($queryCat);
+
+        $data = array();
+        foreach($categs as $categ ){
+
+            $data[$categ->category_id] =  $categ->name;
+
+        }
+
+        return $data;
+    }
+
+
     public function getGroupedCategoriesForDropDown()
     {
         $parents = DB::table('category')->where('parent','=','0')->orderBy('name','asc')->get();

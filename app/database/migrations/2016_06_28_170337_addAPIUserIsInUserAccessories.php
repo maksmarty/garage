@@ -12,10 +12,10 @@ class AddAPIUserIsInUserAccessories extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('user_accessories', function($table)
-		{
-			$table->bigInteger("api_users_id")->unsigned()->after('user_accessories_id');
-		});
+//		Schema::table('user_accessories', function($table)
+//		{
+//			$table->bigInteger("api_users_id")->unsigned()->after('user_accessories_id');
+//		});
 
 
 	}

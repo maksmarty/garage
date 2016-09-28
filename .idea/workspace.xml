@@ -2,11 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cfe89c0-a684-402d-9c54-812b5d640073" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/reset_password.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/verification.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/garage_29x29.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/garage_40x40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/carwash/models/Carwash.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/carwash/controllers/CarwashController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/carwash/ServiceProvider.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/carwash/views/add.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/carwash/views/index.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/items/views/index_common.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/carwash/views/lists.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/modules/carwash/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_25_230938_createAPIUsersTable.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_25_230938_createAPIUsersTable.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_165624_addAPIUserIsInUserMobile.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_165624_addAPIUserIsInUserMobile.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_170035_addAPIUserIsInUserScrap.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_170035_addAPIUserIsInUserScrap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_170153_addAPIUserIsInUserMarine.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_170153_addAPIUserIsInUserMarine.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_170337_addAPIUserIsInUserAccessories.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_170337_addAPIUserIsInUserAccessories.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_174616_addAPIUserIsInForsale.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_174616_addAPIUserIsInForsale.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_174758_addAPIUserIsInScrap.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_174758_addAPIUserIsInScrap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_174947_addAPIUserIsInMarine.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_174947_addAPIUserIsInMarine.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/database/migrations/2016_06_28_175100_addAPIUserIsInAccessories.php" afterPath="$PROJECT_DIR$/app/database/migrations/2016_06_28_175100_addAPIUserIsInAccessories.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/category/models/Category.php" afterPath="$PROJECT_DIR$/app/modules/category/models/Category.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php" afterPath="$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/forsale/routes.php" afterPath="$PROJECT_DIR$/app/modules/forsale/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/emails/verify.blade.php" afterPath="$PROJECT_DIR$/app/views/emails/verify.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/items/models/Items.php" afterPath="$PROJECT_DIR$/app/modules/items/models/Items.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/items/controllers/ItemsController.php" afterPath="$PROJECT_DIR$/app/modules/items/controllers/ItemsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php" afterPath="$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/items/views/add.blade.php" afterPath="$PROJECT_DIR$/app/modules/items/views/add.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/views/add.blade.php" afterPath="$PROJECT_DIR$/app/modules/showroom/views/add.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/app.php" afterPath="$PROJECT_DIR$/app/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/layout/views/header.blade.php" afterPath="$PROJECT_DIR$/app/modules/layout/views/header.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/items/views/lists.blade.php" afterPath="$PROJECT_DIR$/app/modules/items/views/lists.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php" afterPath="$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/layout/views/partials/alerts/message.blade.php" afterPath="$PROJECT_DIR$/app/modules/layout/views/partials/alerts/message.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/items/routes.php" afterPath="$PROJECT_DIR$/app/modules/items/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/showroom/routes.php" afterPath="$PROJECT_DIR$/app/modules/showroom/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/search.js" afterPath="$PROJECT_DIR$/public/js/search.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/modules/layout/views/sidebar.blade.php" afterPath="$PROJECT_DIR$/app/modules/layout/views/sidebar.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="garage.iws" />
@@ -23,108 +54,226 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DatabaseView">
+    <option name="FLATTEN" value="false" />
+    <option name="GROUP_BY_TYPE" value="true" />
+    <option name="SORT_CHILDREN" value="false" />
+    <option name="SHOW_TABLE_CONSTRAINTS" value="true" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="garage" />
+    <favorites_list name="garage">
+      <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw" module="garage" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+        <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100" module="garage" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7239f1f8ee_1442259871.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723a4a7dc7_1442259876.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723aa3fb5e_1442259882.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723ae8e637_1442259886.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723b2da8fb_1442259890.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723b77c542_1442259895.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723bbf0846_1442259899.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723c02e334_1442259904.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723c4bf02f_1442259908.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723c9e6ea3_1442259913.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723ce8e1d6_1442259918.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723d311275_1442259923.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723d77f2f6_1442259927.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723dc331ec_1442259932.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723e12bbfb_1442259937.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723e570daa_1442259941.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723ea0f382_1442259946.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723ee31ec4_1442259950.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723f2bdecb_1442259954.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723f716190_1442259959.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723fb6d5bc_1442259963.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f723ffa3708_1442259967.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7240420a19_1442259972.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7240833652_1442259976.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7240c6f3d5_1442259980.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f724110bbaa_1442259985.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f724156cd10_1442259989.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f72419b8d84_1442259993.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7241e6afbb_1442259998.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7242396f90_1442260003.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f724286cb8a_1442260008.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7242cdc0c7_1442260012.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f72431cb00f_1442260017.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f72436183b0_1442260022.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7243ab3736_1442260026.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7243f32c41_1442260031.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f724439a6b6_1442260035.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f724483fd02_1442260040.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f7244d849dd_1442260045.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f724535f90d_1442260051.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/100/55f72457f1892_1442260055.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        </favorite_root>
+        <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400" module="garage" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7239f1f8ee_1442259871.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723a4a7dc7_1442259876.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723aa3fb5e_1442259882.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723ae8e637_1442259886.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723b2da8fb_1442259890.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723b77c542_1442259895.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723bbf0846_1442259899.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723c02e334_1442259904.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723c4bf02f_1442259908.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723c9e6ea3_1442259913.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723ce8e1d6_1442259918.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723d311275_1442259923.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723d77f2f6_1442259927.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723dc331ec_1442259932.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723e12bbfb_1442259937.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723e570daa_1442259941.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723ea0f382_1442259946.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723ee31ec4_1442259950.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723f2bdecb_1442259954.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723f716190_1442259959.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723fb6d5bc_1442259963.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f723ffa3708_1442259967.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7240420a19_1442259972.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7240833652_1442259976.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7240c6f3d5_1442259980.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f724110bbaa_1442259985.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f724156cd10_1442259989.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f72419b8d84_1442259993.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7241e6afbb_1442259998.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7242396f90_1442260003.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f724286cb8a_1442260008.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7242cdc0c7_1442260012.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f72431cb00f_1442260017.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f72436183b0_1442260022.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7243ab3736_1442260026.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7243f32c41_1442260031.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f724439a6b6_1442260035.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f724483fd02_1442260040.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f7244d849dd_1442260045.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f724535f90d_1442260051.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+          <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/400/55f72457f1892_1442260055.jpg" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        </favorite_root>
+        <favorite_root url="file://$PROJECT_DIR$/public/uploads/images/bmw/original" module="garage" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+      </favorite_root>
+    </favorites_list>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ScrapController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modules/scrap/controllers/ScrapController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="510" column="105" selection-start-line="510" selection-start-column="105" selection-end-line="510" selection-end-column="105" />
-              <folding>
-                <element signature="e#152#194#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Apiuser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modules/forsale/models/Apiuser.php">
+      <file leaf-file-name="ItemsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/items/controllers/ItemsController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+              <caret line="923" column="0" selection-start-line="846" selection-start-column="0" selection-end-line="923" selection-end-column="0" />
               <folding>
-                <element signature="e#171#202#0#PHP" expanded="true" />
-                <marker date="1467117637000" expanded="true" signature="1193:1354" placeholder="SELECT showr..showroom_car..." />
-                <marker date="1467117637000" expanded="true" signature="1389:1568" placeholder="SELECT count..showroom_car..." />
+                <element signature="e#152#187#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForsaleController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="80.333336">
-              <caret line="862" column="29" selection-start-line="862" selection-start-column="13" selection-end-line="862" selection-end-column="29" />
-              <folding>
-                <element signature="e#154#193#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reset_password.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/reset_password.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.235294">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/modules/forsale/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5825243">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="verify.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/emails/verify.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.0">
-              <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="verification.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/verification.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75">
-              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MarineController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modules/marine/controllers/MarineController.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/items/routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="39" />
+              <caret line="37" column="129" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="129" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccessoriesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/modules/accessories/controllers/AccessoriesController.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/showroom/routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="755" column="99" selection-start-line="755" selection-start-column="99" selection-end-line="755" selection-end-column="99" />
+              <caret line="66" column="38" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constant.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/constant.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="29" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="20" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/search.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="320" column="33" selection-start-line="320" selection-start-column="33" selection-end-line="320" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/add.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="299" column="56" selection-start-line="299" selection-start-column="53" selection-end-line="299" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowroomController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="853" column="32" selection-start-line="853" selection-start-column="20" selection-end-line="853" selection-end-column="32" />
               <folding>
-                <element signature="e#158#215#0#PHP" expanded="true" />
+                <element signature="e#155#196#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1949" column="47" selection-start-line="1949" selection-start-column="47" selection-end-line="1949" selection-end-column="47" />
+              <folding>
+                <marker date="1473330319000" expanded="true" signature="4142:4297" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="6067:6222" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="7925:8080" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="9505:9651" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="10848:10990" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="12189:12338" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="13552:13709" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="15405:15560" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="17440:17595" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="19464:19619" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="21039:21199" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="22910:23065" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="24909:25064" placeholder="SELECT items..items..." />
+                <marker date="1473330319000" expanded="true" signature="30289:30673" placeholder="SELECT showr..showroom_car..." />
+                <marker date="1473330319000" expanded="true" signature="43527:43768" placeholder="SELECT spare..spare_part..." />
+                <marker date="1473330319000" expanded="true" signature="46738:46995" placeholder="SELECT servi..service_center..." />
+                <marker date="1473330319000" expanded="true" signature="50118:50273" placeholder="SELECT items..items..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lists.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="112" selection-start-line="59" selection-start-column="97" selection-end-line="59" selection-end-column="112" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -137,57 +286,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_05_02_203555_createUserAccessoriesTable.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_05_02_203737_createMarineTable.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_05_02_204014_createAccessoriesTable.php" />
-        <option value="$PROJECT_DIR$/app/modules/marine/models/Marine.php" />
-        <option value="$PROJECT_DIR$/app/modules/marine/models/Usermarine.php" />
-        <option value="$PROJECT_DIR$/app/modules/marine/models/Marinemakeregion.php" />
-        <option value="$PROJECT_DIR$/app/modules/marine/ServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_05_02_211517_AddMarienAndAccessoriesInPhotoTable.php" />
-        <option value="$PROJECT_DIR$/app/modules/accessories/ServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/modules/accessories/models/Marine.php" />
-        <option value="$PROJECT_DIR$/app/modules/accessories/models/Accessoriesmakeregion.php" />
-        <option value="$PROJECT_DIR$/app/modules/accessories/models/Useraccessories.php" />
-        <option value="$PROJECT_DIR$/app/modules/showroom/routes.php" />
-        <option value="$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_05_19_090417_addPhoneToShowRoom.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_04_181747_addModelInScrapTable.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_04_181956_addModelInMarineTable.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_04_182212_addModelInAccessoriesTable.php" />
-        <option value="$PROJECT_DIR$/app/modules/scrap/routes.php" />
-        <option value="$PROJECT_DIR$/app/modules/marine/routes.php" />
-        <option value="$PROJECT_DIR$/app/modules/accessories/routes.php" />
-        <option value="$PROJECT_DIR$/app/modules/boatfishing/ServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/config/app.php" />
-        <option value="$PROJECT_DIR$/app/modules/boatfishing/routes.php" />
-        <option value="$PROJECT_DIR$/app/modules/layout/views/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_16_190137_createBoatFishingTable.php" />
         <option value="$PROJECT_DIR$/app/modules/boatfishing/views/add.blade.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2016_06_16_195522_addBoatFishingIdInPhotoTable.php" />
         <option value="$PROJECT_DIR$/app/modules/boatfishing/models/Boatfishing.php" />
         <option value="$PROJECT_DIR$/app/modules/boatfishing/controllers/BoatfishingController.php" />
         <option value="$PROJECT_DIR$/app/config/mail.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_25_230938_createAPIUsersTable.php" />
         <option value="$PROJECT_DIR$/app/modules/forsale/models/Apiuser.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2016_06_04_171707_addModelInForsaleTable.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_170337_addAPIUserIsInUserAccessories.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_170153_addAPIUserIsInUserMarine.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_170035_addAPIUserIsInUserScrap.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_165624_addAPIUserIsInUserMobile.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_174616_addAPIUserIsInForsale.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_174758_addAPIUserIsInScrap.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_174947_addAPIUserIsInMarine.php" />
-        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_175100_addAPIUserIsInAccessories.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
         <option value="$PROJECT_DIR$/app/modules/scrap/controllers/ScrapController.php" />
         <option value="$PROJECT_DIR$/app/modules/marine/controllers/MarineController.php" />
         <option value="$PROJECT_DIR$/app/modules/accessories/controllers/AccessoriesController.php" />
         <option value="$PROJECT_DIR$/app/views/emails/verify.blade.php" />
         <option value="$PROJECT_DIR$/app/views/verification.blade.php" />
-        <option value="$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php" />
         <option value="$PROJECT_DIR$/app/views/reset_password.blade.php" />
         <option value="$PROJECT_DIR$/app/modules/forsale/routes.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_16_190137_createBoatFishingTable.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_07_26_165615_carWashTable.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_07_26_165927_addCarWashToPhotoTable.php" />
+        <option value="$PROJECT_DIR$/app/modules/carwash/models/Carwash.php" />
+        <option value="$PROJECT_DIR$/app/modules/carwash/ServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/modules/carwash/routes.php" />
+        <option value="$PROJECT_DIR$/app/modules/carwash/views/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/carwash/views/add.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/carwash/controllers/CarwashController.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_25_230938_createAPIUsersTable.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_165624_addAPIUserIsInUserMobile.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_170035_addAPIUserIsInUserScrap.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_170153_addAPIUserIsInUserMarine.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_170337_addAPIUserIsInUserAccessories.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_174616_addAPIUserIsInForsale.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_174758_addAPIUserIsInScrap.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_174947_addAPIUserIsInMarine.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_06_28_175100_addAPIUserIsInAccessories.php" />
+        <option value="$PROJECT_DIR$/app/modules/layout/views/header.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/category/models/Category.php" />
+        <option value="$PROJECT_DIR$/app/modules/layout/views/partials/alerts/message.blade.php" />
+        <option value="$PROJECT_DIR$/app/database/migrations/2016_08_18_170601_addPhoneInAPIUserTable.php" />
+        <option value="$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php" />
+        <option value="$PROJECT_DIR$/app/config/app.php" />
+        <option value="$PROJECT_DIR$/app/modules/layout/views/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/items/views/lists.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/items/views/index_common.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/items/views/add.blade.php" />
+        <option value="$PROJECT_DIR$/app/modules/items/controllers/ItemsController.php" />
+        <option value="$PROJECT_DIR$/app/modules/items/routes.php" />
+        <option value="$PROJECT_DIR$/app/modules/items/models/Items.php" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/routes.php" />
+        <option value="$PROJECT_DIR$/app/modules/showroom/views/add.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/search.js" />
       </list>
     </option>
   </component>
@@ -258,7 +407,73 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="showroom" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -273,32 +488,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="garage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="garage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="emails" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -338,30 +527,93 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="forsale" />
+              <option name="myItemId" value="showroom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="showroom" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="garage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.behat" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../akody.admin-v2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reviews.carat-ra" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/akbar/projects/php/garage/app/database/migrations/2016_06_28_165624_addAPIUserIsInUserMobile.php" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/views" />
-      <recent name="$PROJECT_DIR$/app/views/emails" />
-      <recent name="$PROJECT_DIR$/app/modules/forsale/models" />
-      <recent name="$PROJECT_DIR$/app/modules" />
-      <recent name="$PROJECT_DIR$/public/uploads/images" />
+      <recent name="$PROJECT_DIR$/public/uploads/images/makhrth" />
+      <recent name="$PROJECT_DIR$/public/uploads/images/lexus" />
+      <recent name="$PROJECT_DIR$/public/uploads/images/kia" />
+      <recent name="$PROJECT_DIR$/public/uploads/images/kharbaawatakeef" />
+      <recent name="$PROJECT_DIR$/public/uploads/images/katagyaar" />
     </key>
   </component>
   <component name="RunManager">
@@ -429,16 +681,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2819063" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27382874" sideWeight="0.4948605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32064423" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24878837" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32011747" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5051395" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -469,399 +721,385 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_23_144218_CreateForSale.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.5833335">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_05_19_090417_addPhoneToShowRoom.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5833335">
+        <state vertical-scroll-proportion="0.4538835">
           <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="32" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_04_30_094512_CreateScrapTable.php">
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_16_190137_createBoatFishingTable.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.8333333">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="42" />
+        <state vertical-scroll-proportion="-3.75">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="28" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_04_181747_addModelInScrapTable.php">
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_16_195522_addBoatFishingIdInPhotoTable.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.708333">
-          <caret line="38" column="5" selection-start-line="7" selection-start-column="4" selection-end-line="38" selection-end-column="5" />
+        <state vertical-scroll-proportion="-0.033980582">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="31" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_05_02_203737_createMarineTable.php">
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_07_26_165927_addCarWashToPhotoTable.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="43" />
+        <state vertical-scroll-proportion="-10.916667">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_04_181956_addModelInMarineTable.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/carwash/ServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="38" selection-end-column="5" />
+        <state vertical-scroll-proportion="-7.5">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_05_02_204014_createAccessoriesTable.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/carwash/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="48" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="48" />
+        <state vertical-scroll-proportion="-9.683544">
+          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_04_182212_addModelInAccessoriesTable.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/carwash/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+        <state vertical-scroll-proportion="21.189873">
+          <caret line="88" column="103" selection-start-line="88" selection-start-column="103" selection-end-line="88" selection-end-column="103" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/marine/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/accessories/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/carwash/models/Carwash.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="28" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="28" />
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_15_081535_CreateShowRoomMake.php">
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_174616_addAPIUserIsInForsale.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_170337_addAPIUserIsInUserAccessories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5533981">
+          <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_170153_addAPIUserIsInUserMarine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25728154">
+          <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_170035_addAPIUserIsInUserScrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2936893">
+          <caret line="17" column="11" selection-start-line="14" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_25_230938_createAPIUsersTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36407766">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_174947_addAPIUserIsInMarine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37135923">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_174758_addAPIUserIsInScrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/carwash/controllers/CarwashController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14308426">
+          <caret line="148" column="27" selection-start-line="148" selection-start-column="27" selection-end-line="148" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/layout/views/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375">
+          <caret line="7" column="111" selection-start-line="7" selection-start-column="111" selection-end-line="7" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/carwash/views/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="126" column="18" selection-start-line="126" selection-start-column="18" selection-end-line="126" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/Helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.916667">
+          <caret line="362" column="91" selection-start-line="362" selection-start-column="27" selection-end-line="362" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/uploads/images/cadillac/400/57a8b259cab53_1470673497.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/uploads/images/cadillac/100/57a8b259cab53_1470673497.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/uploads/images/cadillac/400/55f7173470438_1442256692.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_08_18_170601_addPhoneInAPIUserTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.103896104">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_07_26_165615_carWashTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22087379">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_175100_addAPIUserIsInAccessories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2184466">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_165624_addAPIUserIsInUserMobile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46359223">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/forsale/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="109" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57052296">
+          <caret line="936" column="83" selection-start-line="936" selection-start-column="78" selection-end-line="936" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14263074">
+          <caret line="141" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/layout/views/partials/alerts/message.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66561013">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/layout/views/partials/alerts/errors.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.875">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/items/views/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.375">
+          <caret line="85" column="64" selection-start-line="85" selection-start-column="58" selection-end-line="85" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/layout/views/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42789224">
+          <caret line="82" column="58" selection-start-line="82" selection-start-column="58" selection-end-line="82" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/category/models/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08399366">
+          <caret line="37" column="50" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/ajax_redraw.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.022900764">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/items/models/Items.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/jquery.typing-0.2.0.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/boatfishing/ServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8039215">
-          <caret line="139" column="8" selection-start-line="139" selection-start-column="8" selection-end-line="139" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/layout/views/sidebar.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/items/views/index_common.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="79" selection-start-line="114" selection-start-column="79" selection-end-line="114" selection-end-column="79" />
+          <caret line="88" column="170" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="170" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_16_190137_createBoatFishingTable.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/items/views/lists.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <caret line="69" column="164" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="164" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/boatfishing/views/add.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/lists.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="93" selection-start-line="114" selection-start-column="93" selection-end-line="114" selection-end-column="93" />
+          <caret line="59" column="112" selection-start-line="59" selection-start-column="97" selection-end-line="59" selection-end-column="112" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_04_30_120954_AddScrapInPhotoTable.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/items/controllers/ItemsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_16_195522_addBoatFishingIdInPhotoTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="47" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38961038">
-          <caret line="55" column="92" selection-start-line="55" selection-start-column="66" selection-end-line="55" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/boatfishing/models/Boatfishing.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="156" column="5" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/boatfishing/controllers/BoatfishingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="162" column="51" selection-start-line="162" selection-start-column="51" selection-end-line="162" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_05_02_203555_createUserAccessoriesTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7080292">
-          <caret line="36" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/boatfishing/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5620438">
-          <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/mail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3799682">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_08_195116_car.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4390244">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_08_25_180825_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2902439">
-          <caret line="24" column="48" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.0833335">
-          <caret line="23" column="60" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/user/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="15.416667">
-          <caret line="39" column="42" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_170153_addAPIUserIsInUserMarine.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.875">
-          <caret line="16" column="58" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_170035_addAPIUserIsInUserScrap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375">
-          <caret line="16" column="58" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_165624_addAPIUserIsInUserMobile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58536583">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2015_11_23_101946_CreateUserFromMobile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36585367">
-          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_04_171707_addModelInForsaleTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76829267">
-          <caret line="34" column="5" selection-start-line="7" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_25_230938_createAPIUsersTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21707317">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_05_02_211517_AddMarienAndAccessoriesInPhotoTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5487805">
-          <caret line="16" column="53" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_175100_addAPIUserIsInAccessories.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15853658">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_174947_addAPIUserIsInMarine.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1097561">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_174758_addAPIUserIsInScrap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14634146">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_174616_addAPIUserIsInForsale.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2195122">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database/migrations/2016_06_28_170337_addAPIUserIsInUserAccessories.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14390244">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/forsale/models/Apiuser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+          <caret line="923" column="0" selection-start-line="846" selection-start-column="0" selection-end-line="923" selection-end-column="0" />
           <folding>
-            <element signature="e#171#202#0#PHP" expanded="true" />
-            <marker date="1467117637000" expanded="true" signature="1193:1354" placeholder="SELECT showr..showroom_car..." />
-            <marker date="1467117637000" expanded="true" signature="1389:1568" placeholder="SELECT count..showroom_car..." />
+            <element signature="e#152#187#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/accessories/controllers/AccessoriesController.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/items/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="755" column="99" selection-start-line="755" selection-start-column="99" selection-end-line="755" selection-end-column="99" />
-          <folding>
-            <element signature="e#158#215#0#PHP" expanded="true" />
-          </folding>
+          <caret line="37" column="129" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="129" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/marine/controllers/MarineController.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/items/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.88235295">
+          <caret line="81" column="166" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/constant.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="39" />
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6019417">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1949" column="47" selection-start-line="1949" selection-start-column="47" selection-end-line="1949" selection-end-column="47" />
           <folding>
-            <element signature="e#7#392#0#PHP" expanded="true" />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT showr..showroom_car..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT spare..spare_part..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT servi..service_center..." />
-            <marker date="1467139335000" expanded="true" signature="-1:-1" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="4142:4297" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="6067:6222" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="7925:8080" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="9505:9651" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="10848:10990" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="12189:12338" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="13552:13709" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="15405:15560" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="17440:17595" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="19464:19619" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="21039:21199" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="22910:23065" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="24909:25064" placeholder="SELECT items..items..." />
+            <marker date="1473330319000" expanded="true" signature="30289:30673" placeholder="SELECT showr..showroom_car..." />
+            <marker date="1473330319000" expanded="true" signature="43527:43768" placeholder="SELECT spare..spare_part..." />
+            <marker date="1473330319000" expanded="true" signature="46738:46995" placeholder="SELECT servi..service_center..." />
+            <marker date="1473330319000" expanded="true" signature="50118:50273" placeholder="SELECT items..items..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/reset_password.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.235294">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/verification.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/emails/verify.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/forsale/controllers/ForsaleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="80.333336">
-          <caret line="862" column="29" selection-start-line="862" selection-start-column="13" selection-end-line="862" selection-end-column="29" />
-          <folding>
-            <element signature="e#154#193#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/scrap/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40048543">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/scrap/controllers/ScrapController.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/controllers/ShowroomController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="510" column="105" selection-start-line="510" selection-start-column="105" selection-end-line="510" selection-end-column="105" />
+          <caret line="853" column="32" selection-start-line="853" selection-start-column="20" selection-end-line="853" selection-end-column="32" />
           <folding>
-            <element signature="e#152#194#0#PHP" expanded="true" />
+            <element signature="e#155#196#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/modules/forsale/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5825243">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="38" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="299" column="56" selection-start-line="299" selection-start-column="53" selection-end-line="299" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/search.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="320" column="33" selection-start-line="320" selection-start-column="33" selection-end-line="320" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/modules/showroom/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="20" selection-end-column="5" />
           <folding />
         </state>
       </provider>

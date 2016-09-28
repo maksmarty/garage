@@ -44,7 +44,161 @@ class ItemsController extends \BaseController {
         // load the view and pass the nerds
         return View::make('items::index');
     }
-    
+
+
+    public function indexCommon()
+    {
+        // get all the nerds
+        $categoryObj = new Category();
+        $list = ['' => 'Search by Category'] + $categoryObj->getCategoriesByParent(Request::segment(1));
+
+        // load the view and pass the nerds
+        return View::make('items::index_common',array('categories'=> $list  ));
+    }
+
+    # Show
+    public function showCommonAdd(){
+//        $categories = Category::lists('name', 'category_id');
+//
+
+        $parent = Request::segment(1);
+        $categoryObj = new Category();
+        $list = ['' => 'Select Category'] + $categoryObj->getCategoriesByParent($parent);
+        return View::make('items::add', array('categories'=> $list , 'item' => new items() ));
+    }
+
+
+    # handle change password post data
+    public function postCommonAdd(){
+
+        // validate
+        $rules = array(
+            'category_id'       => 'required',
+            'phone'       => 'required',
+            'description'       => 'required'
+        );
+
+        if (Input::hasFile('image')) {
+            $rules['image'] = 'required|mimes:png,gif,jpeg';//|max:20000
+        }
+
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            //echo '<pre>';print_r($validator);die('======Debugging=======');
+            $parent = Request::segment(1);
+            return Redirect::route($parent . '.add')
+                ->withErrors($validator);
+        } else {
+
+
+            $category_id = Input::get('category_id');
+            //Get category detail
+            $category = Category::find($category_id);
+            //echo '<pre>';print_r($category);die('======Debugging=======');
+
+            if( !empty($category->name) ){
+
+
+                // store
+                $item = new Items;
+                $item->category_id       = $category_id;
+                $item->phone       = Input::get('phone');
+                $item->phone1       = Input::get('phone1');
+                $item->phone2       = Input::get('phone2');
+                $item->description       = Input::get('description');
+                //$item->save()
+
+
+                if (Input::hasFile('image') ) {
+                    $file            = Input::file('image');
+
+                    $imagePath = public_path('uploads') .'/images/';
+
+                    $filnalDestinationPath = $imagePath . $category->name . "/";
+
+
+                    if( !file_exists($filnalDestinationPath) ){
+                        mkdir($filnalDestinationPath, 0755, true);
+                    }
+
+                    //get File Name
+                    $fileExtension = $file->getClientOriginalExtension();
+
+                    if( !empty($fileExtension) ){
+
+                        $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+
+
+                        //Upload original image
+                        $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                        \Image::make( $file->getRealPath() )
+                            ->save($fileOriginalPath);
+
+                        $image_sizes =  Config::get('constant.image_sizes');
+
+                        if( !empty($image_sizes) && is_array($image_sizes) ){
+
+                            foreach($image_sizes as $image_size){
+
+                                $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
+
+                                \Image::make( $file->getRealPath() )
+                                    ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
+                                    ->save($filePathImageSize);
+
+                                //Unset
+                                unset($filePathImageSize);
+                                unset($image_size);
+
+                            }
+
+
+                        }
+                        //Update new Image
+                        $item->image = $newFilename;
+
+                    }
+                }
+
+                $item->save();
+
+
+                if( !empty($category->parent) ){
+                    //Get parent
+                    $parent = Category::find($category->parent);
+
+                    // redirect
+                    Session::flash('message', ucfirst($parent->name) . ' Successfully updated!');
+                    return Redirect::route($parent->name);
+
+                }else{
+                    // redirect
+                    Session::flash('message', ucfirst($category->name) . ' Successfully updated!');
+                    return Redirect::route($category->name);
+                }
+
+
+            }else{
+                $parent = Request::segment(1);
+                // redirect
+                Session::flash('message', 'Something went wrong.');
+                return Redirect::route($parent . '.add');
+            }
+
+            //Save data
+            //$item->save();
+
+            // redirect
+           // Session::flash('message', 'Successfully added Item!');
+            //return Redirect::to(sprintf('%s/%s', 'item','add'));
+        }
+    }
+
+
+
     # Show
     public function showAdd(){
 //        $categories = Category::lists('name', 'category_id');
@@ -140,16 +294,17 @@ class ItemsController extends \BaseController {
         //$item = Items::find($id);
         //$item = Items::find($id);
         $item = DB::table('items')
-            ->join('category', 'items.category_id', '=', 'category.category_id')
+            ->join('category as category1', 'items.category_id', '=', 'category1.category_id')
+            ->leftjoin('category as category2', 'category1.parent', '=', 'category2.category_id')
             ->where('item_id','=',$id)
-            ->select('items.*','category.name as category_name')
+            ->select('items.*','category1.name as category_name','category2.name as parent_name')
             ->first();
         if(!empty($item->item_id)){
 
-            $categoryObj = new Category();
-            $list = ['' => 'Select Category'] + $categoryObj->getGroupedCategoriesForDropDown();
+            //$categoryObj = new Category();
+            //$list = ['' => 'Select Category'] + $categoryObj->getGroupedCategoriesForDropDown();
 
-            return View::make('items::add', array('categories'=> $list, 'item' => $item ));
+            return View::make('items::add', array('categories'=> null, 'item' => $item ));
         }else{
             // redirect
             Session::flash('message', 'Something went wrong.');
@@ -192,16 +347,119 @@ class ItemsController extends \BaseController {
                 $item->phone1       = Input::get('phone1');
                 $item->phone2       = Input::get('phone2');
                 $item->description       = Input::get('description');
-                $item->save();
 
-                // redirect
-                Session::flash('message', 'Item Successfully updated!');
-                return Redirect::route('item');
+
+
+                //Get category detail
+                $category = Category::find($item->category_id);
+
+                if( !empty($category->name) ){
+
+                    if (Input::hasFile('image') ) {
+                        $file            = Input::file('image');
+
+                        $imagePath = public_path('uploads') .'/images/';
+
+                        $filnalDestinationPath = $imagePath . $category->name . "/";
+
+
+                        if( !file_exists($filnalDestinationPath) ){
+                            mkdir($filnalDestinationPath, 0755, true);
+                        }
+
+                        //get File Name
+                        $fileExtension = $file->getClientOriginalExtension();
+
+                        if( !empty($fileExtension) ){
+
+                            $newFilename = uniqid(). "_" . time() . '.' . $fileExtension;
+
+
+                            //Upload original image
+                            $fileOriginalPath = $filnalDestinationPath . "original/" . $newFilename;
+                            \Image::make( $file->getRealPath() )
+                                ->save($fileOriginalPath);
+
+                            $image_sizes =  Config::get('constant.image_sizes');
+
+                            if( !empty($image_sizes) && is_array($image_sizes) ){
+
+                                foreach($image_sizes as $image_size){
+
+                                    $filePathImageSize = $filnalDestinationPath . "$image_size/" . $newFilename;
+
+                                    \Image::make( $file->getRealPath() )
+                                        ->resize($image_size,null, function ($constraint) { $constraint->aspectRatio(); })
+                                        ->save($filePathImageSize);
+
+                                    //Unset
+                                    unset($filePathImageSize);
+                                    unset($image_size);
+
+                                }
+
+
+                            }
+
+                            //Delete old image
+                            if( !empty($item->image) ){
+
+                                $orgImg = $filnalDestinationPath . "original/" . $item->image;
+
+                                if( file_exists($orgImg) ){
+                                    unlink($orgImg);
+                                }
+
+
+                                if( !empty($image_sizes) && is_array($image_sizes) ){
+
+                                    foreach($image_sizes as $image_size){
+                                        $imgdel = $filnalDestinationPath . "$image_size/" . $item->image;
+                                        if( file_exists($imgdel) ){
+                                            unlink($imgdel);
+                                        }
+                                    }
+                                }
+
+
+                            }
+
+                            //Update new Image
+                            $item->image = $newFilename;
+
+                        }
+                    }
+
+                    $item->save();
+
+
+                    if( !empty($category->parent) ){
+                        //Get parent
+                        $parent = Category::find($category->parent);
+
+                        // redirect
+                        Session::flash('message', ucfirst($parent->name) . ' Successfully updated!');
+                        return Redirect::route($parent->name);
+
+                    }else{
+                        // redirect
+                        Session::flash('message', ucfirst($category->name) . ' Successfully updated!');
+                        return Redirect::route($category->name);
+                    }
+
+
+                }else{
+                    // redirect
+                    Session::flash('message', 'Something went wrong.');
+                    return Redirect::route('item.update',$id);
+                }
+
+
             }
         }else{
             // redirect
             Session::flash('message', 'Something went wrong.');
-            return Redirect::route('item');
+            return Redirect::route('item.update',$id);
         }
 
 
@@ -583,6 +841,85 @@ class ItemsController extends \BaseController {
 
             return $dir_array;
         }
+    }
+
+
+
+    public function destroy()
+    {
+
+        if (Request::ajax()) {
+
+            $response = array();
+
+            $item_id = Input::get('item_id');
+
+            if(!empty($item_id)){
+
+
+                $item = Items::find($item_id);
+
+                if( !empty($item->item_id) ){
+
+                    //Remove all images
+                    if ( !empty($item->image) ) {
+
+                        $imagePath = public_path('uploads') .'/images/';
+
+                        //Get Category
+                        $category = Category::find($item->category_id);
+
+                        $filnalDestinationPath = $imagePath . $category->name . "/";
+
+
+                        if( !file_exists($filnalDestinationPath) ){
+                            mkdir($filnalDestinationPath, 0755, true);
+                        }
+
+
+                        //Delete originalimages
+                        $orgImg = $filnalDestinationPath . "original/" . $item->image;
+
+                        if( file_exists($orgImg) ){
+                            unlink($orgImg);
+                        }
+
+                        $image_sizes =  Config::get('constant.image_sizes');
+                        if( !empty($image_sizes) && is_array($image_sizes) ){
+
+                            foreach($image_sizes as $image_size){
+                                $imgdel = $filnalDestinationPath . "$image_size/" . $item->image;
+                                if( file_exists($imgdel) ){
+                                    unlink($imgdel);
+                                }
+                            }
+                        }
+
+                    }
+
+
+                    Items::destroy($item_id);
+                    $response['status'] = 'success';
+                    $response['message'] = 'Item removed successfully.';
+
+                }else{
+                    $response['status'] = 'error';
+                    $response['message'] = 'Something went wrong.';
+                }
+
+
+
+            }else{
+                $response['status'] = 'error';
+                $response['message'] = 'Something went wrong.';
+            }
+
+
+            return json_encode($response);
+        }else{
+            App::abort(404);
+        }
+
     }
 
 
